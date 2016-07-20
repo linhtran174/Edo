@@ -1,0 +1,128 @@
+.container-fluid {
+	padding: 0;
+}
+
+.headernav {
+	height: 70px;
+	/*border-bottom: 1px solid #c9cccd;*/
+	line-height: 70px;
+}
+
+.headernav .item {
+	padding: 0;
+	text-align: center;
+}
+
+.headernav a{
+	font-weight: bold;
+}
+
+.headernav a:hover{
+	text-decoration: none;
+}
+
+#home a {
+	color: #0A9C58;
+}
+
+#home a:hover {
+	border-bottom: 2px solid #0A9C58;
+}
+
+#catalog a {
+	color: black;
+}
+#catalog a:hover{
+	border-bottom: 2px solid black;
+}
+
+#signin a, #signup a {
+	color: #F58B1F;
+}
+#signin a:hover, #signup a:hover {
+	border-bottom: 2px solid #F58B1F;
+}
+
+.carousel-indicators .active {
+	background: #F58B1F;
+	width: 16px;
+	height: 16px;
+	border: 1px solid #eeeeee;
+}
+
+.carousel-indicators li {
+	border: 2px solid #eeeeee;
+	background: white;
+	width: 15px;
+	height: 15px;
+}
+
+#myCarousel{
+	margin-top: -20px;
+}
+
+.carousel-inner {
+	background: #FAFAFA;
+	height: 500px;
+	/*vertical-align: center;*/
+	/*display: flex;*/
+	
+	/*padding-top: 60px;*/
+	/*padding-bottom: 60px;*/
+}
+
+.carousel-inner .item {
+	margin: 70px 0;
+	
+	/*align-self: center;
+	justify-content: center;
+	align-items: center;*/
+}
+
+
+.carousel-inner .container {
+
+}
+
+.nano-left {
+	text-align: left;
+	margin: 0 auto;
+}
+
+.nano-left .title {
+	font-size: 31px;
+	color: black;
+}
+
+.nano-left .content {
+	color: #878787;
+}
+
+.nano-left .content-green {
+	color: #0A9C58;
+}
+
+.nano-left .btn-primary {
+	background-color: #0A9C58;
+	width: 250px;
+	border-color: #0A9C58;
+}
+
+.slide-prev {
+	position:absolute;
+	top:250px;
+	left:0;
+	z-index:100;
+}
+
+.slide-next {
+	position:absolute;
+	top:250px;
+	right:0;
+	z-index:100;
+}
+
+.program p {
+	text-align: center
+}
+
