@@ -22,7 +22,7 @@ class Register_control extends CI_Controller{
 			if($this->student_model->create($data))
 			{
 				$this->session->set_flashdata('flash_message', 'Dang ky thanh vien thanh cong');
-				redirect(site_url("view_controller/sign_in"),'location');//chuyen toi trang chu
+				redirect(site_url("login_controller"),'location');//chuyen toi trang chu
 			}
 		}
 		$this->load->view('register',$data);

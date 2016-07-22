@@ -8,10 +8,20 @@
 			<a class="myNavItem" href="">LỚP HỌC CỦA TÔI</a> 
 			<a class="myNavItem"
 				href="<?php echo site_url("view_controller/course_catalog")?>">CATALOG</a> 
+			<?php 
+				if($this->session->userdata('login') == NULL){
+			?>
 			<a class="myNavItem" style="color: orange;"
-				href="<?php echo site_url("view_controller/sign_in")?>">ĐĂNG NHẬP</a>
+				href="<?php echo site_url("login_controller")?>">ĐĂNG NHẬP</a>
 			<a class="myNavItem" style="color: orange;"
 				href="<?php echo site_url("register_control")?>">ĐĂNG KÝ</a>
+			<?php
+				}
+				else{
+			?>
+			<a class="myNavItem" style="color: orange;"
+				href="<?php echo site_url("login_controller/log_out")?>">THOÁT</a>
+			<?php }?>
 		</div>
 	</div>
 </div>

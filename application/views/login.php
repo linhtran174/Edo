@@ -21,10 +21,12 @@
 				<div class="row">
 					<div class="col-md-2"></div>
 					<div class="col-md-8">
-						<form>
+						<form method="post" action="">
 							<h2>Đăng nhập</h2>
-							<input class="form-control" placeholder="Email" type="text" name="email" />
-							<input class="form-control" placeholder="Mật khẩu" type="password" name="password" />
+							<input class="form-control" placeholder="Email" id="email" type="text" name="email" value="<?php echo set_value('email')?>"/>
+							<div class="error" id="email_error"><?php echo form_error('email')?></div>	
+							<input class="form-control" type="password" id="password" name="password" placeholder="Mật khẩu">
+							<div class="error" id="pass_error"><?php echo form_error('password')?></div>
 							<a href="<?php echo site_url("view_controller/request_pass")?>" id="forgot"><p>Quên mật khẩu</p></a>
 							<button type="submit" class="btn button-primary">Đăng nhập</button>
 						</form>
