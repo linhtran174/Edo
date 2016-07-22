@@ -12,15 +12,15 @@
 				if($this->session->userdata('login') == NULL){
 			?>
 			<a class="myNavItem" style="color: orange;"
-				href="<?php echo site_url("login_controller")?>">ĐĂNG NHẬP</a>
+				href="<?php echo site_url("login")?>">ĐĂNG NHẬP</a>
 			<a class="myNavItem" style="color: orange;"
-				href="<?php echo site_url("register_control")?>">ĐĂNG KÝ</a>
+				href="<?php echo site_url("register")?>">ĐĂNG KÝ</a>
 			<?php
 				}
 				else{
 			?>
 			<a class="myNavItem" style="color: orange;"
-				href="<?php echo site_url("login_controller/log_out")?>">THOÁT</a>
+				href="<?php echo site_url("logout")?>">THOÁT</a>
 			<?php }?>
 		</div>
 	</div>

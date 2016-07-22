@@ -4,6 +4,7 @@ class View_controller extends CI_Controller{
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('student_model');
+		$this->load->model('course_model');
 	}
 	public function index(){
 		$this->load->view('index');
@@ -28,7 +29,7 @@ class View_controller extends CI_Controller{
 	public function test(){
 		$input = array();
 		$input['limit'] = array('5', 0);
-		$member = $this->student_model->get_list($input);
+		$member = $this->course_model->get_list($input);
 		echo '<pre>';
 		print_r($member);
 	}
