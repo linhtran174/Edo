@@ -7,7 +7,7 @@
 		<div style="position: absolute; right: 0; top: 25px">
 			<a class="myNavItem" href="">LỚP HỌC CỦA TÔI</a> 
 			<a class="myNavItem"
-				href="<?php echo site_url("view_controller/course_catalog")?>">CATALOG</a> 
+				href="<?php echo site_url("course_controller")?>">CATALOG</a> 
 			<?php 
 				if($this->session->userdata('login') == NULL){
 			?>

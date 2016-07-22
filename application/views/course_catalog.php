@@ -59,45 +59,23 @@
 					<div id="Category">
 						<h5 id="CategoryName">Android</h5>
 					</div>
-					<div class="row info">
-						<div class="col-md-4">
-							<img class="courseImg" src=<?php echo base_url("assets/images/simple.png")?>>
-						</div>
-						<!-- <div class="col-md-1"></div> -->
-						<div class="col-md-8">
-							<a>Khóa Android cơ bản ngắn hạn</a>
-							<p>10 PROJECTS</p>
-							<p>Học ngôn ngữ Java và bắt đầu xây dượng 1 ứng dụng mới tuyệt vời trên Android</p>
-							<p>BUILT BY <b>GOOGLE</b></p>
-						</div>
-					</div>
 
-					<div class="row info">
+					<?php foreach ($courses as $course) {
+						echo '<div class="row info">
 						<div class="col-md-4">
-							<img class="courseImg" src=<?php echo base_url("assets/images/simple.png")?>>
+							<img class="courseImg" src=',base_url("assets/images/simple.png"),'>
 						</div>
 						<!-- <div class="col-md-1"></div> -->
 						<div class="col-md-8">
-							<a>Khóa Android cơ bản ngắn hạn</a>
-							<div class="newTag"><p style="padding:2px 11px; color: white;">NEW</p></div>
+							<a>',$course->course_name,'</a>
 							<p>10 PROJECTS</p>
-							<p>Học ngôn ngữ Java và bắt đầu xây dượng 1 ứng dụng mới tuyệt vời trên Android</p>
+							<p>',$course->course_shortDesc,'</p>
 							<p>BUILT BY <b>GOOGLE</b></p>
 						</div>
-					</div>
+					</div>';
+					} ?>
+				
 
-					<div class="row info">
-						<div class="col-md-4">
-							<img class="courseImg" src=<?php echo base_url("assets/images/simple.png")?>>
-						</div>
-						<!-- <div class="col-md-1"></div> -->
-						<div class="col-md-8">
-							<a>Khóa Android cơ bản ngắn hạn</a>
-							<p>10 PROJECTS</p>
-							<p>Học ngôn ngữ Java và bắt đầu xây dượng 1 ứng dụng mới tuyệt vời trên Android</p>
-							<p>BUILT BY <b>GOOGLE</b></p>
-						</div>
-					</div>
 				</div>
 				</div>
 		</div>

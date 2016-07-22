@@ -3,7 +3,7 @@ class MY_Model extends CI_Model {
     // Ten table
     var $table = '';
     var $id_table = '';
-    
+
     /**
      * Them row moi
      */
