@@ -1,0 +1,87 @@
+#content{
+	margin-bottom: 50px;
+}
+
+a{
+	color: #048549;
+}
+
+.icon{
+	height: 20px;
+	width: 20px;
+}
+
+#form{
+	border: 1px solid #D7D7D7;
+    margin-top: 100px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+#forgot{
+	margin-top:40px;
+	text-decoration: underline;
+	color: green;
+}
+
+input{
+	margin-top:20px;
+	margin-bottom: 10px;
+}
+
+#term{
+	color: green;
+}
+
+#term :hover{
+	color: green;
+	text-decoration: underline;
+}
+
+.line{
+	border: 1px solid #D7D7D7;
+	width: 150px;
+	display: inline-block;
+}
+
+.another-login{
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.another-login p{
+	border: 1px solid #D7D7D7;
+	border-radius: 1px;
+	padding-top: 11px;
+	height:45px;
+}
+
+.another-login p a{
+	color: black;
+	display: block;
+}
+
+.another-login :hover{
+	background-color: #048549;
+	color: white;
+}
+
+.button-primary {
+	width: 270px;
+	height: 50px;
+	background: #0a9d59;
+	color: white;
+	font-family: Roboto;
+	font-weight: 300;
+	font-size: 14px;
+	margin: 40px 0;
+}
+
+.button-primary:hover {
+	background: #048549;
+	color: white;
+}
+
+#google {
+	margin-bottom: 100px;
+}

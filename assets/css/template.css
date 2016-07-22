@@ -1,0 +1,173 @@
+body{
+	font-family: Roboto;
+	/*font-weight: 300;*/
+}
+
+.myStarRating{
+	color: rgb(249,187,0);
+	font-size: 17px;
+}
+
+#myNavBar a{
+	text-decoration: none;
+}
+
+a:hover{
+	color:rgb(10,157,89);
+}
+
+#myNavbar{
+	height: 100px;
+	border: 1px solid rgb(240,240,240);
+}
+
+
+#myLinks{
+	background-color: rgb(243,243,240);
+	padding-bottom: 14px;
+}
+
+#myFooter{
+	height: 95px;
+	background-color: rgb(10,157,89);
+	position: relative;
+}
+
+#myFooter p{
+	color:white;
+	font-weight: 300;
+	font-size: 12px;
+	position: absolute;
+	top:35px;
+}
+
+#myFooter img{
+	position: absolute;
+	top:35px;
+	right:0;
+}
+
+.dotBullet{
+	height: 6px;
+	width: 6px;
+	border-radius: 6px;
+	border: 1px solid rgb(177,181,187);
+	margin-right:10px;
+	position: absolute;
+	margin-top:5px;
+}
+
+.a1Text{
+	height: 14px;
+	overflow: hidden;
+	overflow-wrap: break-word;
+	font-size: 12px;
+	display: block;
+	margin-bottom: 16px;
+	color: rgb(117,117,116);
+}
+.a1Text:hover{
+	color: rgb(34,177,76);
+
+}
+a.myNavItem{
+	/*position: absolute;*/
+	float:right;
+	margin-top: 15px;
+	margin-left: 30px;
+	margin-right: 10px;
+	padding-bottom: 7px;
+	padding-top: 10px;
+	text-decoration: none;
+	color: black;
+
+}
+a.myNavItem:hover{
+	border-bottom: 2px solid rgb(10,160,89);
+	color:rgb(10,157,89);
+}
+
+.newTag{
+	display: inline-block;
+	width: 51px;
+	height: 24px;
+	border-radius: 2px;
+	background-color: rgb(245,139,31);
+}
+
+input[type="checkbox"]{
+	display: hidden;
+}
+input[type="checkbox"] +label span{
+	display: inline-block;
+	height: 13px;
+	width: 13px;
+	border: 1px solid rgb(177,181,187);
+	position: absolute;
+	background-color: red;
+}
+
+
+input[type="checkbox"] +label:hover{
+	border-color:; ;
+}
+
+
+input[type="checkbox"]:checked +label{
+	
+}
+
+.greenCheckBox{
+	color: rgb(10,157,89); 
+}
+
+.a1{
+	width: 22px;
+	height: 22px;
+	display: inline-block;
+}
+
+.a1 span{
+	font-size: 21px;
+	color: rgb(10,157,89);
+}
+
+.a2{
+	font-size: 21px;
+	color: rgb(10,157,89);
+}
+
+.ratingBar{
+	position: static;
+	width: 200px; 
+	height:30px ;
+	background-color: rgb(220,226,233);
+	border-radius: 0px;
+}
+
+.ratingBar span{
+	display: inline-block;
+	position:relative;
+}
+
+.a3{
+	background-color: rgb(235,202,0);
+}
+
+.button-primary {
+	width: 270px;
+	height: 50px;
+	background: #0a9d59;
+	color: white;
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.button-primary:hover, .button-primary:active {
+	background: #048549;
+	color: white;
+}
+
+.button-primary:focus {
+	color: white;
+}

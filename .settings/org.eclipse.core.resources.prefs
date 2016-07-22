@@ -1,2 +1,10 @@
 eclipse.preferences.version=1
+encoding//application/controllers/register_control.php=UTF-8
 encoding//application/core/MY_model.php=UTF-8
+encoding//application/views/Navbar.php=UTF-8
+encoding//application/views/course_catalog.php=UTF-8
+encoding//application/views/footer.php=UTF-8
+encoding//application/views/index.php=UTF-8
+encoding//application/views/login.php=UTF-8
+encoding//application/views/register.php=UTF-8
+encoding//application/views/requestPassword.php=UTF-8

@@ -6,11 +6,24 @@ class View_controller extends CI_Controller{
 		$this->load->model('student_model');
 	}
 	public function index(){
+		$this->load->view('index');
+// 		$this->load->view('login');
+	}
+	
+	public function sign_in(){
 		$this->load->view('login');
 	}
-
+	public function request_pass(){
+		$this->load->view('requestPassword');
+	}
+	public function course_catalog(){
+		$this->load->view('course_catalog');
+	}
 	public function hello(){
-		$this->load->view('welcome_view');
+		$this->load->view('index');
+	}
+	public function register(){
+		$this->load->view('register');
 	}
 	public function test(){
 		$input = array();

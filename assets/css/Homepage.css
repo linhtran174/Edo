@@ -1,0 +1,344 @@
+.slideshow {
+	background: #f9f9f9;
+	display: block;
+	position: relative;
+	/*height: 800px;*/
+}
+
+.carousel-indicators .active {
+	background: #F58B1F;
+	width: 16px;
+	height: 16px;
+	border: 1px solid #eeeeee;
+}
+
+.carousel-indicators li {
+	border: 2px solid #eeeeee;
+	background: white;
+	width: 15px;
+	height: 15px;
+}
+
+#myCarousel{
+	height: 800px;
+	display: flex;
+	align-items: center;
+}
+
+.carousel-inner {
+
+}
+
+.carousel-inner .item {
+
+}
+
+
+.carousel-inner .container {
+
+}
+
+.nano-left {
+	text-align: left;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.nano-left .title {
+	font-size: 35px;
+	color: #242424;
+	font-weight: 300;
+	margin-bottom: 50px;
+}
+
+.nano-left .content {
+	color: #555555;
+	font-size: 16px;
+	font-weight: 300;
+	margin-bottom: 50px;
+}
+
+.nano-left .content-green {
+	color: #0a9d59;
+	font-size: 16px;
+	margin-bottom: 50px;
+}
+
+.nano-right {
+	padding: 0;
+	text-align: center
+}
+
+.button-primary {
+	width: 270px;
+	height: 50px;
+	background: #0a9d59;
+	color: white;
+	font-size: 14px;
+}
+
+.button-primary:hover {
+	background: #048549;
+	color: white;
+}
+
+
+.slide-prev {
+	position:absolute;
+	top:250px;
+	left:0;
+	z-index:100;
+}
+
+.slide-next {
+	position:absolute;
+	top:250px;
+	right:0;
+	z-index:100;
+}
+
+.button-primary {
+	width: 270px;
+	height: 50px;
+	background: #0a9d59;
+	color: white;
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.button-primary:hover, .button-primary:active {
+	background: #048549;
+	color: white;
+}
+
+.button-primary:focus {
+	color: white;
+}
+
+.button-default {
+	width: 270px;
+	height: 50px;
+	background: white;
+	color: #555555;
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.button-default:hover, .button-default:active {
+	background: #e9e9e9;
+	color: #555555;
+}
+
+.join {
+	text-align: center;
+	height: 500px;
+	margin-bottom: 100px;
+}
+
+.join .left {
+	padding: 0;
+	height: 500px;
+	background-image: url('../assets/joinleft.png');
+	background-size: cover;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 300;
+	font-size: 40px;
+	color: #fff2f2;
+}
+
+.join .left span {
+	margin-bottom: 70px;
+}
+
+.glyphicon {
+    font-size: 100px;
+}
+
+.glyphicon:hover{
+	cursor: pointer;
+}
+
+.join .right {
+	height: 500px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #F1F2EC;
+}
+
+.join .right .title {
+	font-size: 36px;
+	font-weight: 300;
+	margin-bottom: 35px;
+	color: #2f2222;
+}
+
+.join .right .wrapper {
+	width: 370px;
+}
+
+@media (max-width: 991px)
+{    
+    .form-group .col-sm-12:first-child{margin-bottom:15px;} 
+} 
+
+.join .right button {
+	margin-top: 15px;
+	margin-bottom: 30px;
+}
+
+.join .right input:hover, .join .right input:focus {
+	border-color: #0a9d59;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(10,157,89,.6)
+}
+
+
+.join .row {
+	margin-bottom: 15px;
+	font-size: 14px;
+	font-weight: 300;
+}
+
+.join .term {
+	font-size: 14px;
+	font-weight: 300;
+	color: #9c8f8f;
+}
+
+.program {
+	margin-bottom: 100px;
+}
+
+.program .title {
+	font-weight: 300;
+	font-size: 36px;
+	color: #242424;
+}
+
+.program p, .program img {
+	text-align: center;
+}
+
+.program button {
+	display: block;
+	margin:auto;
+}
+
+.program .wrapper {
+	margin-top: 60px;
+	margin-bottom: 100px;
+}
+
+.program .item {
+	height: 300px;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.program .item .pic {
+	border-radius: 50px 50px 50px 50px;
+	display: block;
+	margin: auto;
+}
+
+.program .item .name {
+	font-size: 18px;
+	color: #343434;
+	margin: 25px 0;
+}
+
+.program .item .work {
+	font-size: 14px;
+	color: #979797;
+}
+
+.program .item .brand {
+	display: block;
+	margin: auto;	
+}
+
+.path {
+	margin-bottom: 100px;
+	text-align: center;
+}
+
+.freecourse .left {
+	height: 500px;
+	background: #f0f0eb;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+}
+
+.freecourse .left .wrapper, .freecourse .right .wrapper {
+	width: 430px;
+	height: 300px;
+}
+
+.freecourse .right {
+	height: 500px;
+	background: #e7a733;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+}
+
+.freecourse .left .title, .freecourse .right .title {
+	font-weight: 300;
+	font-size: 36px;
+	color: #242424;
+	margin-top: 100px;
+	margin-bottom: 0px;
+	height: 120px;
+}
+
+.freecourse .left .content, .freecourse .right .content {
+	font-weight: 300;
+	font-size: 16px;
+	color: #555555;
+	height: 130px;
+}
+
+.freecourse .right .title, .freecourse .right .content {
+	color: #f4f4f4;
+}
+
+.intro .left {
+	height: 500px;
+	background: #f6f7f7;
+}
+
+.intro .right {
+	height: 500px;
+	background: #f6f7f7;
+}
+
+.intro .left .wrapper {
+	margin-left: 78px;
+	margin-top: 100px;
+}
+
+.intro .left .title {
+	font-weight: 300;
+	font-size: 36px;
+	color: #242424;
+	margin-top: 100px;
+	margin-bottom: 0px;
+	text-align: left;
+}
+
+.intro .left .content {
+	display: block;
+	font-weight: 300;
+	font-size: 16px;
+	color: #555555;
+	margin: 60px 0;
+}
+
+.intro .right img {
+	margin-top: 60px;
+	margin-left: 40px;
+}

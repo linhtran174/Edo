@@ -1,0 +1,47 @@
+.courseImg{
+	height:100px;
+	width: 200px;
+	margin-top: 10px;
+}
+
+a{
+	color: rgb(10,157,89);
+}
+
+.checkbox{
+	display: inline-block;
+}
+
+#content{
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+#filter{
+	border-right: 1px solid #D7D7D7;
+	/*height: 100%;*/
+}
+
+#line{
+	border: 1px solid #D7D7D7;
+	margin-bottom: 20px;
+	margin-top: 10px;
+}
+
+#Category{
+	height: 80px;
+	width: 900px;
+	color: white;
+	background-color: rgb(10,157,89); 
+	padding-top: 20px;
+	padding-left: 30px;
+}
+
+.info{
+	margin-top: 20px;
+}
+
+#information{
+	margin-top:70px;
+	display: block; position: relative;
+}
