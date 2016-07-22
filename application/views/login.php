@@ -58,7 +58,7 @@
 		</div>
 	</div>
 	<div style="text-align: center;">
-		<p>Bạn chưa có tài khoản? <a href="<?php echo site_url("register_control")?>"">Đăng ký nhanh</a></p>
+		<p>Bạn chưa có tài khoản? <a href="<?php echo site_url("register")?>"">Đăng ký nhanh</a></p>
 	</div>
 	<?php $this->load->view('footer');?>
 </body>
