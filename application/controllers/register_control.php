@@ -5,7 +5,7 @@ class Register_control extends CI_Controller{
 		parent::__construct();
 		$this->load->model('student_model');
 	}
-	public function register(){
+	public function index(){
 		$data = '';
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_check_email');
 		$this->form_validation->set_rules('fname', 'Tên', 'required');
@@ -14,12 +14,12 @@ class Register_control extends CI_Controller{
 		
 		if($this->form_validation->run()){
 			$data = array(
-					'stud_fname'     => $this->input->post('name'),
+					'stud_fname'     => $this->input->post('fname'),
 					'stud_email'    => $this->input->post('email'),
 					'stud_pass' => md5($this->input->post('password')),
-					'stud_lname'    => $this->input->post('phone'),
+					'stud_lname'    => $this->input->post('lname'),
 			);
-			if($this->user_model->create($data))
+			if($this->student_model->create($data))
 			{
 				$this->session->set_flashdata('flash_message', 'Dang ky thanh vien thanh cong');
 				redirect(site_url("view_controller/sign_in"),'location');//chuyen toi trang chu
@@ -34,7 +34,7 @@ class Register_control extends CI_Controller{
 		$where = array();
 		$where['stud_email'] = $email;
 		//kiểm tra điều kiện email có tồn tại trong csdl hay không
-		if($this->user_model->check_exists($where))
+		if($this->student_model->check_exists($where))
 		{
 			//trả về thông báo lỗi nếu đã tồn tại email này
 			$this->form_validation->set_message(__FUNCTION__, 'Email đã sử dụng');

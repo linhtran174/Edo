@@ -11,7 +11,7 @@
 			<a class="myNavItem" style="color: orange;"
 				href="<?php echo site_url("view_controller/sign_in")?>">ĐĂNG NHẬP</a>
 			<a class="myNavItem" style="color: orange;"
-				href="<?php echo site_url("register_control/register")?>">ĐĂNG KÝ</a>
+				href="<?php echo site_url("register_control")?>">ĐĂNG KÝ</a>
 		</div>
 	</div>
 </div>
