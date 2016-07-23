@@ -52,16 +52,17 @@ input{
 .another-login p{
 	border: 1px solid #D7D7D7;
 	border-radius: 1px;
-	padding-top: 11px;
 	height:45px;
 }
 
 .another-login p a{
 	color: black;
 	display: block;
+	padding-top: 11px;
+	height: 100%;
 }
 
-.another-login :hover{
+.another-login a:hover{
 	background-color: #048549;
 	color: white;
 }
