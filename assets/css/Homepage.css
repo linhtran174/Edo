@@ -69,20 +69,6 @@
 	text-align: center
 }
 
-.button-primary {
-	width: 270px;
-	height: 50px;
-	background: #0a9d59;
-	color: white;
-	font-size: 14px;
-}
-
-.button-primary:hover {
-	background: #048549;
-	color: white;
-}
-
-
 .slide-prev {
 	position:absolute;
 	top:250px;
@@ -95,24 +81,6 @@
 	top:250px;
 	right:0;
 	z-index:100;
-}
-
-.button-primary {
-	width: 270px;
-	height: 50px;
-	background: #0a9d59;
-	color: white;
-	font-weight: 500;
-	font-size: 14px;
-}
-
-.button-primary:hover, .button-primary:active {
-	background: #048549;
-	color: white;
-}
-
-.button-primary:focus {
-	color: white;
 }
 
 .button-default {
@@ -138,7 +106,7 @@
 .join .left {
 	padding: 0;
 	height: 500px;
-	background-image: url('../assets/joinleft.png');
+	background-image: url('../images/joinleft.png');
 	background-size: cover;
 	display: flex;
 	align-items: center;
@@ -153,7 +121,7 @@
 }
 
 .glyphicon {
-    font-size: 100px;
+	font-size: 100px;
 }
 
 .glyphicon:hover{
@@ -181,8 +149,16 @@
 
 @media (max-width: 991px)
 {    
-    .form-group .col-sm-12:first-child{margin-bottom:15px;} 
-} 
+	.form-group .col-sm-12:first-child{margin-bottom:15px;} 
+}
+
+.join .right input {
+	height: 40px;
+}
+
+.join form-group {
+	margin-bottom: 20px;
+}
 
 .join .right button {
 	margin-top: 15px;
@@ -234,9 +210,38 @@
 .program .item {
 	height: 300px;
 	display: flex;
-    align-items: center;
-    justify-content: center;
+	align-items: center;
+	justify-content: center;
+	border-bottom: 2px solid #ededed;
 }
+
+.program .item .group {
+	width: 100%;
+	border-right: 2px solid #ededed;
+}
+
+
+.program .col-sm-3:nth-child(4) .group,
+.program .col-sm-3:nth-child(8) .group {border-right: none;}
+
+.program .col-sm-3:nth-child(5),
+.program .col-sm-3:nth-child(6),
+.program .col-sm-3:nth-child(7),
+.program .col-sm-3:nth-child(8) {border-bottom: none;}
+
+@media (max-width: 767px) {
+	.program .col-sm-3:nth-child(2) .group, 
+	.program .col-sm-3:nth-child(4) .group, 
+	.program .col-sm-3:nth-child(6) .group, 
+	.program .col-sm-3:nth-child(8) .group {border-right: none;}
+
+	.program .col-sm-3:nth-child(7), 
+	.program .col-sm-3:nth-child(8) {border-bottom: none;}
+
+	.program .col-sm-3:nth-child(5),
+	.program .col-sm-3:nth-child(6) {border-bottom: 2px solid #ededed;}
+}
+
 
 .program .item .pic {
 	border-radius: 50px 50px 50px 50px;
@@ -314,6 +319,8 @@
 .intro .right {
 	height: 500px;
 	background: #f6f7f7;
+	display:flex;
+	align-items: center;
 }
 
 .intro .left .wrapper {
@@ -339,6 +346,11 @@
 }
 
 .intro .right img {
-	margin-top: 60px;
-	margin-left: 40px;
+	width:90%;
+}
+
+@media (max-width: 991px){
+	.freecourse .left .title {
+		font-size: 30px;
+	}
 }

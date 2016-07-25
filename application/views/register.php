@@ -35,7 +35,7 @@
 							</div>
 							<input class="form-control" type="text" id="email" name="email" value="<?php echo set_value('email')?>" placeholder="Email">
 							<div class="error" id="email_error"><?php echo form_error('email')?></div>	
-							<input class="form-control" type="password" id="password" name="password" value="<?php echo set_value('password')?>" placeholder="Mật khẩu">
+							<input class="form-control" type="password" id="password" name="password" placeholder="Mật khẩu">
 							<div class="error" id="pass_error"><?php echo form_error('password')?></div>	
 							<p>By signing up you agree to E-learning 
 								<a href="*" id="term">Terms of Service</a>

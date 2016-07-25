@@ -6,6 +6,8 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
 	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
 	crossorigin="anonymous">
+<script src="<?php echo base_url("assets/js/jquery-2.2.4.min.js")?>"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:300,500&subset=vietnamese"
 	rel="stylesheet">
@@ -101,31 +103,31 @@
 			<div class="col-sm-6 right">
 				<div class="wrapper">
 					<p class="title">Join for Free</p>
-					<form role="form">
+					<form action="<?php echo base_url('register_control/index')?>" method="post" role="form">
 
 						<div class="col-md-12 row">
 							<div class="col-md-6">
-								<input type="email" class="form-control" id="fname"
-									placeholder="First name">
+								<input id="fname" class="form-control" type="text" name="fname" id="fname" value="<?php echo set_value('fname')?>" placeholder="Tên">
+									<div class="error" id="fname_error"><?php echo form_error('fname')?></div>
 							</div>
 
 							<div class="col-md-6">
-								<input type="email" class="form-control" id="lname"
-									placeholder="Last name">
+								<input id="lname" class="form-control" id="lname" type="text" name="lname" value="<?php echo set_value('lname')?>" placeholder="Họ">
+									<div class="error" id="lname_error"><?php echo form_error('lname')?></div>
 							</div>
 						</div>
 
 						<div class="col-md-12">
 							<div class="col-md-12 row">
-								<input type="email" class="form-control" id="email"
-									placeholder="Email">
+								<input class="form-control" type="text" id="email" name="email" value="<?php echo set_value('email')?>" placeholder="Email">
+								<div class="error" id="email_error"><?php echo form_error('email')?></div>	
 							</div>
 						</div>
 
 						<div class="col-md-12">
 							<div class="col-md-12 row">
-								<input type="password" class="form-control" id="pwd"
-									placeholder="Password">
+								<input class="form-control" type="password" id="password" name="password" placeholder="Mật khẩu">
+								<div class="error" id="pass_error"><?php echo form_error('password')?></div>
 							</div>
 						</div>
 
