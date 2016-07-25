@@ -106,7 +106,7 @@
 					<form action="<?php echo base_url('register_control/index')?>" method="post" role="form">
 
 						<div class="col-md-12 row">
-							<div class="col-md-6">
+							<div class="col-md-6" style="margin-bottom: 10px">
 								<input id="fname" class="form-control" type="text" name="fname" id="fname" value="<?php echo set_value('fname')?>" placeholder="Tên">
 									<div class="error" id="fname_error"><?php echo form_error('fname')?></div>
 							</div>
