@@ -35,11 +35,11 @@
 				<div class="col-md-3" id="filter">
 					<div style="display: block; position: relative;" class="properties">
 						<h5>CATEGORY</h5>
-						<a class="category">All</a><br/>
-						<a class="category">Android</a><br/>
-						<a class="category">Databas</a><br/>
-						<a class="category">Web</a><br/>
-						<a class="category">Non-tech</a>
+						<p class="cate"><a class="category">All</a></p>
+						<p class="cate"><a class="category">Android</a></p>
+						<p class="cate"><a class="category">Database</a></p>
+						<p class="cate"><a class="category">Web</a></p>
+						<p class="cate"><a class="category">Non-tech</a></p>
 					</div>
 					<div style="display: block; position: relative;" id="line"></div>
 					<div style="display: block; position: relative;" class="properties">
@@ -55,21 +55,21 @@
 						<p><input type="checkbox" class="checkbox">  Cao cấp</p>
 					</div>
 				</div>
-				<div class="col-md-9" >
+				<div class="col-md-9" id="content-box">
 					<div id="Category">
 						<h5 id="CategoryName">Android</h5>
 					</div>
 
 					<?php foreach ($courses as $course) {
 						echo '<div class="row info">
-						<div class="col-md-4">
+						<div class="col-md-4 icon">
 							<img class="courseImg" src=',base_url("assets/images/simple.png"),'>
 						</div>
 						<!-- <div class="col-md-1"></div> -->
 						<div class="col-md-8">
-							<a>',$course->course_name,'</a>
+							<a style ="display: inline-block;">',$course->course_name,'</a>
 							<p>10 PROJECTS</p>
-							<p>',$course->course_shortDesc,'</p>
+							<p>',$course->course_desc,'</p>
 							<p>BUILT BY <b>GOOGLE</b></p>
 						</div>
 					</div>';
