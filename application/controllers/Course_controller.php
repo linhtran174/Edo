@@ -49,5 +49,18 @@ class Course_Controller extends CI_Controller{
 						"title" => "All");
 		$this->load->view('course_catalog',$data);
 	}
+	public function filter(){
+		$data ='';
+		$input = array();
+		$level = $this->input->post('level');
+		$fee = $this->input->post('fee');
+		$input = array('level' => $level[0],
+					   'fee' => $fee[0]);
+		$courses = $this->course_model->filterCoure($input);
+		$data = array("courses" => $courses,
+						"title" => "All");
+		$this->load->view('course_catalog',$data);
+
+	}
 }
 ?>
