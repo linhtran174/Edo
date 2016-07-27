@@ -39,5 +39,15 @@ class Course_Controller extends CI_Controller{
 		// print_r($courses);
 		$this->load->view('course_catalog',$data);
 	}
+	public function search(){
+		$data = '';
+		$input = array();
+		$name = $this->input->post('name');
+		$input['where'] = array('course_name' => $name);
+		$courses = $this->course_model->get_list($input);
+		$data = array("courses" => $courses,
+						"title" => "All");
+		$this->load->view('course_catalog',$data);
+	}
 }
 ?>

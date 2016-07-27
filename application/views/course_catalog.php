@@ -6,6 +6,8 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
 	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
 	crossorigin="anonymous">
+	<script src="<?php echo base_url("assets/js/jquery-2.2.4.min.js")?>"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:300,500&subset=vietnamese"
 	rel="stylesheet">
@@ -26,8 +28,8 @@
 				</div>
 				<div class="col-md-2"></div>
 				<div class="col-md-5">
-					<form>
-						<input class="form-control" type="text" name="nameCourse" placeholder="tên khóa học"/>
+					<form action="<?php echo base_url('course_controller/search')?>" method="post" id="search">
+						<input class="form-control" type="text" name="name" id="name" value="<?php echo set_value('name')?>" placeholder="tìm kiếm khóa học"/>
 						<!-- <span style="display: hidden; "><input type="submit" name="tên"></span> -->
 					</form>
 				</div>
@@ -83,5 +85,17 @@
 	</div>
 	
 	<?php $this->load->view('footer');?>
+
+	<script type="text/javascript">
+		$(function(){
+			$('#search').each(function(){
+				$('input').keypress(function(e){
+					if(e.which == 10 || e.which == 13){
+						this.form.submit();
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>

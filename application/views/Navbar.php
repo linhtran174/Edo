@@ -5,7 +5,9 @@
 				src=<?php echo base_url("assets/images/logo.png")?> style=""></img></a>
 		</div>
 		<div style="position: absolute; right: 0; top: 25px">
+			<?php if($this->session->userdata('login') != NULL){ ?>
 			<a class="myNavItem" href="">LỚP HỌC CỦA TÔI</a> 
+			<?php }?>
 			<a class="myNavItem"
 				href="<?php echo site_url("course_controller")?>">CATALOG</a> 
 			<?php 
