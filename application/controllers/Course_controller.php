@@ -49,5 +49,26 @@ class Course_Controller extends CI_Controller{
 						"title" => "All");
 		$this->load->view('course_catalog',$data);
 	}
+	public function filter(){
+		$data ='';
+		$input = array();
+		$level = $this->input->post('level');
+		$fee = $this->input->post('fee');
+		$input = array('level' => $level[0],
+					   'fee' => $fee[0]);
+		$courses = $this->course_model->filterCoure($input);
+		$data = array("courses" => $courses,
+						"title" => "All");
+		$this->load->view('course_catalog',$data);
+
+	}
+
+	public function getCourseDetail(){
+		$course_id = $this->uri->segment(3);
+		// echo $course_id;
+		$data['course'] = $this->course_model->getCourseDetail($course_id);
+		// var_dump($data);
+		$this->load->view('course_detail',$data);
+	}
 }
 ?>

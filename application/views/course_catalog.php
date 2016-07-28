@@ -28,7 +28,7 @@
 				</div>
 				<div class="col-md-2"></div>
 				<div class="col-md-5">
-					<form action="<?php echo base_url('course_controller/search')?>" method="post" id="search">
+					<form action="<?php echo base_url('search')?>" method="post" id="search">
 						<input class="form-control" type="text" name="name" id="name" value="<?php echo set_value('name')?>" placeholder="tìm kiếm khóa học"/>
 						<!-- <span style="display: hidden; "><input type="submit" name="tên"></span> -->
 					</form>
@@ -37,26 +37,30 @@
 				<div class="col-md-3" id="filter">
 					<div style="display: block; position: relative;" class="properties">
 						<h5>CATEGORY</h5>
-						<p class="cate"><a href="<?php echo base_url('course_controller/index')?>" class="category">All</a></p>
-						<p class="cate"><a href="<?php echo base_url('course_controller/pick_catalog/1')?>" class="category">Android</a></p>
-						<p class="cate"><a href="<?php echo base_url('course_controller/pick_catalog/4')?>" class="category">Database</a></p>
-						<p class="cate"><a href="<?php echo base_url('course_controller/pick_catalog/3')?>" class="category">Web</a></p>
-						<p class="cate"><a href="<?php echo base_url('course_controller/pick_catalog/2')?>" class="category">Non-tech</a></p>
-						<p class="cate"><a href="<?php echo base_url('course_controller/pick_catalog/5')?>" class="category">Data Science</a></p>
+						<p class="cate"><a href="<?php echo base_url('catelog')?>" class="category">All</a></p>
+						<p class="cate"><a href="<?php echo base_url('catelog/android')?>" class="category">Android</a></p>
+						<p class="cate"><a href="<?php echo base_url('catelog/database')?>" class="category">Database</a></p>
+						<p class="cate"><a href="<?php echo base_url('catelog/web')?>" class="category">Web</a></p>
+						<p class="cate"><a href="<?php echo base_url('catelog/non-tech')?>" class="category">Non-tech</a></p>
+						<p class="cate"><a href="<?php echo base_url('catelog/datascience')?>" class="category">Data Science</a></p>
 					</div>
 					<div style="display: block; position: relative;" id="line"></div>
+					<form action="<?php echo base_url('catelog/filter')?>" method="POST">
 					<div style="display: block; position: relative;" class="properties">
 						<h5>TYPE</h5>
-						<p><input type="checkbox" class="checkbox">  Khóa ngắn hạn</p>
-						<p><input type="checkbox" class="checkbox">  Khóa miễn phí</p>
-						<p><input type="checkbox" class="checkbox">  Khóa trả phí</p>
+						<!-- <p><input type="checkbox" class="checkbox">  Khóa ngắn hạn</p> -->
+						<p><input type="radio" name="fee[]" value = '0' onchange="this.form.submit()" >  Khóa miễn phí</p>
+						<p><input type="radio" name="fee[]" value = '1' onchange="this.form.submit()">  Khóa trả phí</p>
+						<!-- <input type="submit" class="btn default"> -->
 					</div>
 					<div style="display: block; position: relative; margin-top:40px" class="properties">
 						<h5>SKILL LEVEL</h5>
-						<p><input type="checkbox" class="checkbox">  Mới bắt đầu</p>
-						<p><input type="checkbox" class="checkbox">  Thành thạo</p>
-						<p><input type="checkbox" class="checkbox">  Cao cấp</p>
+						<p><input type="radio"  id="1" name="level[]" value="1" onchange="this.form.submit()">  Mới bắt đầu</p>
+						<p><input type="radio"  id="2" name="level[]" value="2" onchange="this.form.submit()">  Thành thạo</p>
+						<p><input type="radio"  id="3" name="level[]" value="3" onchange="this.form.submit()">  Cao cấp</p>
+						<!-- <input type="submit" class="btn default"> -->
 					</div>
+					</form>
 				</div>
 				<div class="col-md-9" id="content-box">
 					<div id="Category">
@@ -94,6 +98,13 @@
 						this.form.submit();
 					}
 				});
+			});
+		});
+		$(function(){
+			$('#level').each(function(e){
+				if($('input[type="radio"]').prop("checked") == true){
+					document.getElmentById('level').submit();
+				}
 			});
 		});
 	</script>
