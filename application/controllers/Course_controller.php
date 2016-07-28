@@ -63,10 +63,12 @@ class Course_Controller extends CI_Controller{
 
 	}
 
-	public function getCourseDetail(){
-		$course_id = $this->uri->segment(3);
-		// echo $course_id;
+	public function getCourseDetail($id){
+		$course_id = $id;
+		//echo $course_id;
 		$data['course'] = $this->course_model->getCourseDetail($course_id);
+		// echo '<pre>';
+		// print_r($data['course']);
 		// var_dump($data);
 		$this->load->view('course_detail',$data);
 	}

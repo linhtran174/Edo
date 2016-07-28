@@ -1,5 +1,5 @@
-<?=$course[0]->teacher_fname,' ',$course[0]->teacher_lname?>
-<?php var_dump($course) ?>
+<!-- <?=$course[0]->teacher_fname,' ',$course[0]->teacher_lname?>
+<?php var_dump($course) ?> -->
 <html>
 <head>
 	<meta charset="UTF-8">
