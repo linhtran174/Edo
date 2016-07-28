@@ -33,5 +33,8 @@ class View_controller extends CI_Controller{
 		echo '<pre>';
 		print_r($member);
 	}
+	public function detail(){
+		$this->load->view('course_detail');
+	}
 }
 ?>
