@@ -139,7 +139,7 @@ input[type="checkbox"]:checked +label{
 
 .ratingBar{
 	position: static;
-	width: 200px; 
+	/*width: 200px; */
 	height:30px ;
 	background-color: rgb(220,226,233);
 	border-radius: 0px;

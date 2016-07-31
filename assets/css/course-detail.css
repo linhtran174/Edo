@@ -23,7 +23,7 @@
 	font-size: 36px;
 	font-weight: 300;
 	color: #242424;
-	min-height: 140px;
+	/*min-height: 140px;*/
 }
 
 .nano .head .learn {
@@ -49,26 +49,30 @@
 	color: #555555;
 }
 
-.nano .right .rated {
+.nano .right, .nano .left {
+	margin-bottom: 100px;
+}
+
+.rated {
 	color: #f80;
 }
 
-.nano .right .rating {
+.rating {
 	display:inline-block;
 	position:relative;
 }
 
-.nano .right .star-under {
-  color: #ddd;
-  /*vertical-align: top;*/
+.star-under {
+	color: #ddd;
+	/*vertical-align: top;*/
 }
-.nano .right .star-over {
-  color: #f80;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 70%;
-  overflow: hidden;
+.star-over {
+	color: #f80;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 70%;
+	overflow: hidden;
 }
 
 .nano .right .title {
@@ -97,7 +101,11 @@
 	font-size: 20px;
 }
 
-.nano .right .allreview {
+.nano .right .level img {
+	margin-right: 5px;
+}
+
+.nano .right .allreview a {
 	font-weight: 300;
 	font-size: 12px;
 	color: #0a9d59;
@@ -207,6 +215,7 @@
 	width: 100%;
 	white-space: nowrap;
 	overflow-x: auto;
+	/*height: 404px;*/
 }
 
 .syllabus .horizontal-slide .item {
@@ -224,9 +233,9 @@
 	transform: translateY(0.125em);
 }
 
-.syllabus .horizontal-slide .item div {
+.syllabus .horizontal-slide .item .wrapper {
 	width: 370px;
-	min-height: 400px;
+	height: 400px;
 	background: white;
 	padding: 30px;
 }
@@ -252,22 +261,59 @@
 .syllabus .projecttitle {
 	font-size: 20px;
 	color: #555555;
-	min-height: 60px;
+	height: 60px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
 }
 
 .syllabus .projectcontent {
-	min-height: 180px;
+	height: 200px;
+	overflow-y: hidden;
+}
+
+.syllabus .projectcontent p, .syllabus .modal-topic-content-wrapper p {
+	display: inline;
 }
 
 .syllabus .support {
 	margin-bottom: 40px;
 }
 
-.syllabus .projectcontent, .suportcontent {
+.syllabus .projectcontent, .suportcontent, .syllabus .modal-topic-content-wrapper {
 	font-size: 14px;
 	font-weight: 300;
 	color: #555555;
 }
+
+.syllabus .modal-topic-no {
+	font-weight: 300;
+	font-size: 14px;
+	color: #979797;
+}
+
+.syllabus .modal-topic-title {
+	font-size: 20px;
+	color: #555555;
+	white-space: normal;
+}
+
+.syllabus .modal-topic-content-wrapper {
+	padding-left: 30px;
+	white-space: normal;
+}
+
+.syllabus .modal-body {
+	padding-left: 50px;
+	padding-bottom: 60px;
+	padding-right: 50px;
+}
+
+.syllabus .modal-header, .review .modal-header {
+	border: none;
+}
+
 
 .syllabus .supportcontent {
 
@@ -301,8 +347,16 @@
 	height: 250px;
 }
 
+.review .stats .avg {
+	padding-left: 15px;
+}
+
 .review .stats .avg p {
 	display: inline
+}
+
+.review .stats .avg i {
+	font-size: 20;
 }
 
 .stats .avg .result {
@@ -329,7 +383,7 @@
 }
 
 .stats .line .title {
-	text-align: right;
+	text-align: left;
 	padding-left: 0;
 }
 
@@ -372,6 +426,10 @@
 	padding: 30px;
 }
 
+.review .card:hover{
+	cursor: pointer;
+}
+
 .review .container .col-xs-12 .col-sm-4{
 	padding: 15px;
 }
@@ -387,17 +445,39 @@
 }
 
 .review .card .left {
-	float: left;
+	/*float: left;*/
 	font-size: 20px;
 	color: #555555;
+}
+
+.review .card .left p {
 	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-.review .card .right {
-	float: right;
+.review .card .stars {
+	text-align: right;
 }
 
-.review .card .right .glyphicon {
+@media (max-width: 991px){
+	.review .card .stars {
+		text-align: left;
+		margin-bottom: 10px;
+	}
+
+	.review .container .card {
+		padding-top: 10px;
+	}
+}
+
+@media (max-width: 767px){
+	.review .container .col-xs-12 .col-sm-4 {
+		padding: 15px !important;
+	}
+}
+
+.review .card .stars .glyphicon {
 	font-size: 13px;
 }
 /*2JR4R-I269L-GL62R*/
@@ -406,7 +486,8 @@
 	font-size: 14px;
 	color: #555555;
 	height: 130px;
-	margin:0;
+	overflow-y: hidden;
+	margin-bottom:10px;
 }
 
 .review .card .date {
@@ -416,7 +497,66 @@
 	text-align: right;
 }
 
-.review .leftpage, .review .rightpage {
+.review .pagi {
+	text-align: center;
+}
+
+.review .pagi .active a {
+	color: white;
+	background: #048549;
+}
+
+.review .pagi a {
+	font-size: 14px;
+	color: #0a9d59;
+	margin-top: 25px;
+	margin-left: 10px;
+}
+
+.pagination>li>a:hover{
+	color: green;
+}
+
+.review .modal-body {
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-bottom: 50px;
+}
+
+.review .modal-body .modal-student-name {
+	font-size: 20px;
+	color: #555555;
+	margin-bottom: 20px;
+}
+
+.review .modal-body .stars {
+	text-align: right;
+}
+
+.review .modal-body .modal-content-wrapper {
+	font-weight: 300;
+	font-size: 14px;
+	color: #555555;
+	margin-bottom: 20px;
+}
+
+.review .modal-body .modal-review-date {
+	font-weight: 300;
+	font-size: 14px;
+	color: #979797;
+	text-align: right;
+}
+
+@media (max-width: 767px) {
+	.review .modal-body .stars {
+		text-align: left;
+		margin-bottom: 20px;
+	}
+
+}
+
+
+/*.review .leftpage, .review .rightpage {
 	font-size: 14px;
 	color: #0a9d59;
 	margin-top: 25px;
@@ -436,6 +576,12 @@
 
 .review .rightpage {
 	float: right;
+}*/
+
+
+.why {
+	/*border-top: 2px gray dashed;*/
+	margin-bottom: 50px;
 }
 
 .why .wrapper {
@@ -456,16 +602,18 @@
 	font-size: 36px;
 	color: #242424;
 	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
 }
 
 .why .content {
 	font-weight: 300;
 	font-size: 16px;
 	color: #555555;
-	width: 830px;
-	text-align: center;
-	margin: auto auto 50px auto;
-	line-height: 30px;
+	/*width: 830px;*/
+	text-align: left;
+	/*margin: auto auto 50px auto;*/
+	/*line-height: 30px;*/
 }
 
 .why .tab-content p {
@@ -621,7 +769,9 @@
 }
 
 .req {
-	margin: 100px auto;
+	padding-top: 50px;
+	border-top: 2px gray dashed;
+	border-bottom: 2px gray dashed;
 }
 
 .req .title {
@@ -629,13 +779,14 @@
 	font-size: 36px;
 	color: #242424;
 	text-align: center;
+	margin-bottom: 50px;
 }
 
 .req .content {
 	font-weight: 300;
 	font-size: 16px;
 	color: #555555;
-	text-align: center;
+	text-align: left;
 	margin-bottom: 150px;
 }
 
@@ -657,8 +808,8 @@
 }
 
 .program {
-	/*padding-top: 100px;
-	padding-bottom: 100px;*/
+	padding-top: 100px;
+	padding-bottom: 100px;
 	display: block;
 	background: #fafbfd;
 }
@@ -667,6 +818,15 @@
 	font-weight: 300;
 	font-size: 36px;
 	color: #242424;
+	margin-bottom: 50px;
+}
+
+.program .head {
+	font-weight: 300;
+	font-size: 26px;
+	color: #555555;
+	margin-bottom: 25px;
+	text-align: left;
 }
 
 .program p, .program img {
@@ -717,6 +877,23 @@
 	margin: auto;	
 }
 
+.program .name {
+	color: #303030;
+	font-weight: 500;
+}
+
+.program .job {
+	color: #767676;
+	font-weight: 300;
+}
+
+.program .desc {
+	text-align: left;
+	color: #303030;
+	font-weight: 300;
+	line-height: 25px;
+}
+
 .last {
 	text-align: center;
 	padding-top: 100px;
@@ -755,4 +932,18 @@
 
 .last .uconnect div {
 	float:right;
+}
+
+@media (max-width: 991px) {
+	.stats .line .title {
+		font-size: 13px;
+	}
+}
+
+.nopadding {
+	padding: 0 !important;
+}
+
+.program .name .teacher-name {
+	color: #0a9d59;
 }
