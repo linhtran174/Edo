@@ -6,7 +6,7 @@
 		</div>
 		<div style="position: absolute; right: 0; top: 25px">
 			<?php if($this->session->userdata('login') != NULL){ ?>
-			<a class="myNavItem" href="">LỚP HỌC CỦA TÔI</a> 
+			<a class="myNavItem" href="<?php echo site_url("view_controller/myClassroom")?>">LỚP HỌC CỦA TÔI</a> 
 			<?php }?>
 			<a class="myNavItem"
 				href="<?php echo site_url("catelog")?>">CATALOG</a> 

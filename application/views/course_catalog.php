@@ -45,7 +45,7 @@
 						<p class="cate"><a href="<?php echo base_url('catelog/datascience')?>" class="category">Data Science</a></p>
 					</div>
 					<div style="display: block; position: relative;" id="line"></div>
-					<form action="<?php echo base_url('catelog/filter')?>" method="POST">
+					<form id="filter" method="POST" action="catelog/filter">
 					<div style="display: block; position: relative;" class="properties">
 						<h5>TYPE</h5>
 						<!-- <p><input type="checkbox" class="checkbox">  Khóa ngắn hạn</p> -->
@@ -74,13 +74,15 @@
 						</div>
 						<!-- <div class="col-md-1"></div> -->
 						<div class="col-md-8">
-							<a style ="display: inline-block;">',$course->course_name,'</a>
+							<a style ="display: inline-block;" href=',base_url("course_controller/getCourseDetail/".$course->course_id),'>',$course->course_name,'</a>
 							<p>10 PROJECTS</p>
 							<p>',$course->course_desc,'</p>
 							<p>BUILT BY <b>GOOGLE</b></p>
 						</div>
 					</div>';
-					} ?>
+					} 
+					echo '<div style="display: block; text-align: center;">'.$this->pagination->create_links().'</div>';
+					?>
 				
 
 				</div>
@@ -100,13 +102,41 @@
 				});
 			});
 		});
-		$(function(){
-			$('#level').each(function(e){
-				if($('input[type="radio"]').prop("checked") == true){
-					document.getElmentById('level').submit();
-				}
-			});
-		});
+		// function callAjax(){
+		// 	// var i =;
+		// 	// console.log(i);
+		// 	$.ajax({
+		// 		type: "post",
+		// 		url: "http://localhost/daotaonoibo/index.php/course_controller/filter",
+		// 		data:  $('#filter').submit(),
+		// 		datatype: 'html',
+		// 		success: function(course){
+		// 			console.log("success");
+		// 		},
+		// 		error: function(e){
+		// 			console.log(e.message);
+		// 		}
+		// 	});
+			// $(document).ready(function(){
+			// 	$("#filter").submit(function(){
+			// 		alert("submit");
+			// 		$.ajax({
+			// 			type: POST,
+			// 			url: base_url + "catelog/filter",
+			// 			data: $('input').val(),
+			// 			datatype: 'html',
+			// 			success: function(course){
+			// 				console.log(course);
+			// 			},
+			// 			error: function(e){
+			// 				console.log(e.message);
+			// 			}
+			// 		});
+			// 	});
+			// });
+		//}
+			
+	
 	</script>
 </body>
 </html>

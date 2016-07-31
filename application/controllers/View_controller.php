@@ -33,8 +33,18 @@ class View_controller extends CI_Controller{
 		echo '<pre>';
 		print_r($member);
 	}
+
+
+	public function myClassroom(){
+		if($this->session->userdata('login')==NULL) {
+			redirect(site_url('login_controller'),'refresh');
+		}
+		$this->load->view('myClassroom.php');
+	}
+
 	public function detail(){
 		$this->load->view('course_detail');
+
 	}
 }
 ?>
