@@ -46,5 +46,6 @@ class View_controller extends CI_Controller{
 		$this->load->view('course_detail');
 
 	}
+
 }
 ?>
