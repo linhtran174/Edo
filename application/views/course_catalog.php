@@ -28,8 +28,8 @@
 				</div>
 				<div class="col-md-2"></div>
 				<div class="col-md-5">
-					<form action="<?php echo base_url('search')?>" method="post" id="search">
-						<input class="form-control" type="text" name="name" id="name" value="<?php echo set_value('name')?>" placeholder="tìm kiếm khóa học"/>
+					<form id="search">
+						<input class="form-control" type="text" id="name" placeholder="tìm kiếm khóa học"/>
 						<!-- <span style="display: hidden; "><input type="submit" name="tên"></span> -->
 					</form>
 				</div>
@@ -37,54 +37,33 @@
 				<div class="col-md-3" id="filter">
 					<div style="display: block; position: relative;" class="properties">
 						<h5>CATEGORY</h5>
-						<p class="cate"><a href="<?php echo base_url('catelog')?>" class="category">All</a></p>
-						<p class="cate"><a href="<?php echo base_url('catelog/android')?>" class="category">Android</a></p>
-						<p class="cate"><a href="<?php echo base_url('catelog/database')?>" class="category">Database</a></p>
-						<p class="cate"><a href="<?php echo base_url('catelog/web')?>" class="category">Web</a></p>
-						<p class="cate"><a href="<?php echo base_url('catelog/non-tech')?>" class="category">Non-tech</a></p>
-						<p class="cate"><a href="<?php echo base_url('catelog/datascience')?>" class="category">Data Science</a></p>
+						<p class="cate"><a href="#" class="category" onclick="pickCatagory(0)">All</a></p>
+						<p class="cate"><a href="#" class="category" onclick="pickCatagory(1)">Android</a></p>
+						<p class="cate"><a href="#" class="category" onclick="pickCatagory(4)">Database</a></p>
+						<p class="cate"><a href="#" class="category" onclick="pickCatagory(3)">Web</a></p>
+						<p class="cate"><a href="#" class="category" onclick="pickCatagory(2)">Non-tech</a></p>
+						<p class="cate"><a href="#" class="category" onclick="pickCatagory(5)">Data Science</a></p>
 					</div>
 					<div style="display: block; position: relative;" id="line"></div>
-					<form id="filter" method="POST" action="catelog/filter">
+					<form>
 					<div style="display: block; position: relative;" class="properties">
 						<h5>TYPE</h5>
 						<!-- <p><input type="checkbox" class="checkbox">  Khóa ngắn hạn</p> -->
-						<p><input type="radio" name="fee[]" value = '0' onchange="this.form.submit()" >  Khóa miễn phí</p>
-						<p><input type="radio" name="fee[]" value = '1' onchange="this.form.submit()">  Khóa trả phí</p>
+						<p><input type="checkbox" onchange="filter(0,0)" unchecked="unchecked">  Khóa miễn phí</p>
+						<p><input type="checkbox" onchange="filter(1,0)" unchecked="unchecked">  Khóa trả phí</p>
 						<!-- <input type="submit" class="btn default"> -->
 					</div>
 					<div style="display: block; position: relative; margin-top:40px" class="properties">
 						<h5>SKILL LEVEL</h5>
-						<p><input type="radio"  id="1" name="level[]" value="1" onchange="this.form.submit()">  Mới bắt đầu</p>
-						<p><input type="radio"  id="2" name="level[]" value="2" onchange="this.form.submit()">  Thành thạo</p>
-						<p><input type="radio"  id="3" name="level[]" value="3" onchange="this.form.submit()">  Cao cấp</p>
+						<p><input type="checkbox" onchange="filter(-1,1)" unchecked="unchecked">  Mới bắt đầu</p>
+						<p><input type="checkbox" onchange="filter(-1,2)" unchecked="unchecked">  Thành thạo</p>
+						<p><input type="checkbox" onchange="filter(-1,3)" unchecked="unchecked">  Cao cấp</p>
 						<!-- <input type="submit" class="btn default"> -->
 					</div>
 					</form>
 				</div>
 				<div class="col-md-9" id="content-box">
-					<div id="Category">
-						<h5 id="CategoryName"><?php echo $title?></h5>
-					</div>
-
-					<?php foreach ($courses as $course) {
-						echo '<div class="row info">
-						<div class="col-md-4 icon">
-							<img class="courseImg" src=',base_url("assets/images/simple.png"),'>
-						</div>
-						<!-- <div class="col-md-1"></div> -->
-						<div class="col-md-8">
-							<a style ="display: inline-block;" href=',base_url("course_controller/getCourseDetail/".$course->course_id),'>',$course->course_name,'</a>
-							<p>10 PROJECTS</p>
-							<p>',$course->course_desc,'</p>
-							<p>BUILT BY <b>GOOGLE</b></p>
-						</div>
-					</div>';
-					} 
-					echo '<div style="display: block; text-align: center;">'.$this->pagination->create_links().'</div>';
-					?>
-				
-
+					<span id="course"></span>
 				</div>
 				</div>
 		</div>
@@ -93,50 +72,41 @@
 	<?php $this->load->view('footer');?>
 
 	<script type="text/javascript">
+			$(document).ready(function(){
+			url = "<?php echo site_url('course_controller/list_course')?>";
+			$('#course').load(url);
+		});
+
+		function pickCatagory(index){
+		    var category = index;
+			//console.log(category);
+			url = "<?php echo site_url('course_controller/list_course')?>";
+			data = {"category" : category};
+			$('#course').load(url,data);
+		}
+		
 		$(function(){
 			$('#search').each(function(){
 				$('input').keypress(function(e){
 					if(e.which == 10 || e.which == 13){
-						this.form.submit();
+						 var name = $('#name').val();
+						 //console.log(name);
+						 url = "<?php echo site_url('course_controller/list_course')?>";
+						 data = {"name" : name};
+						 $('#course').load(url,data);
 					}
 				});
 			});
 		});
-		// function callAjax(){
-		// 	// var i =;
-		// 	// console.log(i);
-		// 	$.ajax({
-		// 		type: "post",
-		// 		url: "http://localhost/daotaonoibo/index.php/course_controller/filter",
-		// 		data:  $('#filter').submit(),
-		// 		datatype: 'html',
-		// 		success: function(course){
-		// 			console.log("success");
-		// 		},
-		// 		error: function(e){
-		// 			console.log(e.message);
-		// 		}
-		// 	});
-			// $(document).ready(function(){
-			// 	$("#filter").submit(function(){
-			// 		alert("submit");
-			// 		$.ajax({
-			// 			type: POST,
-			// 			url: base_url + "catelog/filter",
-			// 			data: $('input').val(),
-			// 			datatype: 'html',
-			// 			success: function(course){
-			// 				console.log(course);
-			// 			},
-			// 			error: function(e){
-			// 				console.log(e.message);
-			// 			}
-			// 		});
-			// 	});
-			// });
-		//}
-			
-	
+
+		function filter(fee, level){
+			var bill = fee;
+			var lv = level;
+			data = {"fee" : bill,
+					"level": level};
+			url = "<?php echo site_url('course_controller/list_course')?>";
+			$('#course').load(url,data);
+		}
 	</script>
 </body>
 </html>
