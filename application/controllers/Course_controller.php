@@ -192,10 +192,10 @@ class Course_Controller extends CI_Controller{
 	}
 
 	public function learning($course_id = 0, $lesson_id = 0){
-		$stud_id = $this->session->userdata('login')->stud_id;
-		if(!$stud_id){
+		if(!$this->session->userdata('login')){
 			redirect('/login', 'refresh');
 		}
+		$stud_id = $this->session->userdata('login')->stud_id;
 		// echo '<pre>';
 		$this->load->model('classroom_model');
 		if(!$course_id){
@@ -311,11 +311,11 @@ class Course_Controller extends CI_Controller{
 			}
 		}
 
-		echo '<pre>';
+		// echo '<pre>';
 		// print_r($tmp);
 		// print_r($tmp2);
-		print_r($data);
-		// $this->load->view('course_learning',$data);
+		// print_r($data);
+		$this->load->view('course_learning',$data);
 	}
 }
 ?>
