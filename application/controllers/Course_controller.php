@@ -7,6 +7,7 @@ class Course_Controller extends CI_Controller{
 		$this->load->model('topic_model');
 		$this->load->model('lesson_model');
 		$this->load->model('review_model');
+		$this->load->model('teacher_model');
 	}
 	public function index(){
 		$this->load->view('course_catalog');
@@ -61,6 +62,7 @@ class Course_Controller extends CI_Controller{
 		}
 		$data = array("courses" => $courses,
 					  "title" => $title);
+
 		$this->load->view('course_list',$data);
 	}
 
@@ -84,7 +86,6 @@ class Course_Controller extends CI_Controller{
 		if (!$id) {
 			show_error("Invalid ID");
 		}
-		$this->load->library('pagination');
 		$course_id = $id;
 		// echo $course_id;
 		$data['course'] = $this->course_model->get_course_detail($course_id);

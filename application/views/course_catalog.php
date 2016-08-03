@@ -72,13 +72,18 @@
 	<?php $this->load->view('footer');?>
 
 	<script type="text/javascript">
-			$(document).ready(function(){
+		var category;
+		var name;
+		var bill;
+		var lv;
+		$(document).ready(function(){
 			url = "<?php echo site_url('course_controller/list_course')?>";
-			$('#course').load(url);
+			$('#course').load(url,function(res){
+			});
 		});
 
 		function pickCatagory(index){
-		    var category = index;
+		    category = index;
 			//console.log(category);
 			url = "<?php echo site_url('course_controller/list_course')?>";
 			data = {"category" : category};
@@ -89,7 +94,7 @@
 			$('#search').each(function(){
 				$('input').keypress(function(e){
 					if(e.which == 10 || e.which == 13){
-						 var name = $('#name').val();
+						 name = $('#name').val();
 						 //console.log(name);
 						 url = "<?php echo site_url('course_controller/list_course')?>";
 						 data = {"name" : name};
@@ -100,8 +105,8 @@
 		});
 
 		function filter(fee, level){
-			var bill = fee;
-			var lv = level;
+			bill = fee;
+			lv = level;
 			data = {"fee" : bill,
 					"level": level};
 			url = "<?php echo site_url('course_controller/list_course')?>";
