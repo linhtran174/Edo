@@ -138,7 +138,11 @@ function printStar($rate){
 				<span class="fa fa-tag"></span>
 				<p style="display: inline-block;">Miễn phí</p>
 			</div>
-			<button type="button" class="btn button-primary">BẮT ĐẦU HỌC NGAY</button>
+			<a type="button" href="
+			<?php 
+			echo base_url("index.php/course_controller/learning/{$course[0]->course_id}");
+			?>
+			" class="btn button-primary" style="display:flex;align-items:center;justify-content:center;">BẮT ĐẦU HỌC NGAY</a>
 		</div>
 	</div>
 	<!-- end sort desc -->
