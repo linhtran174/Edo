@@ -15,10 +15,12 @@
 <body>
 	<div class="sideBar">
 		<div class="logoBar">
-			
+			<a href="<?php echo site_url('my_classroom') ?>">
+			<img  src='<?php echo base_url('assets/images/logo-icon.png') ?>'>
+			</a>
 		</div>
 		<div class="logoItem">
-			<p class="w1"><a href="<?php echo base_url() ?>">
+			<p class="w1"><a href="<?php echo site_url('my_classroom') ?>">
 			<span class="glyphicon glyphicon-home"></span>
 			
 			</a></p>
@@ -43,7 +45,7 @@
 			<p id="courseTitle"><?php echo $course->course_name ?></p>
 		</div>
 		<div class="col-md-12">
-		<p style="padding-top: 15px; font-size: 20px; color:lightgreen">
+		<p style="padding-top: 15px; font-size: 16px; color:lightgreen">
 			CHỦ ĐIỂM
 		</p>
 		</div>
@@ -95,7 +97,7 @@
 		var list = document.getElementById(query);
 		list.style.display = list.style.display === 'none' ? '' : 'none';
 
-		
+
 	}
 </script>
 

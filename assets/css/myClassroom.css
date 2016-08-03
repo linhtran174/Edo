@@ -18,7 +18,7 @@
 }
 
 .marTop30{
-  margin-top: 30px;
+  margin-top: 45px;
 }
 
 .w1 a:hover{
@@ -43,8 +43,10 @@
 }
 
 .logoBar{
-  width: 100%; height: 73px; background-color: rgb(38,45,63);
-  border-bottom: 2px dotted black;
+  width: 100%;
+  height: 73px;
+  background-color: rgb(38,45,63);
+  /* border-bottom: 2px dotted black; */
   overflow: hidden;
 }
 .logoBar img{

@@ -53,8 +53,8 @@
   overflow: hidden;
 }
 .logoBar img{
-  padding-left: 30px; padding-top: 10px;
-
+  padding-left: 7px;
+  padding-top: 14px;
 }
 
 .logoItem{
@@ -102,11 +102,20 @@
   padding-left: 10px;
 }
 
-#courseTitle{
-  padding: 25px 50px;
+#courseTitle p{
   color: white;
   font-size: 16px;
   font-weight: 500;
+  width: inherit;
+}
+
+#courseTitle {
+    padding: 25px;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    height: 30px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .topicCard{
