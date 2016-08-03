@@ -3,15 +3,14 @@ class course_model extends MY_Model{
 	public $table = 'tblCourse';
 	public $table_id = 'course_id';
 
-
-	public function filter_coure($input){
-		if($input['level'] == null){
+	public function filter_course($input){
+		if($input['level'] == 0){
 			if($input['fee'] != 0){
 				$query = "SELECT * FROM ".$this->table." WHERE course_fee > 0";
 			}
 			else $query = "SELECT * FROM ".$this->table." WHERE course_fee = 0";
 		}
-		else if($input['fee'] == null){
+		else if($input['fee'] == -1){
 			$query = "SELECT * FROM ".$this->table." WHERE course_level = ".$input['level'][0];
 		}
 		else{
@@ -20,6 +19,12 @@ class course_model extends MY_Model{
 			}
 			else $query = "SELECT * FROM ".$this->table." WHERE course_fee = 0 AND course_level = ".$input['level'][0];
 		}
+		$result = $this->db->query($query)->result();
+		return $result;
+	}
+
+	public function search($name){
+		$query = "SELECT * FROM ".$this->table." WHERE course_name LIKE '%".$name."%'";
 		$result = $this->db->query($query)->result();
 		return $result;
 	}

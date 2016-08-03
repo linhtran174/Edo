@@ -8,94 +8,75 @@ class Course_Controller extends CI_Controller{
 		$this->load->model('lesson_model');
 		$this->load->model('review_model');
 	}
-	public function index($page = 0){
-		$data = ''; 
-		$offset = $page;
-		//echo $offset;
-		//
-		$input = array("select" => "*");
-		$input['limit'] = array('3', $offset);
-
-		$config['base_url'] = base_url("course_controller/index");
-		$config['total_rows'] = 10;
-		$config['per_page'] = 3;
-		$config['uri_segment'] = 3;
-
-		$this->pagination->initialize($config);
-		//$courses = $this->course_model->getCoursePage($this->input->get("page"));
-		$courses = $this->course_model->get_list($input);
-		$data = array("courses" => $courses,
-			"title" => 'All');
-		$this->load->view('course_catalog',$data);
+	public function index(){
+		$this->load->view('course_catalog');
 	}
-	public function pick_catalog($catalog,$page = 0){
-		$data = ''; 
-		$offset = $page;
-		$config['base_url'] = base_url("course_controller/pick_catalog/".$catalog);
-		$config['total_rows'] = 10;
-		$config['per_page'] = 3;
-		$config['uri_segment'] = 4;
 
-		$this->pagination->initialize($config);
+	public function list_course(){
+		$category = $this->input->post("category");
+		$name = $this->input->post("name");
+		$fee = $this->input->post("fee");
+		$level = $this->input->post("level");
 
-		if($catalog == 1){ 
-			$title = "Android";
+		$get_data = array("category" => $category,
+						  "name" => $name,
+						  "level" => $level,
+						  "fee" => $fee);
+
+		$title = "ALL";
+		// echo "<pre>";
+		// print_r($get_data);
+		if($get_data["level"] != null && $get_data != null){
+			$courses = $this->filter($fee, $level);
 		}
-		else if($catalog == 2){ 
-			$title = "Non-tech";
+		else{
+			if($get_data["name"] != null){
+				$courses = $this->course_model->search($name);
+			}
+			else{
+				if($get_data["category"] == null || $get_data["category"] == 0){
+					$input = array("select" => "*");
+					$courses = $this->course_model->get_list($input);
+				}
+				else{
+					if($category == 1){ 
+						$title = "Android";
+					}
+					else if($category == 2){ 
+						$title = "Non-tech";
+					}
+					else if($category == 3){ 
+						$title = "Web";
+					}
+					else if($category == 4){ 
+						$title = "Database";
+					}
+					else if($category == 5){ 
+						$title = "Data Science";
+					}
+					$courses = $this->switch_catalog($get_data['category']);
+
+				}
+			}
 		}
-		else if($catalog == 3){ 
-			$title = "Web";
-		}
-		else if($catalog == 4){ 
-			$title = "Database";
-		}
-		else if($catalog == 5){ 
-			$title = "Data Science";
-		}
-		$input = array();
-		$input['where'] = array('course_cate' => $catalog);
-		$input['limit'] = array('3', $offset);
-		$courses = $this->course_model->get_list($input);
 		$data = array("courses" => $courses,
-			"title" => $title);
-		// echo $title;
-		// echo '<pre>';
-		// print_r($courses);
-		$this->load->view('course_catalog',$data);
+					  "title" => $title);
+		$this->load->view('course_list',$data);
 	}
-	public function search(){
-		$data = '';
+
+
+	public function switch_catalog($category){
 		$input = array();
-		$name = $this->input->post('name');
-		$input['where'] = array('course_name' => $name);
-		$courses = $this->course_model->get_list($input);
-		$data = array("courses" => $courses,
-			"title" => "All");
-		$this->load->view('course_catalog',$data);
+	    $input['where'] = array('course_cate' => $category);
+	    $courses = $this->course_model->get_list($input);
+	    return $courses;
 	}
-	public function filter($page = 0){
-		$data ='';
 
-		$offset = $page;
-		$config['base_url'] = base_url("course_controller/filter");
-		$config['total_rows'] = 10;
-		$config['per_page'] = 3;
-		$config['uri_segment'] = 3;
-
-		$this->pagination->initialize($config);
-
-		$input = array();
-		$level = $this->input->post('level');
-		$fee = $this->input->post('fee');
-		$input = array('level' => $level[0],
-					   'fee' => $fee[0]);
-		$input['limit'] = array('3', $offset);
-		$courses = $this->course_model->filterCoure($input);
-		$data = array("courses" => $courses,
-						"title" => "All");
-		//return $data;
-		$this->load->view('course_catalog',$data);
+	public function filter($fee, $level){
+		$input = array("fee" => $fee,
+					   "level" => $level);
+		$courses = $this->course_model->filter_course($input);
+		return $courses;
 
 	}
 
