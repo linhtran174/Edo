@@ -15,7 +15,7 @@ class View_controller extends CI_Controller{
 		$this->load->view('login');
 	}
 	public function request_pass(){
-		$this->load->view('requestPassword');
+		$this->load->view('request_password');
 	}
 	public function course_catalog(){
 		$this->load->view('course_catalog');

@@ -26,7 +26,7 @@ class My_classroom extends CI_Controller{
 			}
 			//print_r($courseInfo);
 			
-			$this->load->view('myClassroom.php',array("courses" => $courseInfo));
+			$this->load->view('my_classroom.php',array("courses" => $courseInfo));
 		}
 	}
 
