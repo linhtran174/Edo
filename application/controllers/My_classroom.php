@@ -35,12 +35,17 @@ class My_classroom extends CI_Controller{
 	}
 
 
-	public function load_lesson($course_id = 1,$active_lesson = 0){
+	public function load_lesson($course_id = 1, $lesson_id = 0){
 		$course = $this->course_model->get_course_detail($course_id)[0];
 		$topics = $this->load_topic($course_id);
-		print_r($topics[0]);
-		if(!$active_lesson) 
+
+		if(!$lesson_id) 
 			$active_lesson = $topics[0]->lessons[0];
+		else{
+			$active_lesson = $this->lesson_model->get_info_rule(array("lesson_id"=>$lesson_id));
+		}
+		
+
 		$this->load->view('studying',array(
 			"course" => $course,
 			"topics" => $topics,

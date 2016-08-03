@@ -26,7 +26,7 @@
 			</a></p>
 		</div>
 		<div class="logoItem">
-			<p class="w1"><a href="<?php echo base_url("course_controller")?>">
+			<p class="w1"><a href="<?php echo site_url("course_controller")?>">
 			<span class="glyphicon glyphicon-th-list"></span>
 			
 			</a></p>
@@ -61,7 +61,7 @@
 			echo '<div id="list',$i,'" class="col-md-12 lessonList">';
 			foreach ($topic->lessons as $j => $lesson) {
 				echo '
-				<p><a href=',base_url('my_classroom/load_lesson/'.$course->course_id.'/'.$lesson->lesson_id),'>
+				<p><a href=',site_url('my_classroom/load_lesson/'.$course->course_id.'/'.$lesson->lesson_id),'>
 				Bài ',$j+1,': ',$lesson->lesson_name,'
 				</a></p>';
 			}
@@ -72,20 +72,21 @@
 
 	</div>
 	<div class="topBar">
-			<div class="container" style="width: 100%">
-				<h4 style="margin: 0; padding-top: 30px">Home</h4>	
+			<div class="container" style="width:100%">
+				<h4 style="margin: 0; padding-top: 30px;"><?php echo $course->course_name?></h4>	
 			</div>
 	</div> 
 	<div class="lessonContent" >
-
-
 		<div class="container" style="width:100%; margin-top:70px">		
-			
+			<?php
+			//print_r( $active_lesson);
+			echo '<iframe class="lessonVideo"
+				src="',$active_lesson->lesson_video,'">
+				</iframe>'
+			?>
 
 
 		</div>
-		
-		
 	</div>
 
 </body>
