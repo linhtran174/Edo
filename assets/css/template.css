@@ -1,7 +1,10 @@
 body{
-	font-family: Roboto;
+	font-family: roboto;
+	font-family: Open Sans,sans-serif;
 	/* font-weight: 300; */
 }
+
+body {}
 
 .myStarRating{
 	color: rgb(249,187,0);

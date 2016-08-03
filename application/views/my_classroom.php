@@ -2,29 +2,38 @@
 <head>
 <meta charset='utf-8' />
 <title>Đăng nhập</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,500&subset=vietnamese" rel="stylesheet">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,500&subset=vietnamese" rel="stylesheet"> -->
 <link rel="stylesheet"
 	href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
 <link rel="stylesheet" href=<?php echo base_url("assets/css/template.css")?>
 	type="text/css" />
+<link rel="stylesheet" href=<?php echo base_url("assets/css/myClassroom.css")?>
+	type="text/css" />
 
 </head>
 <body>
-	<div style="width: 260px; position: fixed; top:0; left:0;
-	height: 100%; background-color: rgb(66, 67, 110);">
-		<div style="width: 100%; height: 73px; background-color: rgb(38,45,63);
-		border-bottom: 2px dotted black;">
-			<img style="padding-left: 30px; padding-top: 10px" src="<?php echo base_url("assets/images/logo.png") ?>">
+	<div class="sideBar">
+		<div class="logoBar">
+			<img style="padding-left: 20px" src="<?php echo base_url("assets/images/logo.png") ?>">
 		</div>
-		<div style="height: 60px; background-color: rgb(38,45,63); border-left: 6px solid rgb(11,156,81);">
-			<p class="w1"><a href="<?php echo base_url() ?>">HOME</a></p>
+		<div class="logoItem">
+			<p class="w1"><a href="<?php echo base_url() ?>">
+			<span class="glyphicon glyphicon-home"> </span>
+			TRANG CHỦ
+			</a></p>
 		</div>
-		<div style="height: 50px;">
-			<p class="w1"><a href="<?php echo base_url("course_controller")?>">CATALOG</a></p>
+		<div class="logoItem">
+			<p class="w1"><a href="<?php echo base_url("course_controller")?>">
+			<span class="glyphicon glyphicon-th-list"> </span>
+			CHỢ KHÓA HỌC
+			</a></p>
 		</div>
-		<div style="height: 50px;">
-			<p class="w1"><a href="">SETTING</a></p>
+		<div class="logoItem">
+			<p class="w1"><a href="">
+			<span class="glyphicon glyphicon-cog"></span>
+			CÀI ĐẶT
+			</a></p>
 		</div>
 	</div>
 
@@ -40,8 +49,11 @@
 			<div class="col-md-12 marTop30" >
 				<p>KHÓA HỌC GẦN ĐÂY</p>	
 				<div class ="courseCard" style="margin-top: 0;">	
-					<h4>Vừa mới học |Tên khóa học| ?</h4>
-					<h5>Bạn đang ở tiết 1A: |Tên tiết học| </h5>
+					<p>
+					<b class="courseName">Vừa mới học |Tên khóa học| ?</b><br><br>
+					Bạn đang ở tiết 1A: |Tên tiết học|
+					</p>
+					
 					
 					<button style="width:150px;" type="button" class="btn button-primary">Học tiếp!</button>
 				</div>
@@ -54,13 +66,12 @@
 
 			<?php 
 			foreach ($courses as $index => $course) {
-				//print_r($course);
 				echo '
 				<div class="col-md-12 marTop30" >
 				<div class ="courseCard" style="margin-top: 0px">
 						<p>
 						KHÓA NGẮN<br>
-						<b>',$course->course_name,'</b><br>
+						<b class="courseName">',$course->course_name,'</b><br><br>
 						',$course->course_shortDesc,'
 						</p>
 						<br>
@@ -80,40 +91,10 @@
 		
 	</div>
 
-   
-
 </body>
-<style type="text/css">
-.w1{
-	color: white;
-	padding-top: 20px;
-	padding-left: 30px;
-}
-.w1 a{
-	text-decoration: none;
-	color: white;	
-}
 
-.marTop30{
-	margin-top: 30px;
-}
+<script type="text/javascript">
+	
+</script>
 
-.w1 a:hover{
-	text-decoration: none;
-	/*//color: white;	*/
-}
-
-
-.courseCard{
-	margin-top: 30px;
-	padding: 30px 50px;
-	box-shadow: 0px 1px 10px #c1c1c1;
-
-}
-
-.courseCard:hover{
-	box-shadow: 0px 0.5px 20px #c1c1c1;
-}
-
-</style>
 </html>

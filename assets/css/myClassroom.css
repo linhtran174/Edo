@@ -1,146 +1,67 @@
-.row{
-    margin-left:0px;
-    margin-right:0px;
+
+.marLeft10{
+
 }
 
-#wrapper {
-    padding-left: 70px;
-    transition: all .4s ease 0s;
-    height: 100%
+.courseName{
+  font-size: 20px;
 }
 
-#sidebar-wrapper {
-    margin-left: -150px;
-    left: 70px;
-    width: 150px;
-    background: #222;
-    position: fixed;
-    height: 100%;
-    z-index: 10000;
-    transition: all .4s ease 0s;
+.w1{
+  color: white;
+  padding-top: 20px;
+  padding-left: 30px;
 }
-
-.sidebar-nav {
-    display: block;
-    float: left;
-    width: 150px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-#page-content-wrapper {
-    padding-left: 0;
-    margin-left: 0;
-    width: 100%;
-    height: auto;
-}
-#wrapper.active {
-    padding-left: 150px;
-}
-#wrapper.active #sidebar-wrapper {
-    left: 150px;
-}
-
-#page-content-wrapper {
-  width: 100%;
-}
-
-#sidebar_menu li a, .sidebar-nav li a {
-    color: #999;
-    display: block;
-    float: left;
-    text-decoration: none;
-    width: 150px;
-    background: #252525;
-    border-top: 1px solid #373737;
-    border-bottom: 1px solid #1A1A1A;
-    -webkit-transition: background .5s;
-    -moz-transition: background .5s;
-    -o-transition: background .5s;
-    -ms-transition: background .5s;
-    transition: background .5s;
-}
-.sidebar_name {
-    padding-top: 25px;
-    color: #fff;
-    opacity: .7;
-}
-
-.sidebar-nav li {
-  line-height: 40px;
-  text-indent: 20px;
-}
-
-.sidebar-nav li a {
-  color: #999999;
-  display: block;
+.w1 a{
   text-decoration: none;
+  color: white;
 }
 
-.sidebar-nav li a:hover {
-  color: #fff;
-  background: rgba(255,255,255,0.2);
+.marTop30{
+  margin-top: 30px;
+}
+
+.w1 a:hover{
   text-decoration: none;
+  /*//color: white; */
 }
 
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus {
-  text-decoration: none;
+
+.courseCard{
+  margin-top: 30px;
+  padding: 30px 50px;
+  box-shadow: 0px 1px 10px #c1c1c1;
+
 }
 
-.sidebar-nav > .sidebar-brand {
-  height: 65px;
-  line-height: 60px;
-  font-size: 18px;
+.courseCard:hover{
+  box-shadow: 0px 0.5px 20px #c1c1c1;
+}
+.sideBar{
+  width: 260px; position: fixed; top:0; left:0;
+  height: 100%; background-color: rgb(66, 67, 110);
 }
 
-.sidebar-nav > .sidebar-brand a {
-  color: #999999;
+.logoBar{
+  width: 100%; height: 73px; background-color: rgb(38,45,63);
+  border-bottom: 2px dotted black;
+  overflow: hidden;
+}
+.logoBar img{
+  padding-left: 30px; padding-top: 10px;
+
 }
 
-.sidebar-nav > .sidebar-brand a:hover {
-  color: #fff;
-  background: none;
+.logoItem{
+  height: 60px;
 }
 
-#main_icon
-{
-    float:right;
-   padding-right: 65px;
-   padding-top:20px;
-}
-.sub_icon
-{
-    float:right;
-   padding-right: 65px;
-   padding-top:10px;
-}
-.content-header {
-  height: 65px;
-  line-height: 65px;
+.logoItem span{
+  font-size: 20px;
+  margin-right: 10px;
 }
 
-.content-header h1 {
-  margin: 0;
-  margin-left: 20px;
-  line-height: 65px;
-  display: inline-block;
-}
-
-@media (max-width:767px) {
-    #wrapper {
-    padding-left: 70px;
-    transition: all .4s ease 0s;
-}
-#sidebar-wrapper {
-    left: 70px;
-}
-#wrapper.active {
-    padding-left: 150px;
-}
-#wrapper.active #sidebar-wrapper {
-    left: 150px;
-    width: 150px;
-    transition: all .4s ease 0s;
-}
+.logoItem:hover{
+  background-color: rgb(38,45,63);
+  border-left: 6px solid rgb(11,156,81);
 }

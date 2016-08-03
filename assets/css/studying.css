@@ -1,0 +1,145 @@
+
+.marLeft10{
+
+}
+
+.courseName{
+  font-size: 20px;
+}
+
+.w1{
+  color: white;
+  padding-top: 20px;
+  padding-left: 25px;
+}
+.w1 a{
+  text-decoration: none;
+  color: white;
+}
+
+.marTop30{
+  margin-top: 30px;
+}
+
+.w1 a:hover{
+  text-decoration: none;
+  /*//color: white; */
+}
+
+
+.courseCard{
+  margin-top: 30px;
+  padding: 30px 50px;
+  box-shadow: 0px 1px 10px #c1c1c1;
+
+}
+
+.courseCard:hover{
+  box-shadow: 0px 0.5px 20px #c1c1c1;
+}
+.sideBar{
+  width: 72px;
+  position: fixed;
+  top:0;
+  left:0;
+  height: 100%;
+  background-color: rgb(38,45,63);
+}
+
+.logoBar{
+  width: 100%;
+  height: 73px;
+  background-color: rgb(38,45,63);
+  overflow: hidden;
+}
+.logoBar img{
+  padding-left: 30px; padding-top: 10px;
+
+}
+
+.logoItem{
+  height: 60px;
+}
+
+.logoItem span{
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.logoItem:hover{
+  background-color: rgb(38,45,63);
+  border-left: 6px solid rgb(11,156,81);
+}
+
+.lessonBar{
+  left: 72px;
+  top:0;
+  width: 292px;
+  height: 100%;
+  position: fixed;
+  background-color: rgb(66, 67, 110);
+  overflow-y: scroll;
+}
+
+.topBar{
+  width: 100%;
+  position: fixed;
+  top:0;
+  left: 348px;
+  background-color: white;
+  z-index:10;
+  height: 70px;
+  box-shadow: 0px 0.5px 10px #c1c1c1;
+}
+
+.lessonContent{
+  
+}
+
+.lessonBar p{
+  font-size: 20px;
+  color: white;
+  padding-left: 10px;
+}
+
+#courseTitle{
+  padding: 25px 50px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.topicCard{
+  height: 60px;
+  background-color: rgb(52,56,87);
+  border-bottom: 1px solid lightsalmon;
+}
+
+.topicCard a{
+  text-decoration: none;  
+  color: white;
+}
+
+.topicCard p{
+  color: white;
+  font-size: 14px;
+  padding-top: 18px;
+  /* font-weight: 300; */
+}
+
+.lessonList{
+  
+  background-color: rgb(66, 67, 110);
+
+}
+
+.lessonList a{
+  color: white;
+  text-decoration: none;
+}
+
+.lessonList p{
+  padding-top: 20px;
+  padding-left: 25px;
+  font-size: 14px;
+}
