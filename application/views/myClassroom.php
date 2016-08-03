@@ -29,53 +29,50 @@
 	</div>
 
 	<div style="margin-left: 260px;" >
-		<div style="position:fixed; top:0; left:260; background-color: white; z-index:10; height: 70px; box-shadow: 0px 0.5px 10px #c1c1c1;">
-			<div class="container">
+		<div style="width: 100%; position:fixed; top:0; left:260; background-color: white; z-index:10; height: 70px; box-shadow: 0px 0.5px 10px #c1c1c1;">
+			<div class="container" style="width: 100%">
 				<h4 style="margin: 0; padding-top: 30px">Home</h4>	
 			</div>
 		</div> 
 
 		<div class="container" style="width:100%; margin-top:70px">		
 			
-			<p style="margin-top:30px; display: inline-block;">KHÓA HỌC GẦN ĐÂY</p>	
-			<div class="col-md-12 courseCard" >
-			
-			<h4>Vừa mới học |Tên khóa học| ?</h4>
-			<h5>Bạn đang ở tiết 1A: |Tên tiết học| </h5>
-			
-			<button style="width:150px;" type="button" class="btn button-primary">Học tiếp!</button>
+			<div class="col-md-12 marTop30" >
+				<p>KHÓA HỌC GẦN ĐÂY</p>	
+				<div class ="courseCard" style="margin-top: 0;">	
+					<h4>Vừa mới học |Tên khóa học| ?</h4>
+					<h5>Bạn đang ở tiết 1A: |Tên tiết học| </h5>
+					
+					<button style="width:150px;" type="button" class="btn button-primary">Học tiếp!</button>
+				</div>
 			</div>
-			<br><br>
-			<p style="margin-top:30px; display: inline-block;">KHÓA ĐÃ ĐĂNG KÝ</p>	
-			<div class="col-md-12 courseCard" >
-				<p>
-				KHÓA NGẮN<br>
-				<b>Làm việc với GIT</b><br>
-				Tổng quan về hệ quản lý file GIT. Quy trình làm việc với git tại OWS.
-				</p>
-				<div style="height: 1px; border:1px dotted grey"></div><br>
-				<button style="width:150px;" type="button" class="btn button-primary">Vào học</button>
+			
+
+			<div class="col-md-12 marTop30" >
+				<p>KHÓA ĐÃ ĐĂNG KÝ</p>	
 			</div>
 
-			<div class="col-md-12 courseCard" >
-				<p>
-				KHÓA NGẮN<br>
-				<b>Làm việc với GIT</b><br>
-				Tổng quan về hệ quản lý file GIT. Quy trình làm việc với git tại OWS.
-				</p>
-				<div style="height: 1px; border:1px dotted grey"></div><br>
-				<button style="width:150px;" type="button" class="btn button-primary">Vào học</button>
-			</div>
+			<?php 
+			foreach ($courses as $index => $course) {
+				//print_r($course);
+				echo '
+				<div class="col-md-12 marTop30" >
+				<div class ="courseCard" style="margin-top: 0px">
+						<p>
+						KHÓA NGẮN<br>
+						<b>',$course->course_name,'</b><br>
+						',$course->course_shortDesc,'
+						</p>
+						<div style="height: 1px; border:1px dotted grey"></div><br>
+						<button style="width:150px;" type="button" class="btn button-primary">Vào học</button>
+				</div>
+				</div>';
+			}
+			?>
 
-			<div class="col-md-12 courseCard" >
-				<p>
-				KHÓA NGẮN<br>
-				<b>Làm việc với GIT</b><br>
-				Tổng quan về hệ quản lý file GIT. Quy trình làm việc với git tại OWS.
-				</p>
-				<div style="height: 1px; border:1px dotted grey"></div><br>
-				<button style="width:150px;" type="button" class="btn button-primary">Vào học</button>
-			</div>
+
+
+			
 
 
 		</div>
@@ -96,6 +93,11 @@
 	text-decoration: none;
 	color: white;	
 }
+
+.marTop30{
+	margin-top: 30px;
+}
+
 .w1 a:hover{
 	text-decoration: none;
 	/*//color: white;	*/
@@ -103,6 +105,7 @@
 
 
 .courseCard{
+	margin-top: 30px;
 	padding: 30px 50px;
 	box-shadow: 0px 1px 10px #c1c1c1;
 
