@@ -63,7 +63,7 @@
 						<b>',$course->course_name,'</b><br>
 						',$course->course_shortDesc,'
 						</p>
-						<div style="height: 1px; border:1px dotted grey"></div><br>
+						<br>
 						<button style="width:150px;" type="button" class="btn button-primary">Vào học</button>
 				</div>
 				</div>';
