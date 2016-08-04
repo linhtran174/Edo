@@ -4,6 +4,7 @@
 <title>Đăng nhập</title>
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,500&subset=vietnamese" rel="stylesheet"> -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <link rel="stylesheet"
 	href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
 <link rel="stylesheet" href=<?php echo base_url("assets/css/template.css")?>
@@ -32,10 +33,15 @@
 			</a></p>
 		</div>
 		<div class="logoItem">
-		<p class="w1"><a href="">
+		<p class="w1"><a href=<?php echo site_url('my_classroom/setting')?>>
 		<span class="glyphicon glyphicon-cog"></span>
-		
 		</a></p>
+		</div>
+
+		<div class="logoItem bottom">
+			<p class="w1"><a href=<?php echo site_url('logout')?>>
+			<span class="glyphicon glyphicon-log-out"></span>
+			</a></p>
 		</div>
 	</div>
 
@@ -77,10 +83,10 @@
 			</div>
 	</div> 
 	<div class="lessonContent" >
-		<div class="container" style="width:100%; margin-top:70px">		
+		<div class="container" id="videoContainer" style="width:100%; text-align: center; margin-top:70px">		
 			<?php
 			//print_r( $active_lesson);
-			echo '<iframe class="lessonVideo"
+			echo '<iframe id="lessonVideo" class="col-lg-offset-1 col-sm-12 col-lg-10"
 				src="',$active_lesson->lesson_video,'">
 				</iframe>'
 			?>
@@ -98,8 +104,16 @@
 		var list = document.getElementById(query);
 		list.style.display = list.style.display === 'none' ? '' : 'none';
 
-
 	}
+
+	// function resizeVideo(){
+	// 	console.log("sdfsdf");
+	// 	var lessonVideo = document.getElementById("lessonVideo");
+	// 	var width = parseInt(lessonVideo.style.width.split("p")[0]);
+	// 	var height = width/2;
+	// 	lessonVideo.style.height = height.toString().concat("px");
+	// 	console.log(lessonVideo.style);
+	// }
 </script>
 
 </html>

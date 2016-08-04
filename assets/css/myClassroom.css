@@ -8,8 +8,9 @@
 }
 
 .w1{
+  font-weight: 500;
   color: white;
-  padding-top: 20px;
+  padding-top: 12px;
   padding-left: 30px;
 }
 .w1 a{
@@ -24,6 +25,22 @@
 .w1 a:hover{
   text-decoration: none;
   /*//color: white; */
+}
+
+.formNav a{
+  width: 100%;
+  flex: 1;
+}
+
+.settingForm{
+  padding-top: 20px;
+
+}
+
+.settingForm input{
+  height: 40px;
+  width: 100%;
+  padding-left: 10px;
 }
 
 
@@ -59,8 +76,10 @@
 }
 
 .logoItem span{
-  font-size: 20px;
-  margin-right: 10px;
+  font-size: 26px;
+  margin-right: 9px;
+  top: 5px;
+  left: -3px;
 }
 
 .logoItem:hover{

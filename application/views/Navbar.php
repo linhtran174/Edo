@@ -1,8 +1,9 @@
 <div id="myNavbar">
 	<div class="container" style="position: relative">
 		<div style="width: 250px;">
-			<a id="logoA" href="<?php echo site_url("view_controller/index")?>"><img
-				src=<?php echo base_url("assets/images/logo.png")?> style=""></img></a>
+			<a href="<?php echo site_url("view_controller/index")?>">
+			<img id="logoA"
+				src=<?php echo base_url("assets/images/logo.png")?>></img></a>
 		</div>
 		<div style="position: absolute; right: 0; top: 25px">
 			<?php if($this->session->userdata('login') != NULL){ ?>

@@ -20,19 +20,25 @@
 		<div class="logoItem">
 			<p class="w1"><a href="<?php echo site_url('my_classroom') ?>">
 			<span class="glyphicon glyphicon-home"> </span>
-			TRANG CHỦ
+			Trang chủ
 			</a></p>
 		</div>
 		<div class="logoItem">
-			<p class="w1"><a href="<?php echo site_url("course_controller")?>">
+			<p class="w1"><a href=<?php echo site_url("course_controller")?>>
 			<span class="glyphicon glyphicon-th-list"> </span>
-			CHỢ KHÓA HỌC
+			Chợ khóa học
 			</a></p>
 		</div>
 		<div class="logoItem">
-			<p class="w1"><a href="">
+			<p class="w1"><a href=<?php echo site_url("my_classroom/setting")?>>
 			<span class="glyphicon glyphicon-cog"></span>
-			CÀI ĐẶT
+			Cài đặt
+			</a></p>
+		</div>
+		<div class="logoItem bottom">
+			<p class="w1"><a href=<?php echo site_url('logout');?>>
+			<span class="glyphicon glyphicon-log-out"></span>
+			Đăng xuất
 			</a></p>
 		</div>
 	</div>

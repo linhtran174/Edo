@@ -34,6 +34,16 @@ class My_classroom extends CI_Controller{
 		}
 	}
 
+	public function setting(){
+		//print_r($this->session->userdata("login"));
+		$student = $this->student_model->get_info_rule(array(
+			"stud_id" => $this->session->userdata("login")->stud_id
+		));
+		
+		$this->load->view('setting', array(
+			"student" => $student
+		));
+	}
 
 	public function load_lesson($course_id = 1, $lesson_id = 0){
 		$course = $this->course_model->get_course_detail($course_id)[0];
