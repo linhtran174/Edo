@@ -140,7 +140,7 @@ function printStar($rate){
 			</div>
 			<a type="button" href="
 			<?php 
-			echo base_url("index.php/course_controller/learning/{$course[0]->course_id}");
+			echo base_url("index.php/my_classroom/load_lesson/{$course[0]->course_id}");
 			?>
 			" class="btn button-primary" style="display:flex;align-items:center;justify-content:center;">BẮT ĐẦU HỌC NGAY</a>
 		</div>
