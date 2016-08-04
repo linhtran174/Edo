@@ -49,15 +49,15 @@
 					<div style="display: block; position: relative;" class="properties">
 						<h5>TYPE</h5>
 						<!-- <p><input type="checkbox" class="checkbox">  Khóa ngắn hạn</p> -->
-						<p><input type="checkbox" onchange="filter(0,0)" unchecked="unchecked">  Khóa miễn phí</p>
-						<p><input type="checkbox" onchange="filter(1,0)" unchecked="unchecked">  Khóa trả phí</p>
+						<p><input type="radio" value="0" name="fee">  Khóa miễn phí</p>
+						<p><input type="radio" value="1" name="fee">  Khóa trả phí</p>
 						<!-- <input type="submit" class="btn default"> -->
 					</div>
 					<div style="display: block; position: relative; margin-top:40px" class="properties">
 						<h5>SKILL LEVEL</h5>
-						<p><input type="checkbox" onchange="filter(-1,1)" unchecked="unchecked">  Mới bắt đầu</p>
-						<p><input type="checkbox" onchange="filter(-1,2)" unchecked="unchecked">  Thành thạo</p>
-						<p><input type="checkbox" onchange="filter(-1,3)" unchecked="unchecked">  Cao cấp</p>
+						<p><input type="radio" value="1" name="level">  Mới bắt đầu</p>
+						<p><input type="radio" value="2" name="level">  Thành thạo</p>
+						<p><input type="radio" value="3" name="level">  Cao cấp</p>
 						<!-- <input type="submit" class="btn default"> -->
 					</div>
 					</form>
@@ -78,8 +78,7 @@
 		var lv;
 		$(document).ready(function(){
 			url = "<?php echo site_url('course_controller/list_course')?>";
-			$('#course').load(url,function(res){
-			});
+			$('#course').load(url);
 		});
 
 		function pickCatagory(index){
@@ -105,13 +104,50 @@
 		});
 
 		function filter(fee, level){
-			bill = fee;
-			lv = level;
-			data = {"fee" : bill,
+			data = {"fee": fee,
 					"level": level};
 			url = "<?php echo site_url('course_controller/list_course')?>";
 			$('#course').load(url,data);
 		}
+
+		var allRadios1 = document.getElementsByName('fee');
+		var allRadios2 = document.getElementsByName('level');
+		var booRadio1;
+		var fee = -1, level = 0;
+		var booRadio2;
+		var x = 0;
+		for(x = 0; x < allRadios1.length; x++){
+        	allRadios1[x].onclick = function(){
+            	if(booRadio1 == this){
+                	this.checked = false;
+                	fee = -1;
+                	console.log(fee + " " + level);
+                	filter(fee,level);
+        			booRadio1 = null;
+            	}else{
+            		fee = this.value;
+            		filter(fee, level);
+            		booRadio1 = this;
+        		}
+        };
+
+      	for(x = 0; x < allRadios2.length; x++){
+      		allRadios2[x].onclick = function(){
+      			if(booRadio2 == this){
+      				this.checked = false;
+      				level = 0;
+      				filter(fee, level);
+      				booRadio2 = null
+      			}
+      			else{
+      				level = this.value;
+      				filter(fee, level);
+      				booRadio2 = this;
+      			}
+      		}
+      	}
+
+}
 	</script>
 </body>
 </html>

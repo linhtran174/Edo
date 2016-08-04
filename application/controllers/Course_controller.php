@@ -27,7 +27,7 @@ class Course_Controller extends CI_Controller{
 		$title = "ALL";
 		// echo "<pre>";
 		// print_r($get_data);
-		if($get_data["level"] != null && $get_data != null){
+		if($get_data["level"] != 0 || $get_data['fee'] != -1){
 			$courses = $this->filter($fee, $level);
 		}
 		else{
