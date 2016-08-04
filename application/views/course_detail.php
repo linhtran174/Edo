@@ -64,9 +64,8 @@ function printStar($rate){
 				<?php 
 				if($course[0]->course_video){
 					?>
-					<div class="video">
-						<iframe src="<?=$course[0]->course_video?>" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
-						</iframe>
+					<div class="video videoContainer">
+						
 					</div>
 					<?php
 				}
@@ -559,6 +558,22 @@ function printStar($rate){
 
 	<?php $this->load->view('footer');?>
 	<script>
+		function getId(url) {
+			var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+			var match = url.match(regExp);
+
+			if (match && match[2].length == 11) {
+				return match[2];
+			} else {
+				return 'error';
+			}
+		}
+
+		var link = "<?=$course[0]->course_video?>";
+		var myId = getId(link);
+
+		$('.videoContainer').html('<iframe width="640" height="360" src="//www.youtube.com/embed/' + myId + '" frameborder="0" allowfullscreen></iframe>');
+
 		$('#teacher-detail').on('shown.bs.collapse', function() {
 			$(".icontoggle").addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down');
 		});
