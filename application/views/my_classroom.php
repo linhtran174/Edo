@@ -51,19 +51,33 @@
 		</div> 
 
 		<div class="container" style="width:100%; margin-top:70px">		
+			<?php
+				if($this->session->userdata("active_lesson"))
+				{
+					$active_lesson = $this->session->userdata("active_lesson");
+					$active_course = $this->session->userdata("active_course");
+
+
+					//print_r($active_course);
+
+					echo '
+					<div class="col-md-12 marTop30" >
+					<p>KHÓA HỌC GẦN ĐÂY</p>	
+					<div class ="courseCard" style="margin-top: 0;">	
+						<p>
+						<b class="courseName">Đang học <i>',$active_course->course_name,'</i> ?</b><br><br>
+						Bạn đang học dở bài: <i>',$active_lesson->lesson_name,'</i>
+						</p>
+
+						<form action="',site_url('my_classroom/load_lesson/'.$active_course->course_id.'/'.$active_lesson->lesson_id),'">
+						<input type="submit" value="Học tiếp luôn !!"
+						 style="width:200px;" class="btn button-primary">
+						</form>
+					</div>
+					</div>';
+				}
+			?>
 			
-			<div class="col-md-12 marTop30" >
-				<p>KHÓA HỌC GẦN ĐÂY</p>	
-				<div class ="courseCard" style="margin-top: 0;">	
-					<p>
-					<b class="courseName">Vừa mới học |Tên khóa học| ?</b><br><br>
-					Bạn đang ở tiết 1A: |Tên tiết học|
-					</p>
-					
-					
-					<button style="width:150px;" type="button" class="btn button-primary">Học tiếp!</button>
-				</div>
-			</div>
 			
 
 			<?php 

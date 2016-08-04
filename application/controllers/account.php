@@ -41,7 +41,7 @@ class Account extends CI_Controller{
 				echo "success";
 			}
 			else
-				$this->output->set_status_header(404);
+				$this->output->set_status_header(200);
 		}
 		else{
 			$this->output->set_status_header(404);
