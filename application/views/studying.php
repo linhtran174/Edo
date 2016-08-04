@@ -84,40 +84,43 @@
 		</div>
 	</div> 
 	<div class="lessonContent" >
-		<div class="container" id="videoContainer" style="width:100%; text-align: center; margin-top:70px">		
-			<?php
-			//print_r( $active_lesson);
-		// 	echo '<iframe id="lessonVideo" class="col-lg-offset-1 col-sm-12 col-lg-10"
-		// 	src="',$active_lesson->lesson_video,'">
-		// </iframe>'
-			?>
+		<div class="container" id="videoContainer" style="width:100%; text-align: center; margin-top:70px">
 		</div>
 
-		<div class="container lessonDesc">
-			<p class="title">Video: <?=$active_lesson->lesson_name?></p>
-			
-			<p class="title">Tài liệu bài học:
+		<div class="container" style="width:100%;padding:0;">
+			<div class="lessonDesc">
 				<?php
-				if($active_lesson->lesson_mate){
+				if($active_lesson->lesson_type == 1){
 					echo "
-					<a href=\"$active_lesson->lesson_mate\">Download
-					</a>
-					";
-				} else echo "Không có."
-				?>
-			</p>
+					<p class=\"title\">Video: $active_lesson->lesson_name</p>
+					<p class=\"title\">Tài liệu bài học:
+						";
+						if($active_lesson->lesson_mate){
+							echo "
+							<a href=\"$active_lesson->lesson_mate\">Download
+							</a>
+							";
+						} else echo "Không có.";
+						echo "</p>";
+					} else if($active_lesson->lesson_type == 2){
+						echo "<style type=\"text/css\">#videoContainer {display:none}</style>";
+						echo $active_lesson->lesson_desc;
+					}
+
+					?>
+				</div>
+			</div>
 		</div>
-	</div>
-</body>
+	</body>
 
 
-<script type="text/javascript">
-	function toggle(list){
-		var query = 'list'.concat(list);
-		var list = document.getElementById(query);
-		list.style.display = list.style.display === 'none' ? '' : 'none';
+	<script type="text/javascript">
+		function toggle(list){
+			var query = 'list'.concat(list);
+			var list = document.getElementById(query);
+			list.style.display = list.style.display === 'none' ? '' : 'none';
 
-	}
+		}
 
 	// function resizeVideo(){
 	// 	console.log("sdfsdf");
@@ -140,9 +143,12 @@
 	}
 
 	var link = "<?=$active_lesson->lesson_video?>";
-	var myId = getId(link);
+	if(link){
+		var myId = getId(link);
 
-	$('#videoContainer').html('<iframe height="400" class="col-lg-offset-1 col-sm-12 col-lg-10" src="//www.youtube.com/embed/' + myId + '" frameborder="0" allowfullscreen></iframe>');
+		$('#videoContainer').html('<iframe height="400" class="col-lg-offset-1 col-sm-12 col-lg-10" src="//www.youtube.com/embed/' + myId + '" frameborder="0" allowfullscreen></iframe>');
+	}
+	
 
 </script>
 
