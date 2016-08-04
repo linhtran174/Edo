@@ -98,7 +98,10 @@ margin-left: 367px;
 }
 
 #videoContainer{
-  height: 400px;
+  /*height: 400px;*/
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: #FAFBFC;
 }
 
 @media screen and (min-width: 1200px) {
@@ -168,4 +171,19 @@ margin-left: 367px;
   padding-top: 20px;
   padding-left: 25px;
   font-size: 14px;
+}
+
+.lessonDesc {
+  width:100%;
+  padding-top:20px;
+  padding-left: 0;
+  padding-right: 0;
+  border-top: 1px solid #dbe2e8;
+}
+
+.lessonDesc .title {
+  font-weight: 500;
+  font-size: 16px;
+  color: #2e3d49;
+  margin-left: 15px;
 }

@@ -60,10 +60,17 @@ function printStar($rate){
 				</p>
 
 				<p class="learn"><?=$course[0]->course_shortDesc?></p>
-				<div class="video">
-					<iframe src="<?=$course[0]->course_video?>" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
-					</iframe>
-				</div>
+
+				<?php 
+				if($course[0]->course_video){
+					?>
+					<div class="video">
+						<iframe src="<?=$course[0]->course_video?>" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+						</iframe>
+					</div>
+					<?php
+				}
+				?>
 			</div>
 		</div>
 		<div class="col-md-6 left">
@@ -140,7 +147,7 @@ function printStar($rate){
 			</div>
 			<a type="button" href="
 			<?php 
-			echo base_url("index.php/course_controller/learning/{$course[0]->course_id}");
+			echo base_url("index.php/my_classroom/load_lesson/{$course[0]->course_id}");
 			?>
 			" class="btn button-primary" style="display:flex;align-items:center;justify-content:center;">BẮT ĐẦU HỌC NGAY</a>
 		</div>

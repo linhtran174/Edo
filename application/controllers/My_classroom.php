@@ -46,7 +46,16 @@ class My_classroom extends CI_Controller{
 	}
 
 	public function load_lesson($course_id = 1, $lesson_id = 0){
-		$course = $this->course_model->get_course_detail($course_id)[0];
+		if(!$this->session->userdata('login')){
+			redirect('/login', 'refresh');
+		}
+
+		$course = $this->course_model->get_course_detail($course_id);
+		if(!$course){
+			show_error("Không tìm thấy khóa học!");
+		}
+		$course = $course[0];
+		
 		$topics = $this->load_topic($course_id);
 
 		if(!$lesson_id) 
