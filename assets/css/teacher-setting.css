@@ -1,0 +1,135 @@
+.w1{
+  font-weight: 500;
+  color: white;
+  padding-top: 12px;
+  padding-left: 30px;
+}
+.w1 a{
+  text-decoration: none;
+  color: white;
+}
+
+.w1 a:hover{
+  text-decoration: none;
+  /*//color: white; */
+}
+
+.formNav a{
+  width: 100%;
+  flex: 1;
+}
+
+.settingForm{
+  padding-top: 20px;
+
+}
+
+.settingForm input{
+  height: 40px;
+  width: 100%;
+  padding-left: 10px;
+}
+
+.wrapper {
+  /*display: flex;*/
+}
+
+.sideBar-expand {
+  width: 260px;
+  position: fixed;
+  top:0;
+  left:0;
+  height: 100%;
+  background-color: rgb(66, 67, 110);
+  padding: 0;
+}
+
+.sideBar-collapse {
+  width: 70px;
+  position: fixed;
+  top:0;
+  left:0;
+  height: 100%;
+  background-color: rgb(66, 67, 110);
+  padding: 0;
+}
+
+.logoBar{
+  width: 100%;
+  height: 73px;
+  background-color: rgb(38,45,63);
+  /* border-bottom: 2px dotted black; */
+  overflow: hidden;
+}
+.logoBar img{
+  padding-left: 11px;
+  padding-top: 10px;
+}
+
+.logoItem{
+  height: 60px;
+  display: flex;
+  align-items: center;
+  /*justify-content: center;*/
+}
+
+.logoItem .icon{
+  font-size: 26px;
+  color: white;
+  margin-left: 20px;
+}
+
+.logoItem p{
+  display: inline;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.logoItem:hover{
+  background-color: rgb(38,45,63);
+  border-left: 6px solid rgb(11,156,81);
+  cursor: pointer;
+}
+
+.right-collapse{
+  margin-left: 260px;
+}
+
+.right-expand {
+  margin-left: 70px;
+}
+
+.fixed-bar {
+  width: 100%;
+  position:fixed;
+  top:0;
+  /*left:260;*/
+  background-color: white;
+  z-index:10;
+  height: 70px;
+  box-shadow: 0px 0.5px 10px #c1c1c1;
+  display: flex;
+  align-items: center;
+}
+
+.header-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.menu-btn {
+  font-size: 30px;
+}
+
+.menu-btn:hover{
+  cursor: pointer;
+
+}
+
+.wrapper div {
+  -webkit-transition: width 0.3s ease, margin 0.3s ease;
+  -moz-transition: width 0.3s ease, margin 0.3s ease;
+  -o-transition: width 0.3s ease, margin 0.3s ease;
+  transition: width 0.3s ease, margin 0.3s ease;
+}

@@ -10,6 +10,8 @@
 	type="text/css" />
 <link rel="stylesheet" href=<?php echo base_url("assets/css/template.css")?>
 	type="text/css" />
+	<script src="<?php echo base_url("assets/js/jquery-2.2.4.min.js")?>"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
 <body>
 	<?php $this->load->view('Navbar');?>
