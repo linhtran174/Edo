@@ -28,10 +28,8 @@
 				</div>
 				<div class="col-md-2"></div>
 				<div class="col-md-5">
-					<form id="search">
-						<input class="form-control" type="text" id="name" placeholder="tìm kiếm khóa học"/>
+					<input class="form-control" type="text" id="name" placeholder="tìm kiếm khóa học" onchange="search()"/>
 						<!-- <span style="display: hidden; "><input type="submit" name="tên"></span> -->
-					</form>
 				</div>
 				<div id="information">
 				<div class="col-md-3" id="filter">
@@ -49,15 +47,15 @@
 					<div style="display: block; position: relative;" class="properties">
 						<h5>TYPE</h5>
 						<!-- <p><input type="checkbox" class="checkbox">  Khóa ngắn hạn</p> -->
-						<p><input type="radio" value="0" name="fee">  Khóa miễn phí</p>
-						<p><input type="radio" value="1" name="fee">  Khóa trả phí</p>
+						<p><input type="checkbox" value="0" name="fee" onchange="filter_fee(0);">  Khóa miễn phí</p>
+						<p><input type="checkbox" value="1" name="fee" onchange="filter_fee(1);">  Khóa trả phí</p>
 						<!-- <input type="submit" class="btn default"> -->
 					</div>
 					<div style="display: block; position: relative; margin-top:40px" class="properties">
 						<h5>SKILL LEVEL</h5>
-						<p><input type="radio" value="1" name="level">  Mới bắt đầu</p>
-						<p><input type="radio" value="2" name="level">  Thành thạo</p>
-						<p><input type="radio" value="3" name="level">  Cao cấp</p>
+						<p><input type="checkbox" value="1" name="level">  Mới bắt đầu</p>
+						<p><input type="checkbox" value="2" name="level">  Thành thạo</p>
+						<p><input type="checkbox" value="3" name="level">  Cao cấp</p>
 						<!-- <input type="submit" class="btn default"> -->
 					</div>
 					</form>
@@ -72,82 +70,125 @@
 	<?php $this->load->view('footer');?>
 
 	<script type="text/javascript">
-		var category;
-		var name;
-		var bill;
-		var lv;
-		$(document).ready(function(){
-			url = "<?php echo site_url('course_controller/list_course')?>";
-			$('#course').load(url);
-		});
+		category = 0;
+		var name = null;
+		fee = -1;
+	 	level = 0;
+
+		url = "<?php echo site_url('course_controller/list_course')?>";
+
+			data = {
+				"category": category,
+				"name": name,
+				"fee": fee,
+				"level": level
+			};
+			$('#course').load(url,data, function(){
+				// var collection = jQuery.parseJSON(res.collect);
+				var collect = JSON.parse($('#collect').html());
+				//console.log(collect);
+				category = collect['category'];
+				name = collect['name'];
+				fee = collect['fee'];
+				level = collect['level'];
+
+			    // console.log(category);
+			});
 
 		function pickCatagory(index){
-		    category = index;
-			//console.log(category);
-			url = "<?php echo site_url('course_controller/list_course')?>";
-			data = {"category" : category};
-			$('#course').load(url,data);
+			category = index;
+
+			data ={
+				"category": category,
+				"name": name,
+				"fee": fee,
+				"level": level
+			};
+
+			$('#course').load(url, data, function(){
+				var collect = JSON.parse($('#collect').html());
+				//console.log(collect);
+				category = collect['category'];
+				name = collect['name'];
+				fee = collect['fee'];
+				level = collect['level'];
+			});
+		}
+
+
+		function search(){
+			name = $('#name').val();
+			// console.log(name);
+
+			data ={
+				"category": category,
+				"name": name,
+				"fee": fee,
+				"level": level
+			};
+
+			$('#course').load(url, data, function(){
+				var collect = JSON.parse($('#collect').html());
+				//console.log(collect);
+				category = collect['category'];
+				name = collect['name'];
+				fee = collect['fee'];
+				level = collect['level'];
+			});
+		}
+
+		function filter_fee(){
+			data={
+				"category": category,
+				"name": name,
+				"fee": fee,
+				"level": level
+			};
+			$('#course').load(url, data, function(){
+				var collect = JSON.parse($('#collect').html());
+				//console.log(collect);
+				category = collect['category'];
+				name = collect['name'];
+				fee = collect['fee'];
+				level = collect['level'];
+			});
 		}
 		
-		$(function(){
-			$('#search').each(function(){
-				$('input').keypress(function(e){
-					if(e.which == 10 || e.which == 13){
-						 name = $('#name').val();
-						 //console.log(name);
-						 url = "<?php echo site_url('course_controller/list_course')?>";
-						 data = {"name" : name};
-						 $('#course').load(url,data);
-					}
-				});
-			});
-		});
-
-		function filter(fee, level){
-			data = {"fee": fee,
-					"level": level};
-			url = "<?php echo site_url('course_controller/list_course')?>";
-			$('#course').load(url,data);
-		}
-
 		var allRadios1 = document.getElementsByName('fee');
 		var allRadios2 = document.getElementsByName('level');
 		var booRadio1;
-		var fee = -1, level = 0;
 		var booRadio2;
-		var x = 0;
-		for(x = 0; x < allRadios1.length; x++){
-        	allRadios1[x].onclick = function(){
-            	if(booRadio1 == this){
-                	this.checked = false;
-                	fee = -1;
-                	console.log(fee + " " + level);
-                	filter(fee,level);
-        			booRadio1 = null;
-            	}else{
-            		fee = this.value;
-            		filter(fee, level);
-            		booRadio1 = this;
-        		}
-        };
 
-      	for(x = 0; x < allRadios2.length; x++){
-      		allRadios2[x].onclick = function(){
-      			if(booRadio2 == this){
-      				this.checked = false;
-      				level = 0;
-      				filter(fee, level);
-      				booRadio2 = null
-      			}
-      			else{
-      				level = this.value;
-      				filter(fee, level);
-      				booRadio2 = this;
-      			}
-      		}
-      	}
+		for(var x = 0; x < allRadios1.length; x++){
+			allRadios1[x].onclick = function(){
+				if(booRadio1 == this){
+					fee = -1;
+					filter_fee();
+					booRadio1 = null;
+				}
+				else{
+					fee = this.value;
+					booRadio1 = this;
+					filter_fee();
+				}
+			}
+		}
 
-}
+		for(var x = 0; x < allRadios2.length; x++){
+			allRadios2[x].onclick = function(){
+				if(booRadio2 == this){
+					level = 0;
+					filter_fee();
+					booRadio2 = null;
+				}
+				else{
+					level = this.value;
+					booRadio2 = this;
+					filter_fee();
+				}
+			}
+		}
+
 	</script>
 </body>
 </html>

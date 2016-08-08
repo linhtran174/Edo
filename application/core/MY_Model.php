@@ -145,6 +145,9 @@ class MY_Model extends CI_Model {
     	{
     		$this->db->where($input['where']);
     	}
+        if((isset($input['like'])) && $input['like']){
+            $this->db->like($input['like']);
+        }
     	// Thêm sắp xếp dữ liệu thông qua biến $input['order'] (ví dụ $input['order'] = array($this->id_table,'DESC'))
     	if (isset($input['order'][0]) && isset($input['order'][1]))
     	{
