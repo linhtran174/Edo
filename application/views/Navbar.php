@@ -58,7 +58,7 @@
 
 .teacher-wrapper:hover{
 	cursor: pointer;
-	border-bottom: 2px solid #337ab7;
+	/*border-bottom: 2px solid #337ab7;*/
 	color: #337ab7;
 }
 
@@ -66,5 +66,9 @@
 	color: #337ab7;
 }
 
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+ }
 
 </style>

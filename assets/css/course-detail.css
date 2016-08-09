@@ -60,6 +60,8 @@
 .rating {
 	display:inline-block;
 	position:relative;
+	margin-left: -2px;
+	margin-right: -2px;
 }
 
 .star-under {

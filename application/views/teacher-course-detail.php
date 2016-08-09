@@ -1,28 +1,3 @@
-<?php
-function printStar($rate){
-	$under = false;
-	for($i = 10; $i <= 50; $i+=10){
-		if(!$under){
-			if($i < $rate){
-				echo "<i class=\"fa fa-star rated\"></i>";
-			} else {
-				$length = ($rate + 10 - $i)*10;
-				echo "
-				<span class=\"rating\">
-					<i class=\"fa fa-star star-under\"></i>
-					<i class=\"fa fa-star star-over\" style=\"width:$length%\"></i>
-				</span>";
-				$under = true;
-			}
-		} else {
-			echo "
-			<i class=\"fa fa-star star-under\"></i>
-			";
-		}
-	}
-}
-// print_r($courses[0])
-?>
 <html>
 <head>
 	<meta charset='utf-8' />

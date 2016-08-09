@@ -130,10 +130,12 @@
 	}
 
 	function submitForm(formID){
+		// lay value cua form 
 		var form = "form"+formID.toString();
 		var myForm = document.getElementById(form);
 		var request = new XMLHttpRequest();
 		
+		// tao noi dung cho form
 		request.open("POST",myForm.action,false);
 		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		var content = "";
@@ -141,8 +143,11 @@
 			content += myForm.elements[i].name+"="+myForm.elements[i].value;
 			if(i!=myForm.length-2) content += "&";
 		}
+
+		// gui form
 		request.send(content);
 		
+		// khi form tra ve
 		if((request.status==200) && (request.responseText=="success")) {
 			alert("Thông tin của bạn đã được lưu lại thành công");
 			

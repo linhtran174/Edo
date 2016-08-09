@@ -4,6 +4,7 @@ class Teacher_controller extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->model('teacher_model');
+        $this->load->model('course_model');
     }
     public function index(){
         if($this->session->userdata('login_teacher')==NULL) {
@@ -117,7 +118,7 @@ class Teacher_controller extends CI_Controller{
         if($this->teacher_model->update_rule(array(
             "teacher_id" => $this->session->userdata("login_teacher")->teacher_id),
             $this->input->post()
-        ))
+            ))
             echo "success";
         else
             echo "failed";
@@ -149,7 +150,39 @@ class Teacher_controller extends CI_Controller{
     }
     
     public function my_courses(){
-        $this->load->view("teacher-courses");
+        if(!$this->session->userdata('login_teacher')){
+            redirect(site_url("teacher_controller/login"),'location');
+        }
+        $teacher_id = $this->session->userdata('login_teacher')->teacher_id;
+        $input['where'] = array('course_teacher'=>$teacher_id);
+        $data['courses'] = $this->course_model->get_list($input);
+
+        $this->load->view("teacher-courses",$data);
+    }
+
+    public function add_course(){
+        
+    }
+
+    public function view_course($id){
+        if(!$id){
+            show_error("Khóa học không hợp lệ!");
+        }
+
+        $this->load->view("teacher-courses-detail");
+
+    }
+
+    public function edit_course($id){
+        if(!$id){
+            show_error("Khóa học không hợp lệ!");
+        }
+    }
+
+    public function delete_course($id){
+        if(!$id){
+            show_error("Khóa học không hợp lệ!");
+        }
     }
 
 }

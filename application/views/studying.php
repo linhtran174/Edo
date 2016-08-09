@@ -142,7 +142,7 @@
 		}
 	}
 
-	var link = "<?=$active_lesson->lesson_video?>";
+	var link = "<?php echo $active_lesson->lesson_video?>";
 	if(link){
 		var myId = getId(link);
 

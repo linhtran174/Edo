@@ -4,9 +4,9 @@
     <title>Đăng nhập</title>
     <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css")?>">
     <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,500&subset=vietnamese" rel="stylesheet">
-    <link rel="stylesheet" href="<?=base_url("assets/font-awesome-4.6.3/css/font-awesome.min.css")?>"> -->
+    <link rel="stylesheet" href="<?php echo base_url("assets/font-awesome-4.6.3/css/font-awesome.min.css")?>"> -->
     <script src="<?php echo base_url("assets/js/jquery-2.2.4.min.js")?>"></script>
-    <script src="<?=base_url("assets/js/bootstrap.min.js")?>"></script>
+    <script src="<?php echo base_url("assets/js/bootstrap.min.js")?>"></script>
     <link rel="stylesheet" href="<?php echo base_url("assets/css/template.css")?>">
     <link rel="stylesheet" href=<?php echo base_url("assets/css/teacher-setting.css")?>
     type="text/css" />

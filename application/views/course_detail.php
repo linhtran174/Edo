@@ -30,13 +30,13 @@ function printStar($rate){
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title><?=$course[0]->course_name?></title>
+	<title><?php echo $course[0]->course_name?></title>
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css")?>">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,500&subset=vietnamese" rel="stylesheet">
 	<link rel="stylesheet" href="<?php echo base_url("assets/customscrollbar/jquery.mCustomScrollbar.css")?>" />
-	<link rel="stylesheet" href="<?=base_url("assets/font-awesome-4.6.3/css/font-awesome.min.css")?>">
+	<link rel="stylesheet" href="<?php echo base_url("assets/font-awesome-4.6.3/css/font-awesome.min.css")?>">
 	<script src="<?php echo base_url("assets/js/jquery-2.2.4.min.js")?>"></script>
-	<script src="<?=base_url("assets/js/bootstrap.min.js")?>"></script>
+	<script src="<?php echo base_url("assets/js/bootstrap.min.js")?>"></script>
 	<script src="<?php echo base_url("assets/customscrollbar/jquery.mCustomScrollbar.concat.min.js")?>"></script>
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/template.css")?>">
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/course-detail.css")?>">
@@ -49,17 +49,17 @@ function printStar($rate){
 		<div class="head">
 			<div class="wrapper">
 				<p class="title">
-					<?=$course[0]->course_name?>
+					<?php echo $course[0]->course_name?>
 					<br>
 					<div class="learn">
 						Giảng dạy bởi 
 						<a href="#">
-							<?=$course[0]->teacher_fname,' ',$course[0]->teacher_lname?>
+							<?php echo $course[0]->teacher_fname,' ',$course[0]->teacher_lname?>
 						</a>
 					</div>
 				</p>
 
-				<p class="learn"><?=$course[0]->course_shortDesc?></p>
+				<p class="learn"><?php echo $course[0]->course_shortDesc?></p>
 
 				<?php 
 				if($course[0]->course_video){
@@ -73,7 +73,7 @@ function printStar($rate){
 			</div>
 		</div>
 		<div class="col-md-6 left">
-			<p class="content"><?=$course[0]->course_desc?></p>
+			<p class="content"><?php echo $course[0]->course_desc?></p>
 		</div>
 		<div class="col-md-6 right">
 			<div class="col-xs-4 nopadding">
@@ -237,7 +237,7 @@ function printStar($rate){
 								";
 								printStar($rate*10);
 								?>								
-								<p class="total">(<?=$total?>)</p>
+								<p class="total">(<?php echo $total?>)</p>
 							</div>
 
 							<?php
@@ -322,7 +322,7 @@ function printStar($rate){
 				?>
 				<div class="col-xs-12">
 					<div class="pagi">
-						<?=$this->pagination->create_links();?>
+						<?php echo $this->pagination->create_links();?>
 					</div>
 				</div>
 				<?php
@@ -349,7 +349,7 @@ function printStar($rate){
 	<div class="container why">
 		<div class="wrapper">
 			<p class="title">Lợi ích từ khóa học</p>
-			<p class="content col-sm-offset-1 col-sm-10"><?=$course[0]->course_why?></p>
+			<p class="content col-sm-offset-1 col-sm-10"><?php echo $course[0]->course_why?></p>
 		</div>
 
 		<!-- <ul class="nav nav-tabs col-xs-offset-1 col-xs-10">
@@ -485,7 +485,7 @@ function printStar($rate){
 	<div class="container req">
 		<p class="title">Yêu cầu khóa học</p>
 		<p class="content col-sm-offset-1 col-sm-10">
-			<?=$course[0]->course_require?>
+			<?php echo $course[0]->course_require?>
 		</p>
 		<div style="clear:both"></div>
 		<!-- <div class="col-xs-12">
@@ -521,14 +521,14 @@ function printStar($rate){
 					<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
 						<h3 class="name" aria-expanded="false" data-toggle="collapse" href="#teacher-detail" style="cursor:pointer">
 							<span class="icontoggle glyphicon glyphicon-chevron-down"></span>
-							<a class="teacher-name"><?=$course[0]->teacher_fname,' ',$course[0]->teacher_lname?>
+							<a class="teacher-name"><?php echo $course[0]->teacher_fname,' ',$course[0]->teacher_lname?>
 							</a>
-							<h4 class="job"><?=$course[0]->teacher_job?></h4>
+							<h4 class="job"><?php echo $course[0]->teacher_job?></h4>
 						</h3>
 						<div id="teacher-detail" class="collapse">
 							
 							<div class="profile-box" data-toggle-target="hide" style="display: block;">
-								<p class="desc"><?=$course[0]->teacher_desc?></p>
+								<p class="desc"><?php echo $course[0]->teacher_desc?></p>
 							</div>
 						</div>
 					</div>
@@ -569,7 +569,7 @@ function printStar($rate){
 			}
 		}
 
-		var link = "<?=$course[0]->course_video?>";
+		var link = "<?php echo $course[0]->course_video?>";
 		var myId = getId(link);
 
 		$('.videoContainer').html('<iframe width="640" height="360" src="//www.youtube.com/embed/' + myId + '" frameborder="0" allowfullscreen></iframe>');

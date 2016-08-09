@@ -117,3 +117,106 @@
   -o-transition: width 0.3s ease, margin 0.3s ease;
   transition: width 0.3s ease, margin 0.3s ease;
 }
+
+.right-content {
+  background: #FAFBFC;
+  margin-top: 70px;
+  height: calc(100%-70px);
+}
+
+.courseCard {
+  margin-top: 30px;
+  padding: 30px 30px;
+  box-shadow: 0px 1px 10px #c1c1c1;
+}
+
+.courseCard:hover {
+  box-shadow: 0px 0.5px 20px #c1c1c1;
+}
+
+.right-content .item {
+  border: 2px solid black;
+  padding-bottom: 50px;
+  background: white;
+}
+
+.item-header {
+  line-height: 60px;
+  border-bottom: 2px solid black;
+  padding-left: 30px;
+}
+
+.item .item-content {
+  border-bottom: 2px solid black;
+}
+
+.item .item-content .course {
+  padding-left: 30px;
+}
+
+.right-content .course-name {
+  font-size: 24px;
+  font-weight: 500;
+  color: #2e3d49;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}
+
+.right-content .course-desc {
+  color: #757c81;
+}
+
+.nopadding {
+  padding: 0 !important;
+}
+
+.right-content .buttons {
+  display: flex;
+  align-items: center;
+  height: 75px;
+  justify-content: center;
+}
+
+.right-content .buttons form button {
+  border-radius: 0px;
+}
+
+.right-content .buttons form:nth-child(1) button {
+  border-top-left-radius: 5px !important;
+  border-bottom-left-radius: 5px !important;
+}
+
+.right-content .buttons form:nth-child(3) button {
+  border-top-right-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+}
+
+.rated {
+  color: #f80;
+}
+
+.rating {
+  display:inline-block;
+  position:relative;
+  margin-left: -2px;
+  margin-right: -2px;
+}
+
+.star-under {
+  color: #ddd;
+  /*vertical-align: top;*/
+}
+
+.star-over {
+  color: #f80;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 70%;
+  overflow: hidden;
+}
+
+.align-right {
+  text-align: right;
+}
