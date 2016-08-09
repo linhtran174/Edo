@@ -34,4 +34,5 @@
 		}
 	}
 	echo "<div style='display: none;' id='collect'>",$collect,"</div>";
+    echo $this->ajax_pagination->create_links();
 ?>

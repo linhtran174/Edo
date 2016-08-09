@@ -8,8 +8,20 @@ class Course_Controller extends CI_Controller{
 		$this->load->model('lesson_model');
 		$this->load->model('review_model');
 		$this->load->model('teacher_model');
+		$this->load->library('ajax_pagination');
+        $this->perPage = 5;
 	}
 	public function index(){
+		$get = array("select" => "*");
+		$total = $this->course_model->get_total($get);
+
+		$config['target'] = '#course';
+		$config['base_url'] = site_url('course_catalog');
+		$config['total_rows'] = $total;
+		$config['per_page'] = $this->perPage;
+
+		$this->ajax_pagination->initialize($config);
+
 		$this->load->view('course_catalog');
 	}
 
@@ -18,6 +30,13 @@ class Course_Controller extends CI_Controller{
 		$name = $this->input->post('name');
 		$fee = $this->input->post('fee');
 		$level = $this->input->post('level');
+
+		$page = $this->input->post('page');
+        if(!$page){
+            $offset = 0;
+        }else{
+            $offset = $page;
+        }
 
 		$title = "ALL";
 		// echo $name;
@@ -33,6 +52,7 @@ class Course_Controller extends CI_Controller{
 		if($category == '0' && $name == 'null' && $fee == '-1' && $level == '0'){
 			$input = array("select" => "*");
 			$courses = $this->course_model->get_list($input);
+			$input['limit'] = array($this->perPage, $offset);
 			
 		}
 		else{
@@ -84,6 +104,16 @@ class Course_Controller extends CI_Controller{
 
 		// echo '<pre>';
 		// print_r($courses);
+
+		$get = array("select" => "*");
+		$total = $this->course_model->get_total($get);
+
+		$config['target'] = '#course';
+		$config['base_url'] = site_url('course_catalog');
+		$config['total_rows'] = $total;
+		$config['per_page'] = $this->perPage;
+
+		$this->ajax_pagination->initialize($config);
 
 		$collect = json_encode($collect);
 

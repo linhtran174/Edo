@@ -62,6 +62,7 @@
 				</div>
 				<div class="col-md-9" id="content-box">
 					<span id="course"></span>
+					<?php echo $this->ajax_pagination->create_links(); ?>
 				</div>
 				</div>
 		</div>
