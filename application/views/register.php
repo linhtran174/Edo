@@ -49,14 +49,14 @@
 							<p style="display: inline-block;">Or</p>
 							<div class="line" id="line-right"></div>
 						</div>
-						<div class="another-login">
+						<div class="another-login" style ="display: none;">
 							<p>
 								<a href="*">
 								<img class="icon" src=<?php echo base_url("assets/images/Facebook-3-128.png")?>>Đăng nhập bằng Facebook
 								</a>
 							</p>
 						</div>
-						<div class="another-login">
+						<div class="another-login" style ="display: none;">
 							<p>						
 								<a href="*">
 								<img class="icon" src=<?php echo base_url("assets/images/Google+alt.png")?>>

@@ -14,7 +14,7 @@
 <link rel="stylesheet"
 	href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
 <link rel="stylesheet"
-	href=<?php echo base_url("assets/css/Sign_In.css")?> type="text/css" />
+	href=<?php echo base_url("assets/css/Sign_in.css")?> type="text/css" />
 <link rel="stylesheet"
 	href=<?php echo base_url("assets/css/template.css")?> type="text/css" />
 </head>
@@ -42,14 +42,14 @@
 							<p style="display: inline-block;">Or</p>
 							<div class="line" id="line-right"></div>
 						</div>
-						<div class="another-login">
+						<div class="another-login" style ="display: none;">
 							<p>
 								<a href="*">
 								<img class="icon" src=<?php echo base_url("assets/images/Facebook-3-128.png")?>>Đăng nhập bằng Facebook
 								</a>
 							</p>
 						</div>
-						<div class="another-login" id="google">
+						<div class="another-login" id="google" style ="display: none;">
 							<p>						
 								<a href="*">
 								<img class="icon" src=<?php echo base_url("assets/images/Google+alt.png")?>>
