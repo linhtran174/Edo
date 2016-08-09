@@ -14,72 +14,154 @@ class Course_Controller extends CI_Controller{
 	}
 
 	public function list_course(){
-		$category = $this->input->post("category");
-		$name = $this->input->post("name");
-		$fee = $this->input->post("fee");
-		$level = $this->input->post("level");
-
-		$get_data = array("category" => $category,
-			"name" => $name,
-			"level" => $level,
-			"fee" => $fee);
+		$category = $this->input->post('category');
+		$name = $this->input->post('name');
+		$fee = $this->input->post('fee');
+		$level = $this->input->post('level');
 
 		$title = "ALL";
-		// echo "<pre>";
-		// print_r($get_data);
-		if($get_data["level"] != 0 || $get_data['fee'] != -1){
-			$courses = $this->filter($fee, $level);
+		// echo $name;
+		
+
+
+		$courses = array();
+		$collect = array("category" => $category,
+						 "name" => $name,
+						 "level" => $level,
+						 "fee" => $fee);
+
+		if($category == '0' && $name == 'null' && $fee == '-1' && $level == '0'){
+			$input = array("select" => "*");
+			$courses = $this->course_model->get_list($input);
+			
 		}
 		else{
-			if($get_data["name"] != null){
-				$courses = $this->course_model->search($name);
+			$courses = $this->filter($collect);
+			if($category == 1){ 
+				$title = "Android";
 			}
-			else{
-				if($get_data["category"] == null || $get_data["category"] == 0){
-					$input = array("select" => "*");
-					$courses = $this->course_model->get_list($input);
-				}
-				else{
-					if($category == 1){ 
-						$title = "Android";
-					}
-					else if($category == 2){ 
-						$title = "Non-tech";
-					}
-					else if($category == 3){ 
-						$title = "Web";
-					}
-					else if($category == 4){ 
-						$title = "Database";
-					}
-					else if($category == 5){ 
-						$title = "Data Science";
-					}
-					$courses = $this->switch_catalog($get_data['category']);
-
-				}
+			else if($category == 2){ 
+				$title = "Non-tech";
+			}
+			else if($category == 3){ 
+				$title = "Web";
+			}
+			else if($category == 4){ 
+				$title = "Database";
+			}
+			else if($category == 5){ 
+				$title = "Data Science";
 			}
 		}
+
+		// $total = count($courses);
+		
+		// $config = $this->config_pagination();
+		// $config['base_url'] = base_url("index.php/course_controller/index"). "/" . $page;
+		// $config['uri_segment']= 3;
+		// $config['total_rows'] = $total;
+		// $this->pagination->initialize($config);
+
+		foreach($courses as $course){
+			//$course =  json_decode(json_encode($course),true);;
+			$total = $this->total_topic($course->course_id);
+			$course->topic = $total;
+
+			$teacher = $this->course_teacher($course->course_teacher);
+			$course->teacher_name = $teacher->teacher_fname;
+
+			if($course->course_level == 1){
+				$course->course_level = "Mới bắt đầu";
+			}
+			else if($course->course_level == 2){
+				$course->course_level = "Thành thạo";
+			}
+			else if($course->course_level == 3){
+				$course->course_level = "Chuyên nghiệp";
+			}
+			// $course = array_map(__FUNCTION__,$course);
+		}
+
+		// echo '<pre>';
+		// print_r($courses);
+
+		$collect = json_encode($collect);
+
 		$data = array("courses" => $courses,
-					  "title" => $title);
+			  		  "title" => $title,
+			  		  "collect" =>$collect);
+
 
 		$this->load->view('course_list',$data);
 	}
+    
 
+    public function filter($collect){
+    	$input  = array();
+    	$input['where'] = array();
 
-	public function switch_catalog($category){
-		$input = array();
-		$input['where'] = array('course_cate' => $category);
-		$courses = $this->course_model->get_list($input);
-		return $courses;
-	}
+    	if($collect['category'] != '0'){
+    		$input['where']['course_cate'] = $collect['category'];
+    	}
+    	if($collect['name'] != 'null'){
+    		$input['like']['course_name'] = $collect['name'];
+    	}
+    	if($collect['level'] != 0){
+    		$input['where']['course_level'] = $collect['level'];
+    	}
+    	if($collect['fee'] != -1){
+    		if($collect['fee'] == 0)
+    		 $input['where']['course_fee'] = $collect['fee'];
+   
+    		else{
+    			$input['where']['course_fee >'] = $collect['fee'];
 
-	public function filter($fee, $level){
-		$input = array("fee" => $fee,
-			"level" => $level);
-		$courses = $this->course_model->filter_course($input);
-		return $courses;
+    		}
+    	}
 
+    	$courses = $this->course_model->get_list($input);
+    	return $courses;
+
+    }
+
+    public function total_topic($course_id){
+    	$input = array();
+    	$input['where'] = array('topic_courseId' => $course_id);
+    	$total = $this->topic_model->get_total($input);
+    	return $total;
+    }
+
+    public function course_teacher($teacher_id){
+    	$input = array();
+    	//$input['where'] = array('topic_courseId' => $course_id);
+    	$total = $this->teacher_model->get_info($teacher_id);
+    	return $total;
+    }
+
+	public function config_pagination(){
+			$config = array();
+
+			$config['per_page']  = 5;
+			$config['full_tag_open'] = '<ul class="pagination">';
+			$config['full_tag_close'] = '</ul>';
+			$config['first_link'] = false;
+			$config['last_link'] = false;
+			$config['first_tag_open'] = '<li>';
+			$config['first_tag_close'] = '</li>';
+			$config['prev_link'] = '&laquo';
+			$config['prev_tag_open'] = '<li class="prev">';
+			$config['prev_tag_close'] = '</li>';
+			$config['next_link'] = '&raquo';
+			$config['next_tag_open'] = '<li>';
+			$config['next_tag_close'] = '</li>';
+			$config['last_tag_open'] = '<li>';
+			$config['last_tag_close'] = '</li>';
+			$config['cur_tag_open'] = '<li class="active"><a>';
+			$config['cur_tag_close'] = '</a></li>';
+			$config['num_tag_open'] = '<li>';
+			$config['num_tag_close'] = '</li>';
+
+			return $config;
 	}
 
 	public function get_course_detail($id = 0, $page = 0){
@@ -147,30 +229,31 @@ class Course_Controller extends CI_Controller{
 
 			// echo '<pre>';
 			// print_r($data);
+			$config = $this->config_pagination();
 
 			$config['base_url'] = base_url("index.php/course_controller/get_course_detail") . "/" . $course_id;
 			$config['uri_segment']= 4;
 			$config['total_rows'] = $total;
-			$config['per_page']  = 5;
+			// $config['per_page']  = 5;
 
-			$config['full_tag_open'] = '<ul class="pagination">';
-			$config['full_tag_close'] = '</ul>';
-			$config['first_link'] = false;
-			$config['last_link'] = false;
-			$config['first_tag_open'] = '<li>';
-			$config['first_tag_close'] = '</li>';
-			$config['prev_link'] = '&laquo';
-			$config['prev_tag_open'] = '<li class="prev">';
-			$config['prev_tag_close'] = '</li>';
-			$config['next_link'] = '&raquo';
-			$config['next_tag_open'] = '<li>';
-			$config['next_tag_close'] = '</li>';
-			$config['last_tag_open'] = '<li>';
-			$config['last_tag_close'] = '</li>';
-			$config['cur_tag_open'] = '<li class="active"><a>';
-			$config['cur_tag_close'] = '</a></li>';
-			$config['num_tag_open'] = '<li>';
-			$config['num_tag_close'] = '</li>';
+			// $config['full_tag_open'] = '<ul class="pagination">';
+			// $config['full_tag_close'] = '</ul>';
+			// $config['first_link'] = false;
+			// $config['last_link'] = false;
+			// $config['first_tag_open'] = '<li>';
+			// $config['first_tag_close'] = '</li>';
+			// $config['prev_link'] = '&laquo';
+			// $config['prev_tag_open'] = '<li class="prev">';
+			// $config['prev_tag_close'] = '</li>';
+			// $config['next_link'] = '&raquo';
+			// $config['next_tag_open'] = '<li>';
+			// $config['next_tag_close'] = '</li>';
+			// $config['last_tag_open'] = '<li>';
+			// $config['last_tag_close'] = '</li>';
+			// $config['cur_tag_open'] = '<li class="active"><a>';
+			// $config['cur_tag_close'] = '</a></li>';
+			// $config['num_tag_open'] = '<li>';
+			// $config['num_tag_close'] = '</li>';
 
 			$this->pagination->initialize($config);
 			if($page == null){

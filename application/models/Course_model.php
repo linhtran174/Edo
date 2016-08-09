@@ -3,23 +3,17 @@ class course_model extends MY_Model{
 	public $table = 'tblCourse';
 	public $table_id = 'course_id';
 
-	public function filter_course($input){
-		if($input['level'] == 0){
-			if($input['fee'] != 0){
-				$query = "SELECT * FROM ".$this->table." WHERE course_fee > 0";
-			}
-			else $query = "SELECT * FROM ".$this->table." WHERE course_fee = 0";
-		}
-		else if($input['fee'] == -1){
-			$query = "SELECT * FROM ".$this->table." WHERE course_level = ".$input['level'][0];
+	public function filter_course($input = array()){
+		if($input['course_cate'] == 0){
+			$cate = "> 0";
 		}
 		else{
-			if($input['fee'] != 0){
-				$query = "SELECT * FROM ".$this->table." WHERE course_fee > 0 AND course_level = ".$input['level'][0];
-			}
-			else $query = "SELECT * FROM ".$this->table." WHERE course_fee = 0 AND course_level = ".$input['level'][0];
+			$cate = "= ".$input['course_cate'];
 		}
-		$result = $this->db->query($query)->result();
+
+		$query = "SELECT * FROM ".$this->table." WHERE course_cate ?";
+
+		$result = $this->db->query($query, array($cate))->result();
 		return $result;
 	}
 
