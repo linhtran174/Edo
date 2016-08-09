@@ -63,12 +63,17 @@
 			<div onClick="toggle(',$i,')" class="col-md-12 topicCard">
 				<p>
 					CĐ',$i+1,': ',$topic->topic_name,'
+					<span id="toggleButton',$i,'" class="glyphicon glyphicon-menu-up" style="float:right"></span>
 				</p>
 			</div>';
 			echo '<div id="list',$i,'" class="col-md-12 lessonList">';
 			foreach ($topic->lessons as $j => $lesson) {
 				echo '
-				<p><a href=',site_url('my_classroom/load_lesson/'.$course->course_id.'/'.$lesson->lesson_id),'>
+				<p><a ';
+				if($lesson->lesson_id == $active_lesson->lesson_id){
+					echo 'style="color:lightgreen"';
+				}
+				echo' href=',site_url('my_classroom/load_lesson/'.$course->course_id.'/'.$lesson->lesson_id),'>
 					Bài ',$j+1,': ',$lesson->lesson_name,'
 				</a></p>';
 			}
@@ -115,12 +120,28 @@
 
 
 	<script type="text/javascript">
-		function toggle(list){
-			var query = 'list'.concat(list);
-			var list = document.getElementById(query);
-			list.style.display = list.style.display === 'none' ? '' : 'none';
+	function toggle(index){
+		var query = 'list'.concat(index);
+		var list = document.getElementById(query);
+		list.style.display = list.style.display === 'none' ? '' : 'none';
 
+		updateButtonState(index);
+	}
+
+	function updateButtonState(index){
+		var query = 'toggleButton'.concat(index);
+		var button = document.getElementById(query);
+		var buttonState = button.classList[1];
+		if(buttonState = "glyphicon-menu-up"){
+			button.classList.remove("glyphicon-menu-up");
+			button.classList.add("glyphicon-menu-down");
 		}
+		else{
+			button.classList.add("glyphicon-menu-up");
+			button.classList.remove("glyphicon-menu-down");
+		
+		}
+	}
 
 	// function resizeVideo(){
 	// 	console.log("sdfsdf");
