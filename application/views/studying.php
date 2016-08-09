@@ -132,7 +132,7 @@
 		var query = 'toggleButton'.concat(index);
 		var button = document.getElementById(query);
 		var buttonState = button.classList[1];
-		if(buttonState = "glyphicon-menu-up"){
+		if(buttonState == "glyphicon-menu-up"){
 			button.classList.remove("glyphicon-menu-up");
 			button.classList.add("glyphicon-menu-down");
 		}
