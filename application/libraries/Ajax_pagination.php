@@ -61,6 +61,7 @@ class Ajax_pagination{
      * @return    void
      */
     function initialize($params = array()){
+        // echo $this->more_data;
         if (count($params) > 0){
             foreach ($params as $key => $val){
                 if (isset($this->$key)){

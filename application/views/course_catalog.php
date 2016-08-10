@@ -7,6 +7,7 @@
 	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
 	crossorigin="anonymous">
 	<script src="<?php echo base_url("assets/js/jquery-2.2.4.min.js")?>"></script>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:300,500&subset=vietnamese"
@@ -62,7 +63,6 @@
 				</div>
 				<div class="col-md-9" id="content-box">
 					<span id="course"></span>
-					<?php echo $this->ajax_pagination->create_links(); ?>
 				</div>
 				</div>
 		</div>
@@ -76,7 +76,7 @@
 		fee = -1;
 	 	level = 0;
 
-		url = "<?php echo site_url('course_controller/list_course')?>";
+		url = "<?php echo site_url('course_controller/get_from_view')?>";
 
 			data = {
 				"category": category,
@@ -189,7 +189,6 @@
 				}
 			}
 		}
-
 	</script>
 </body>
 </html>

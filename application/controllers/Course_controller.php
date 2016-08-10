@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Course_Controller extends CI_Controller{
+	var $category = 0;
+	var $name = 'null';
+	var $level = 0;
+	var $fee = -1;
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('course_model');
@@ -11,27 +15,25 @@ class Course_Controller extends CI_Controller{
 		$this->load->library('ajax_pagination');
         $this->perPage = 5;
 	}
+
 	public function index(){
-		$get = array("select" => "*");
-		$total = $this->course_model->get_total($get);
-
-		$config['target'] = '#course';
-		$config['base_url'] = site_url('course_catalog');
-		$config['total_rows'] = $total;
-		$config['per_page'] = $this->perPage;
-
-		$this->ajax_pagination->initialize($config);
-
 		$this->load->view('course_catalog');
 	}
 
+	public function get_from_view(){
+		$this->category = $this->input->post('category');
+		$this->name = $this->input->post('name');
+		$this->fee = $this->input->post('fee');
+		$this->level = $this->input->post('level');
+
+		$this->list_course();
+	}
+
 	public function list_course(){
-		$category = $this->input->post('category');
-		$name = $this->input->post('name');
-		$fee = $this->input->post('fee');
-		$level = $this->input->post('level');
+		
 
 		$page = $this->input->post('page');
+        
         if(!$page){
             $offset = 0;
         }else{
@@ -39,51 +41,47 @@ class Course_Controller extends CI_Controller{
         }
 
 		$title = "ALL";
-		// echo $name;
 		
-
-
 		$courses = array();
-		$collect = array("category" => $category,
-						 "name" => $name,
-						 "level" => $level,
-						 "fee" => $fee);
+		$collect = array("category" => $this->category,
+						 "name" => $this->name,
+						 "level" => $this->level,
+						 "fee" => $this->fee);
 
-		if($category == '0' && $name == 'null' && $fee == '-1' && $level == '0'){
+		if($this->category == '0' && $this->name == 'null' && $this->fee == '-1' && $this->level == '0'){
 			$input = array("select" => "*");
-			$courses = $this->course_model->get_list($input);
-			$input['limit'] = array($this->perPage, $offset);
-			
 		}
 		else{
-			$courses = $this->filter($collect);
-			if($category == 1){ 
+			$input = $this->filter($collect);
+			if($this->category == 1){ 
 				$title = "Android";
 			}
-			else if($category == 2){ 
+			else if($this->category == 2){ 
 				$title = "Non-tech";
 			}
-			else if($category == 3){ 
+			else if($this->category == 3){ 
 				$title = "Web";
 			}
-			else if($category == 4){ 
+			else if($this->category == 4){ 
 				$title = "Database";
 			}
-			else if($category == 5){ 
+			else if($this->category == 5){ 
 				$title = "Data Science";
 			}
 		}
 
-		// $total = count($courses);
+		$total = $this->course_model->get_total($input);
+		// echo $total;
 		
-		// $config = $this->config_pagination();
-		// $config['base_url'] = base_url("index.php/course_controller/index"). "/" . $page;
-		// $config['uri_segment']= 3;
-		// $config['total_rows'] = $total;
-		// $this->pagination->initialize($config);
+		$config['target'] = '#course';
+		$config['base_url'] = site_url('course_controller/list_course');
+		$config['total_rows'] = $total;
+		$config['per_page'] = $this->perPage;
+
+		$input['limit'] = array($this->perPage, $offset);
+		$courses = $this->course_model->get_list($input);
 
 		foreach($courses as $course){
-			//$course =  json_decode(json_encode($course),true);;
 			$total = $this->total_topic($course->course_id);
 			$course->topic = $total;
 
@@ -99,19 +97,8 @@ class Course_Controller extends CI_Controller{
 			else if($course->course_level == 3){
 				$course->course_level = "Chuyên nghiệp";
 			}
-			// $course = array_map(__FUNCTION__,$course);
 		}
 
-		// echo '<pre>';
-		// print_r($courses);
-
-		$get = array("select" => "*");
-		$total = $this->course_model->get_total($get);
-
-		$config['target'] = '#course';
-		$config['base_url'] = site_url('course_catalog');
-		$config['total_rows'] = $total;
-		$config['per_page'] = $this->perPage;
 
 		$this->ajax_pagination->initialize($config);
 
@@ -149,8 +136,7 @@ class Course_Controller extends CI_Controller{
     		}
     	}
 
-    	$courses = $this->course_model->get_list($input);
-    	return $courses;
+    	return $input;
 
     }
 
@@ -163,7 +149,6 @@ class Course_Controller extends CI_Controller{
 
     public function course_teacher($teacher_id){
     	$input = array();
-    	//$input['where'] = array('topic_courseId' => $course_id);
     	$total = $this->teacher_model->get_info($teacher_id);
     	return $total;
     }
@@ -260,30 +245,9 @@ class Course_Controller extends CI_Controller{
 			// echo '<pre>';
 			// print_r($data);
 			$config = $this->config_pagination();
-
 			$config['base_url'] = base_url("index.php/course_controller/get_course_detail") . "/" . $course_id;
 			$config['uri_segment']= 4;
 			$config['total_rows'] = $total;
-			// $config['per_page']  = 5;
-
-			// $config['full_tag_open'] = '<ul class="pagination">';
-			// $config['full_tag_close'] = '</ul>';
-			// $config['first_link'] = false;
-			// $config['last_link'] = false;
-			// $config['first_tag_open'] = '<li>';
-			// $config['first_tag_close'] = '</li>';
-			// $config['prev_link'] = '&laquo';
-			// $config['prev_tag_open'] = '<li class="prev">';
-			// $config['prev_tag_close'] = '</li>';
-			// $config['next_link'] = '&raquo';
-			// $config['next_tag_open'] = '<li>';
-			// $config['next_tag_close'] = '</li>';
-			// $config['last_tag_open'] = '<li>';
-			// $config['last_tag_close'] = '</li>';
-			// $config['cur_tag_open'] = '<li class="active"><a>';
-			// $config['cur_tag_close'] = '</a></li>';
-			// $config['num_tag_open'] = '<li>';
-			// $config['num_tag_close'] = '</li>';
 
 			$this->pagination->initialize($config);
 			if($page == null){
