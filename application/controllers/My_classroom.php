@@ -65,8 +65,13 @@ class My_classroom extends CI_Controller{
 		if(!$lesson_id) 
 			$active_lesson = $topics[0]->lessons[0];
 		else{
-			$active_lesson = $this->lesson_model->get_info_rule(
+			$queryResult = $this->lesson_model->get_info_rule(
 				array("lesson_id"=>$lesson_id));
+			if(!$queryResult){
+				show_error("Không tìm thấy khóa học!");
+				return;
+			}
+			$active_lesson = $queryResult;
 		}
 
 		$this->session->set_userdata(array(
