@@ -77,10 +77,10 @@ function printStar($rate){
 				</div>
 			</div>
 
-			<div class="container-fluid right-content">
+			<div id="mainContent" class="container-fluid right-content">
 				<div class="col-md-12" style="margin-top:30px;">
 					<a href="<?php echo site_url("teacher_controller/add_course")?>">
-						<button type="button" class="btn btn-primary">Thêm khóa học mới
+						<button id="addCourse" type="button" class="btn btn-primary">Thêm khóa học mới
 						</button>
 					</a>				
 				</div>
@@ -157,7 +157,23 @@ function printStar($rate){
 					<?php
 				}
 				?>
+				sdjsdklds, sdlfj, sdklj
 				
+				<!-- form add course  -->
+				<div class="col-md-12" >
+					<form id ="addCourse">
+						<input type="text" placeholder="Ten">
+						<input type="text" placeholder="gioi thieu"> 
+						<input type="text" placeholder="gioi thieu ngan">   
+						<input type="text" placeholder="video gioi thieu">  
+						<input type="text" placeholder="tong thoi gian ">  
+						<input type="text" placeholder="do kho">  
+						<input type="text" placeholder="gia khoa hoc">  
+						<input type="text" placeholder="loi ich khoa hoc">  
+						<input type="text" placeholder="yeu cau khoa hoc">
+						  
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -175,6 +191,22 @@ function printStar($rate){
 				$('.w1').attr("class","w1 hidden");
 			}
 		});
+
+		$('#addCourse').on('click', function(){
+			loadForm();
+
+		})
+
+	</script>
+
+	<!-- Linh tre trau's library -->
+	<script type="text/javascript">
+		function loadForm(){
+			//clear box
+
+			var aBox = $('mainContent').append('<div')
+		}
+
 	</script>
 </body>
 </html>
