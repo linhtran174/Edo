@@ -34,5 +34,7 @@
 		}
 	}
 	echo "<div style='display: none;' id='collect'>",$collect,"</div>";
-    // echo $this->ajax_pagination->create_links();
+	echo "<div id='pagination-div-id' style='text-align: center;'>";
+    echo $this->ajax_pagination->create_links();
+    echo "</div>";
 ?>
