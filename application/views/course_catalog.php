@@ -48,15 +48,15 @@
 					<div style="display: block; position: relative;" class="properties">
 						<h5>TYPE</h5>
 						<!-- <p><input type="checkbox" class="checkbox">  Khóa ngắn hạn</p> -->
-						<p><input type="checkbox" value="0" name="fee" onchange="filter_fee(0);">  Khóa miễn phí</p>
-						<p><input type="checkbox" value="1" name="fee" onchange="filter_fee(1);">  Khóa trả phí</p>
+						<p><input type="checkbox" value="0" name="fee" onclick="get_fee();">  Khóa miễn phí</p>
+						<p><input type="checkbox" value="1" name="fee" onclick="get_fee();">  Khóa trả phí</p>
 						<!-- <input type="submit" class="btn default"> -->
 					</div>
 					<div style="display: block; position: relative; margin-top:40px" class="properties">
 						<h5>SKILL LEVEL</h5>
-						<p><input type="checkbox" value="1" name="level">  Mới bắt đầu</p>
-						<p><input type="checkbox" value="2" name="level">  Thành thạo</p>
-						<p><input type="checkbox" value="3" name="level">  Cao cấp</p>
+						<p><input type="checkbox" value="1" onclick="get_level();" name="level">  Mới bắt đầu</p>
+						<p><input type="checkbox" value="2" onclick="get_level();" name="level">  Thành thạo</p>
+						<p><input type="checkbox" value="3" onclick="get_level();" name="level">  Cao cấp</p>
 						<!-- <input type="submit" class="btn default"> -->
 					</div>
 					</form>
@@ -73,8 +73,8 @@
 	<script type="text/javascript">
 		category = 0;
 		var name = null;
-		fee = -1;
-	 	level = 0;
+		fee = null;
+	 	level = null;
 
 		url = "<?php echo site_url('course_controller/get_from_view')?>";
 
@@ -155,39 +155,24 @@
 			});
 		}
 		
-		var allRadios1 = document.getElementsByName('fee');
-		var allRadios2 = document.getElementsByName('level');
-		var booRadio1;
-		var booRadio2;
-
-		for(var x = 0; x < allRadios1.length; x++){
-			allRadios1[x].onclick = function(){
-				if(booRadio1 == this){
-					fee = -1;
-					filter_fee();
-					booRadio1 = null;
-				}
-				else{
-					fee = this.value;
-					booRadio1 = this;
-					filter_fee();
-				}
-			}
+		function get_fee(){
+			var bill = [];
+			$.each($("input[name='fee']:checked"), function(){
+				bill.push($(this).val());
+			});
+			// console.log(bill);
+			fee = bill;
+			filter_fee()
 		}
 
-		for(var x = 0; x < allRadios2.length; x++){
-			allRadios2[x].onclick = function(){
-				if(booRadio2 == this){
-					level = 0;
-					filter_fee();
-					booRadio2 = null;
-				}
-				else{
-					level = this.value;
-					booRadio2 = this;
-					filter_fee();
-				}
-			}
+		function get_level(){
+			var lv = [];
+			$.each($("input[name='level']:checked"), function(){
+				lv.push($(this).val());
+			});
+			// console.log(lv);
+			level = lv;
+			filter_fee();
 		}
 	</script>
 </body>

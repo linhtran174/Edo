@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Course_Controller extends CI_Controller{
 	var $category = 0;
 	var $name = 'null';
-	var $level = 0;
-	var $fee = -1;
+	var $level = array();
+	var $fee = array();
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('course_model');
@@ -26,11 +26,11 @@ class Course_Controller extends CI_Controller{
 		$this->fee = $this->input->post('fee');
 		$this->level = $this->input->post('level');
 
+		// print_r( $this->level);
 		$this->list_course();
 	}
 
 	public function list_course(){
-		
 
 		$page = $this->input->post('page');
         
@@ -48,7 +48,7 @@ class Course_Controller extends CI_Controller{
 						 "level" => $this->level,
 						 "fee" => $this->fee);
 
-		if($this->category == '0' && $this->name == 'null' && $this->fee == '-1' && $this->level == '0'){
+		if($this->category == '0' && $this->name == 'null' && $this->fee == '-1' && $this->level == null){
 			$input = array("select" => "*");
 		}
 		else{
@@ -123,17 +123,41 @@ class Course_Controller extends CI_Controller{
     	if($collect['name'] != 'null'){
     		$input['like']['course_name'] = $collect['name'];
     	}
-    	if($collect['level'] != 0){
-    		$input['where']['course_level'] = $collect['level'];
-    	}
-    	if($collect['fee'] != -1){
-    		if($collect['fee'] == 0)
-    		 $input['where']['course_fee'] = $collect['fee'];
-   
-    		else{
-    			$input['where']['course_fee >'] = $collect['fee'];
-
+    	if($collect['level'] != null){
+    		$index = 0; $where = '';
+    		if(count($collect['level']) == 1){
+    			$where = "course_level = '".$collect['level'][$index]."' ";
     		}
+    		else{
+	    		for($index = 0; $index < count($collect['level']); $index++){
+	    			if($index == 0){
+	    				$where = "course_level = '".$collect['level'][$index]."' OR ";
+	    			}
+	    			else if($index == count($collect['level']) - 1){
+	    				$where = $where."course_level = '".$collect['level'][$index]."' ";
+	    			}
+	    			else{
+	    				$where = $where."course_level = '".$collect['level'][$index]."' OR ";
+	    			}
+	    		}
+    		}
+    		$input['where'] = $where;
+    	}
+    	if($collect['fee'] != null){
+    		$index = 0;
+    		if(count($collect['fee']) == 1){
+	    		if($collect['fee'][$index] == 0){
+	    		 $input['where']['course_fee'] = $collect['fee'][$index];
+	    		}
+	   
+	    		else{
+	    			$input['where']['course_fee >'] = $collect['fee'][0];
+
+	    		}
+	    	}
+	    	else{
+	    		$input['where'] = "course_fee = '0' OR course_fee > '0' ";
+	    	}
     	}
 
     	return $input;
