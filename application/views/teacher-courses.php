@@ -78,12 +78,6 @@ function printStar($rate){
 			</div>
 
 			<div id="mainContent" class="container-fluid right-content">
-				<div class="col-md-12" style="margin-top:30px;">
-					<a href="<?php echo site_url("teacher_controller/add_course")?>">
-						<button id="addCourse" type="button" class="btn btn-primary">Thêm khóa học mới
-						</button>
-					</a>				
-				</div>
 				<?php
 				foreach ($courses as $c) {
 					?>
@@ -157,23 +151,30 @@ function printStar($rate){
 					<?php
 				}
 				?>
-				sdjsdklds, sdlfj, sdklj
+
+				<div class="col-md-12" style="margin-top:30px; margin-bottom: 20px">
+					
+					<button id="addCourseBtn" type="button" class="btn btn-primary">Thêm khóa học mới
+					</button>
 				
-				<!-- form add course  -->
-				<div class="col-md-12" >
-					<form id ="addCourse">
-						<input type="text" placeholder="Ten">
-						<input type="text" placeholder="gioi thieu"> 
-						<input type="text" placeholder="gioi thieu ngan">   
-						<input type="text" placeholder="video gioi thieu">  
-						<input type="text" placeholder="tong thoi gian ">  
-						<input type="text" placeholder="do kho">  
-						<input type="text" placeholder="gia khoa hoc">  
-						<input type="text" placeholder="loi ich khoa hoc">  
-						<input type="text" placeholder="yeu cau khoa hoc">
-						  
-					</form>
 				</div>
+
+				<!-- form add course  -->
+				<div id ="addCourseDiv" class="collapsed col-md-12" >
+					<form id="addCourseForm">
+						<input style="width: 100%;" type="text"  name="course_name"placeholder="Ten"><br><br>
+						<textarea style="width: 100%;" type="text" name="course_desc"placeholder="gioi thieu"></textarea> <br><br>
+						<input style="width: 100%;" type="text" name="course_shortDesc"placeholder="gioi thieu ngan">   <br><br>
+						<input style="width: 100%;" type="text" name="course_video"placeholder="link video gioi thieu">  <br><br>
+						<input style="width: 100%;" type="text" name="course_totalTime"placeholder="tong thoi gian (giay)">  <br><br>
+						<input style="width: 100%;" type="text" name="course_level"placeholder="do kho">  <br><br>
+						<input style="width: 100%;" type="text" name="course_fee"placeholder="gia khoa hoc">  <br><br>
+						<textarea style="width: 100%;" type="text" name="course_why"placeholder="loi ich khoa hoc"></textarea>  <br><br>
+						<textarea style="width: 100%;" type="text" name="course_require"placeholder="yeu cau khoa hoc"></textarea><br><br>				
+					</form>
+						<button id="submitAddCourseBtn">Gửi yêu cầu</button>
+				</div>
+				<button id="loadingBar"class="btn btn-lg btn-warning collapsed"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button>
 			</div>
 		</div>
 	</div>
@@ -192,21 +193,81 @@ function printStar($rate){
 			}
 		});
 
-		$('#addCourse').on('click', function(){
-			loadForm();
+		
+		$('#addCourseBtn').on('click', function(){
+			toggleAddCourseBtnState();
 
+			//clear Form
+			if($('#addCourseBtn').hasClass('btn-danger'));
+				$('#addCourseForm').find("input[type=text], textarea").val("");
+		
+
+			//toggle div:
+			$('#addCourseDiv').toggleClass('collapsed');
+		})
+
+
+		$('#submitAddCourseBtn').on('click',function(){
+			console.log($('#addCourseForm').serialize());
+
+			$('#addCourseDiv').toggleClass('collapsed');
+			$.post({
+				url: '<?php echo site_url('teacher_controller/add_course') ?>',
+				data: $('#addCourseForm').serialize(),
+				success: (data, status, jqXHR )=>{
+					$('#loadingBar').toggleClass('collapsed');
+					alert("Tạo khóa học thành công");
+				},
+				error: (data, status, jqXHR )=>{
+					$('#loadingBar').toggleClass('collapsed');
+					alert("Tạo khóa học thất bại, đã có lỗi xảy ra");
+				}
+			});
+			$('#loadingBar').toggleClass('collapsed');
+			toggleAddCourseBtnState();
 		})
 
 	</script>
 
 	<!-- Linh tre trau's library -->
 	<script type="text/javascript">
-		function loadForm(){
-			//clear box
 
-			var aBox = $('mainContent').append('<div')
+		function toggleAddCourseBtnState(){
+			var $jAddCourseBtn = $('#addCourseBtn');
+			if($jAddCourseBtn.hasClass('btn-primary')){
+				$jAddCourseBtn.html("Hủy bỏ khóa học");
+				$jAddCourseBtn.removeClass('btn-primary');
+				$jAddCourseBtn.addClass('btn-danger');
+			}
+			else if($jAddCourseBtn.hasClass('btn-danger')){
+				$jAddCourseBtn.html("Thêm khóa học mới");
+				$jAddCourseBtn.addClass('btn-primary');
+				$jAddCourseBtn.removeClass('btn-danger');
+			}
+			console.log($jAddCourseBtn);
 		}
 
 	</script>
+
+	<style type="text/css">
+		.collapsed{
+			display: none;
+		}
+
+		.glyphicon-refresh-animate {
+		    -animation: spin .7s infinite linear;
+		    -webkit-animation: spin2 .7s infinite linear;
+		}
+
+		@-webkit-keyframes spin2 {
+		    from { -webkit-transform: rotate(0deg);}
+		    to { -webkit-transform: rotate(360deg);}
+		}
+
+		@keyframes spin {
+		    from { transform: scale(1) rotate(0deg);}
+		    to { transform: scale(1) rotate(360deg);}
+		}
+	</style>
 </body>
 </html>

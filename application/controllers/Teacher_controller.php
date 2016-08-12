@@ -160,8 +160,38 @@ class Teacher_controller extends CI_Controller{
         $this->load->view("teacher-courses",$data);
     }
 
-    public function add_course(){
+    
+    
         
+    public function add_course(){
+        //check teacher login
+        if(!$this->session->userdata("login_teacher")){
+            $this->output->set_status_header(401);
+            return;
+        } 
+
+        if($this->input->post()){
+            //create course
+            $course = $this->input->post();
+            $course["course_teacher"] = $this->session->userdata("login_teacher")->teacher_id;
+            
+            
+            if($this->course_model->create($course)){
+                $this->output->set_status_header(200);
+                echo "meo meo thành công rồi";    
+            }
+            else{
+                $this->output->set_status_header(400);
+                echo "meo meo thất bại rồi";
+            }
+
+
+        }
+        else{
+            $this->output->set_status_header(400);
+            echo "meo meo thất bại rồi";
+        }
+       
     }
 
     public function view_course($id){
