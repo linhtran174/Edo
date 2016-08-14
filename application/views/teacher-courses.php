@@ -81,7 +81,7 @@ function printStar($rate){
 				<?php
 				foreach ($courses as $c) {
 					?>
-					<div class="col-md-12">
+					<div class="col-md-12" id="<?php echo $c->course_id;?>">
 						<div class="courseCard">
 							<div class="col-sm-7 col-lg-8">
 								<p class="course-name"><?php echo $c->course_name?>
@@ -139,11 +139,11 @@ function printStar($rate){
 									</button>
 								</form>
 
-								<form action="<?php echo site_url("teacher_controller/delete_course"),"/",$c->course_id;?>">
-									<button type="submit" class="btn btn-danger">Xóa &nbsp
+								<div id="delete">
+									<button type="submit" style="margin-bottom: 1em;" class="btn btn-danger" onclick="delete_course('<?php echo $c->course_id;?>');">Xóa &nbsp
 										<span class="glyphicon glyphicon-trash"/>
 									</button>
-								</form>
+								</div>
 							</div>
 							<div style="clear:both"></div>
 						</div>
@@ -204,7 +204,7 @@ function printStar($rate){
 
 			//toggle div:
 			$('#addCourseDiv').toggleClass('collapsed');
-		})
+		});
 
 
 		$('#submitAddCourseBtn').on('click',function(){
@@ -225,8 +225,11 @@ function printStar($rate){
 			});
 			$('#loadingBar').toggleClass('collapsed');
 			toggleAddCourseBtnState();
-		})
+		});
 
+		// function delete(id){
+		// 	console.log(id);
+		// }
 	</script>
 
 	<!-- Linh tre trau's library -->
@@ -245,6 +248,28 @@ function printStar($rate){
 				$jAddCourseBtn.removeClass('btn-danger');
 			}
 			console.log($jAddCourseBtn);
+		}
+
+
+		function delete_course(id){
+			//console.log(id);
+			url = "<?php echo site_url('teacher_controller/delete_course'); ?>";
+			data = {"id": id};
+			// $.post(url, data, function(data, status){
+			// 	console.log(status);
+			// });
+			$.ajax({
+				url: url,
+				type: 'post',
+				data: data,
+				success: function(data, textStatus, jQxhr){
+					console.log("success");
+					$('#'+id).fadeOut();
+				},
+				error: function(jQxhr, textStatus, errorThrown){
+					console.log(errorThrown);
+				}
+			});
 		}
 
 	</script>

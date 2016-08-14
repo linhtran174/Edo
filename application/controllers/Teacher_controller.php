@@ -209,9 +209,25 @@ class Teacher_controller extends CI_Controller{
         }
     }
 
-    public function delete_course($id){
+    public function delete_course(){
+        $id = $this->input->post("id");
+        echo $id;
+
         if(!$id){
-            show_error("Khóa học không hợp lệ!");
+            echo "hello world";
+            // $status ="Error ID";
+            // echo json_encode($status);
+        }
+
+        else{
+            $input = array("course_id"=>$id);
+            if($this->course_model->check_exists($input) == FALSE){
+                 $status ="ID doesn't exists";
+                 echo json_encode($status);
+            }
+            else{
+                $this->course_model->del_rule($input);
+            }
         }
     }
 

@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Course_Controller extends CI_Controller{
 	var $category = 0;
 	var $name = 'null';
-	var $level = array();
-	var $fee = array();
+	var $level = null;
+	var $fee = null;
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('course_model');
@@ -21,6 +21,8 @@ class Course_Controller extends CI_Controller{
 	}
 
 	public function get_from_view(){
+		// print_r($this->input->post());
+
 		$this->category = $this->input->post('category');
 		$this->name = $this->input->post('name');
 		$this->fee = $this->input->post('fee');

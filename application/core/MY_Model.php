@@ -60,11 +60,12 @@ class MY_Model extends CI_Model {
     	}
     	if(is_numeric($id))//nếu $id là số
     	{
+
     		$where = array($this->id_table => $id);
     	}else
     	{
     		//id nằm trong chuoi các id truyền vào
-    		$where =  "id IN (".$id.") ";
+    		$where =  $this->id_table." IN (".$id.") ";
     	}
     	return $this->del_rule($where);
     }
