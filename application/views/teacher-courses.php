@@ -134,16 +134,18 @@ function printStar($rate){
 
 							<div class="col-xs-5 col-lg-4 buttons">
 								<form action="<?php echo site_url("teacher_controller/view_course"),"/",$c->course_id;?>">
-									<button type="submit" class="btn btn-primary">Xem &nbsp
+									<button type="submit" class="btn btn-primary">Chi tiết &nbsp
 										<span class="glyphicon glyphicon-eye-open"/>
 									</button>
 								</form>
 
+								<!--
 								<form action="<?php echo site_url("teacher_controller/edit_course"),"/",$c->course_id;?>">
 									<button type="submit" class="btn btn-success">Sửa &nbsp
 										<span class="glyphicon glyphicon-edit"/>
 									</button>
 								</form>
+								-->
 
 								<form action="<?php echo site_url("teacher_controller/delete_course"),"/",$c->course_id;?>">
 									<button type="submit" class="btn btn-danger">Xóa &nbsp

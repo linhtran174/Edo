@@ -5,6 +5,8 @@ class Teacher_controller extends CI_Controller{
         parent::__construct();
         $this->load->model('teacher_model');
         $this->load->model('course_model');
+        $this->load->model('topic_model');
+        $this->load->model('lesson_model');
     }
     public function index(){
         if($this->session->userdata('login_teacher')==NULL) {
@@ -100,6 +102,7 @@ class Teacher_controller extends CI_Controller{
     }
 
     public function setting(){
+    	$this->check_log_in();
         //print_r($this->session->userdata("login"));
         $teacher = $this->teacher_model->get_info_rule(array(
             "teacher_id" => $this->session->userdata("login_teacher")->teacher_id
@@ -115,6 +118,7 @@ class Teacher_controller extends CI_Controller{
     }
 
     public function change_teacher_info(){
+    	$this->check_log_in();
         if($this->teacher_model->update_rule(array(
             "teacher_id" => $this->session->userdata("login_teacher")->teacher_id),
             $this->input->post()
@@ -126,6 +130,7 @@ class Teacher_controller extends CI_Controller{
     }
 
     public function change_teacher_password(){
+    	$this->check_log_in();
         $teacher = $this->teacher_model->get_info_rule(array(
             "teacher_id" => $this->session->userdata("login_teacher")->teacher_id));
         $old_pass = $this->input->post("old_pass");
@@ -150,9 +155,7 @@ class Teacher_controller extends CI_Controller{
     }
     
     public function my_courses(){
-        if(!$this->session->userdata('login_teacher')){
-            redirect(site_url("teacher_controller/login"),'location');
-        }
+    	$this->check_log_in();
         $teacher_id = $this->session->userdata('login_teacher')->teacher_id;
         $input['where'] = array('course_teacher'=>$teacher_id);
         $data['courses'] = $this->course_model->get_list($input);
@@ -165,23 +168,63 @@ class Teacher_controller extends CI_Controller{
     }
 
     public function view_course($id){
+    	$this->load->model('category_model');
+    	$this->check_log_in();
         if(!$id){
             show_error("Khóa học không hợp lệ!");
         }
 
-        $this->load->view("teacher-courses-detail");
+        $course = $this->course_model->get_info($id);
+        $topics = $this->load_topic($id);
+        $categories = $this->category_model->get_list();
+
+        // echo '<pre>';
+        // print_r($course);
+        // print_r($topics);
+        // print_r($categories);
+
+        $this->load->view("teacher-course-detail",array(
+			"course" => $course,
+			"topics" => $topics,
+			"categories" => $categories
+			));
 
     }
 
-    public function edit_course($id){
-        if(!$id){
-            show_error("Khóa học không hợp lệ!");
-        }
+    public function load_topic($course_id){
+    	$input['where'] = array('topic_courseId'=>$course_id);
+    	$topics = $this->topic_model->get_list($input);
+    	if(!$topics){
+			show_error("Đã có lỗi xảy ra! (get_list_topics_failed)");
+		}
+
+		$i=0;
+		foreach($topics as $t){
+			$input['where'] = array('lesson_topicId' => $t->topic_id);
+			$lessons = $this->lesson_model->get_list($input);
+			if(!$lessons){
+				show_error("Đã có lỗi xảy ra! (get_list_lessons_failed)");
+			}
+			$result[$i] = new stdClass();
+			$result[$i]->topic_id = $t->topic_id;
+			$result[$i]->topic_name = $t->topic_name;
+			$result[$i]->lessons = $lessons;
+			$i++;
+		}
+		// var_dump($result);
+		return $result;
     }
 
     public function delete_course($id){
+    	$this->check_log_in();
         if(!$id){
             show_error("Khóa học không hợp lệ!");
+        }
+    }
+
+    public function check_log_in(){
+    	if(!$this->session->userdata('login_teacher')){
+            redirect(site_url("teacher_controller/login"),'location');
         }
     }
 
