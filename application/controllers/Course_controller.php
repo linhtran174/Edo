@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Course_Controller extends CI_Controller{
 	var $category = 0;
 	var $name = 'null';
-	var $level = array();
-	var $fee = array();
+	var $level = null;
+	var $fee = null;
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('course_model');
@@ -21,6 +21,8 @@ class Course_Controller extends CI_Controller{
 	}
 
 	public function get_from_view(){
+		// print_r($this->input->post());
+
 		$this->category = $this->input->post('category');
 		$this->name = $this->input->post('name');
 		$this->fee = $this->input->post('fee');
@@ -291,5 +293,112 @@ class Course_Controller extends CI_Controller{
 		// echo $this->pagination->create_links();
 		$this->load->view('course_detail',$data);
 	}
+
+	public function teacher_add_course(){
+        //check teacher login
+        if(!$this->session->userdata("login_teacher")){
+            $this->output->set_status_header(401);
+            return;
+        } 
+
+        if($this->input->post()){
+            //create course
+            $course = $this->input->post();
+            $course["course_teacher"] = $this->session->userdata("login_teacher")->teacher_id;
+            
+            
+            if($this->course_model->create($course)){
+                $this->output->set_status_header(200);
+                echo "meo meo thành công rồi";    
+            }
+            else{
+                $this->output->set_status_header(400);
+                echo "meo meo thất bại rồi";
+            }
+
+
+        }
+        else{
+            $this->output->set_status_header(400);
+            echo "meo meo thất bại rồi";
+        }
+       
+    }
+
+    public function teacher_delete_course(){
+        $id = $this->input->post("id");
+        echo $id;
+
+        if(!$id){
+            echo "hello world";
+            // $status ="Error ID";
+            // echo json_encode($status);
+        }
+
+        else{
+            $input = array("course_id"=>$id);
+            if($this->course_model->check_exists($input) == FALSE){
+                 $status ="ID doesn't exists";
+                 echo json_encode($status);
+            }
+            else{
+                $this->course_model->del_rule($input);
+            }
+        }
+    }
+
+    public function teacher_edit_course($id){
+    	$this->load->model('category_model');
+    	$this->check_teacher_log_in();
+        if(!$id){
+            show_error("Khóa học không hợp lệ!");
+        }
+
+        $course = $this->course_model->get_info($id);
+        $topics = $this->teacher_load_topic($id);
+        $categories = $this->category_model->get_list();
+
+        // echo '<pre>';
+        // print_r($course);
+        // print_r($topics);
+        // print_r($categories);
+
+        $this->load->view("teacher-course-detail",array(
+			"course" => $course,
+			"topics" => $topics,
+			"categories" => $categories
+			));
+
+    }
+
+    public function teacher_load_topic($course_id){
+    	$input['where'] = array('topic_courseId'=>$course_id);
+    	$topics = $this->topic_model->get_list($input);
+    	if(!$topics){
+			show_error("Đã có lỗi xảy ra! (get_list_topics_failed)");
+		}
+
+		$i=0;
+		foreach($topics as $t){
+			$input['where'] = array('lesson_topicId' => $t->topic_id);
+			$lessons = $this->lesson_model->get_list($input);
+			if(!$lessons){
+				show_error("Đã có lỗi xảy ra! (get_list_lessons_failed)");
+			}
+			$result[$i] = new stdClass();
+			$result[$i]->topic_id = $t->topic_id;
+			$result[$i]->topic_name = $t->topic_name;
+			$result[$i]->lessons = $lessons;
+			$i++;
+		}
+		// var_dump($result);
+		return $result;
+    }
+
+    public function check_teacher_log_in(){
+    	if(!$this->session->userdata('login_teacher')){
+            redirect(site_url("teacher_controller/login"),'location');
+        }
+    }
 }
 ?>

@@ -163,67 +163,8 @@ class Teacher_controller extends CI_Controller{
         $this->load->view("teacher-courses",$data);
     }
 
-    public function add_course(){
-        
-    }
-
-    public function view_course($id){
-    	$this->load->model('category_model');
-    	$this->check_log_in();
-        if(!$id){
-            show_error("Khóa học không hợp lệ!");
-        }
-
-        $course = $this->course_model->get_info($id);
-        $topics = $this->load_topic($id);
-        $categories = $this->category_model->get_list();
-
-        // echo '<pre>';
-        // print_r($course);
-        // print_r($topics);
-        // print_r($categories);
-
-        $this->load->view("teacher-course-detail",array(
-			"course" => $course,
-			"topics" => $topics,
-			"categories" => $categories
-			));
-
-    }
-
-    public function load_topic($course_id){
-    	$input['where'] = array('topic_courseId'=>$course_id);
-    	$topics = $this->topic_model->get_list($input);
-    	if(!$topics){
-			show_error("Đã có lỗi xảy ra! (get_list_topics_failed)");
-		}
-
-		$i=0;
-		foreach($topics as $t){
-			$input['where'] = array('lesson_topicId' => $t->topic_id);
-			$lessons = $this->lesson_model->get_list($input);
-			if(!$lessons){
-				show_error("Đã có lỗi xảy ra! (get_list_lessons_failed)");
-			}
-			$result[$i] = new stdClass();
-			$result[$i]->topic_id = $t->topic_id;
-			$result[$i]->topic_name = $t->topic_name;
-			$result[$i]->lessons = $lessons;
-			$i++;
-		}
-		// var_dump($result);
-		return $result;
-    }
-
-    public function delete_course($id){
-    	$this->check_log_in();
-        if(!$id){
-            show_error("Khóa học không hợp lệ!");
-        }
-    }
-
     public function check_log_in(){
-    	if(!$this->session->userdata('login_teacher')){
+        if(!$this->session->userdata('login_teacher')){
             redirect(site_url("teacher_controller/login"),'location');
         }
     }

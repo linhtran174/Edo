@@ -1,3 +1,7 @@
+body {
+  background: #FAFBFC;
+}
+
 .w1{
   font-weight: 500;
   color: white;
@@ -119,7 +123,6 @@
 }
 
 .right-content {
-  background: #FAFBFC;
   margin-top: 70px;
   height: calc(100%-70px);
 }
@@ -187,7 +190,9 @@
   border-bottom-left-radius: 5px !important;
 }
 
-.right-content .buttons form:nth-child(3) button {
+.right-content .del-course-btn {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
   border-top-right-radius: 5px !important;
   border-bottom-right-radius: 5px !important;
 }

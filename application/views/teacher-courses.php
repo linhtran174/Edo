@@ -77,17 +77,11 @@ function printStar($rate){
 				</div>
 			</div>
 
-			<div class="container-fluid right-content">
-				<div class="col-md-12" style="margin-top:30px;">
-					<a href="<?php echo site_url("teacher_controller/add_course")?>">
-						<button type="button" class="btn btn-primary">Thêm khóa học mới
-						</button>
-					</a>				
-				</div>
+			<div id="mainContent" class="container-fluid right-content">
 				<?php
 				foreach ($courses as $c) {
 					?>
-					<div class="col-md-12">
+					<div class="col-md-12" id="<?php echo $c->course_id;?>">
 						<div class="courseCard">
 							<div class="col-sm-7 col-lg-8">
 								<p class="course-name"><?php echo $c->course_name?>
@@ -133,7 +127,7 @@ function printStar($rate){
 							</div>
 
 							<div class="col-xs-5 col-lg-4 buttons">
-								<form action="<?php echo site_url("teacher_controller/view_course"),"/",$c->course_id;?>">
+								<form action="<?php echo site_url("course_controller/teacher_edit_course"),"/",$c->course_id;?>">
 									<button type="submit" class="btn btn-primary">Chi tiết &nbsp
 										<span class="glyphicon glyphicon-eye-open"/>
 									</button>
@@ -147,11 +141,11 @@ function printStar($rate){
 								</form>
 								-->
 
-								<form action="<?php echo site_url("teacher_controller/delete_course"),"/",$c->course_id;?>">
-									<button type="submit" class="btn btn-danger">Xóa &nbsp
+								<div id="delete">
+									<button type="submit" style="margin-bottom: 1em;" class="btn btn-danger del-course-btn" onclick="delete_course('<?php echo $c->course_id;?>');">Xóa &nbsp
 										<span class="glyphicon glyphicon-trash"/>
 									</button>
-								</form>
+								</div>
 							</div>
 							<div style="clear:both"></div>
 						</div>
@@ -159,7 +153,30 @@ function printStar($rate){
 					<?php
 				}
 				?>
+
+				<div class="col-md-12" style="margin-top:30px; margin-bottom: 20px">
+					
+					<button id="addCourseBtn" type="button" class="btn btn-primary">Thêm khóa học mới
+					</button>
 				
+				</div>
+
+				<!-- form add course  -->
+				<div id ="addCourseDiv" class="collapsed col-md-12" >
+					<form id="addCourseForm">
+						<input style="width: 100%;" type="text"  name="course_name"placeholder="Ten"><br><br>
+						<textarea style="width: 100%;" type="text" name="course_desc"placeholder="gioi thieu"></textarea> <br><br>
+						<input style="width: 100%;" type="text" name="course_shortDesc"placeholder="gioi thieu ngan">   <br><br>
+						<input style="width: 100%;" type="text" name="course_video"placeholder="link video gioi thieu">  <br><br>
+						<input style="width: 100%;" type="text" name="course_totalTime"placeholder="tong thoi gian (giay)">  <br><br>
+						<input style="width: 100%;" type="text" name="course_level"placeholder="do kho">  <br><br>
+						<input style="width: 100%;" type="text" name="course_fee"placeholder="gia khoa hoc">  <br><br>
+						<textarea style="width: 100%;" type="text" name="course_why"placeholder="loi ich khoa hoc"></textarea>  <br><br>
+						<textarea style="width: 100%;" type="text" name="course_require"placeholder="yeu cau khoa hoc"></textarea><br><br>				
+					</form>
+						<button id="submitAddCourseBtn">Gửi yêu cầu</button>
+				</div>
+				<button id="loadingBar"class="btn btn-lg btn-warning collapsed"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button>
 			</div>
 		</div>
 	</div>
@@ -177,6 +194,107 @@ function printStar($rate){
 				$('.w1').attr("class","w1 hidden");
 			}
 		});
+
+		
+		$('#addCourseBtn').on('click', function(){
+			toggleAddCourseBtnState();
+
+			//clear Form
+			if($('#addCourseBtn').hasClass('btn-danger'));
+				$('#addCourseForm').find("input[type=text], textarea").val("");
+		
+
+			//toggle div:
+			$('#addCourseDiv').toggleClass('collapsed');
+		});
+
+
+		$('#submitAddCourseBtn').on('click',function(){
+			console.log($('#addCourseForm').serialize());
+
+			$('#addCourseDiv').toggleClass('collapsed');
+			$.post({
+				url: '<?php echo site_url('course_controller/teacher_add_course') ?>',
+				data: $('#addCourseForm').serialize(),
+				success: (data, status, jqXHR )=>{
+					$('#loadingBar').toggleClass('collapsed');
+					alert("Tạo khóa học thành công");
+				},
+				error: (data, status, jqXHR )=>{
+					$('#loadingBar').toggleClass('collapsed');
+					alert("Tạo khóa học thất bại, đã có lỗi xảy ra");
+				}
+			});
+			$('#loadingBar').toggleClass('collapsed');
+			toggleAddCourseBtnState();
+		});
+
+		// function delete(id){
+		// 	console.log(id);
+		// }
 	</script>
+
+	<!-- Linh tre trau's library -->
+	<script type="text/javascript">
+
+		function toggleAddCourseBtnState(){
+			var $jAddCourseBtn = $('#addCourseBtn');
+			if($jAddCourseBtn.hasClass('btn-primary')){
+				$jAddCourseBtn.html("Hủy bỏ khóa học");
+				$jAddCourseBtn.removeClass('btn-primary');
+				$jAddCourseBtn.addClass('btn-danger');
+			}
+			else if($jAddCourseBtn.hasClass('btn-danger')){
+				$jAddCourseBtn.html("Thêm khóa học mới");
+				$jAddCourseBtn.addClass('btn-primary');
+				$jAddCourseBtn.removeClass('btn-danger');
+			}
+			console.log($jAddCourseBtn);
+		}
+
+
+		function delete_course(id){
+			//console.log(id);
+			url = "<?php echo site_url('course_controller/teacher_delete_course'); ?>";
+			data = {"id": id};
+			// $.post(url, data, function(data, status){
+			// 	console.log(status);
+			// });
+			$.ajax({
+				url: url,
+				type: 'post',
+				data: data,
+				success: function(data, textStatus, jQxhr){
+					console.log("success");
+					$('#'+id).fadeOut();
+				},
+				error: function(jQxhr, textStatus, errorThrown){
+					console.log(errorThrown);
+				}
+			});
+		}
+
+	</script>
+
+	<style type="text/css">
+		.collapsed{
+			display: none;
+		}
+
+		.glyphicon-refresh-animate {
+		    -animation: spin .7s infinite linear;
+		    -webkit-animation: spin2 .7s infinite linear;
+		}
+
+		@-webkit-keyframes spin2 {
+		    from { -webkit-transform: rotate(0deg);}
+		    to { -webkit-transform: rotate(360deg);}
+		}
+
+		@keyframes spin {
+		    from { transform: scale(1) rotate(0deg);}
+		    to { transform: scale(1) rotate(360deg);}
+		}
+	</style>
 </body>
 </html>

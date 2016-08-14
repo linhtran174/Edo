@@ -44,7 +44,7 @@
 						<p class="cate"><a href="#" class="category" onclick="pickCatagory(5)">Data Science</a></p>
 					</div>
 					<div style="display: block; position: relative;" id="line"></div>
-					<form>
+					<div>
 					<div style="display: block; position: relative;" class="properties">
 						<h5>TYPE</h5>
 						<!-- <p><input type="checkbox" class="checkbox">  Khóa ngắn hạn</p> -->
@@ -59,7 +59,7 @@
 						<p><input type="checkbox" value="3" onclick="get_level();" name="level">  Cao cấp</p>
 						<!-- <input type="submit" class="btn default"> -->
 					</div>
-					</form>
+					</div>
 				</div>
 				<div class="col-md-9" id="content-box">
 					<span id="course"></span>
@@ -130,7 +130,6 @@
 
 			$('#course').load(url, data, function(){
 				var collect = JSON.parse($('#collect').html());
-				//console.log(collect);
 				category = collect['category'];
 				name = collect['name'];
 				fee = collect['fee'];
@@ -154,13 +153,29 @@
 				level = collect['level'];
 			});
 		}
+
+		function filter_level(){
+			data={
+				"category": category,
+				"name": name,
+				"fee": fee,
+				"level": level
+			};
+			$('#course').load(url, data, function(){
+				var collect = JSON.parse($('#collect').html());
+				//console.log(collect);
+				category = collect['category'];
+				name = collect['name'];
+				fee = collect['fee'];
+				level = collect['level'];
+			});
+		}
 		
 		function get_fee(){
 			var bill = [];
 			$.each($("input[name='fee']:checked"), function(){
 				bill.push($(this).val());
 			});
-			// console.log(bill);
 			fee = bill;
 			filter_fee()
 		}
@@ -170,9 +185,8 @@
 			$.each($("input[name='level']:checked"), function(){
 				lv.push($(this).val());
 			});
-			// console.log(lv);
 			level = lv;
-			filter_fee();
+			filter_level();
 		}
 	</script>
 </body>
