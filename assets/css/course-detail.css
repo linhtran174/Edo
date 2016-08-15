@@ -772,6 +772,7 @@
 
 .req {
 	padding-top: 50px;
+	padding-bottom: 50px;
 	border-top: 2px gray dashed;
 	border-bottom: 2px gray dashed;
 }
@@ -789,7 +790,6 @@
 	font-size: 16px;
 	color: #555555;
 	text-align: left;
-	margin-bottom: 150px;
 }
 
 .req .titlecourse {

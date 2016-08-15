@@ -519,7 +519,7 @@ function printStar($rate){
 						<img class="pic" src="<?php echo base_url("assets/images/elipse.png")?>" height="100px">
 					</div>
 					<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
-						<h3 class="name" aria-expanded="false" data-toggle="collapse" href="#teacher-detail" style="cursor:pointer">
+						<h3 class="name teacher-name" aria-expanded="false" data-toggle="collapse" href="#teacher-detail" style="cursor:pointer">
 							<span class="icontoggle glyphicon glyphicon-chevron-down"></span>
 							<a class="teacher-name"><?php echo $course[0]->teacher_fname,' ',$course[0]->teacher_lname?>
 							</a>
@@ -574,12 +574,9 @@ function printStar($rate){
 
 		$('.videoContainer').html('<iframe width="640" height="360" src="//www.youtube.com/embed/' + myId + '" frameborder="0" allowfullscreen></iframe>');
 
-		$('#teacher-detail').on('shown.bs.collapse', function() {
-			$(".icontoggle").addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down');
-		});
 
-		$('#teacher-detail').on('hidden.bs.collapse', function() {
-			$(".icontoggle").addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right');
+		$('.teacher-name').click(function(){
+			$(this).find(".icontoggle").toggleClass("glyphicon-chevron-down glyphicon-chevron-right")
 		});
 
 		(function($){
