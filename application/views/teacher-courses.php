@@ -78,6 +78,7 @@ function printStar($rate){
 			</div>
 
 			<div id="mainContent" class="container-fluid right-content">
+				<div id="list-course">
 				<?php
 				foreach ($courses as $c) {
 					?>
@@ -153,16 +154,9 @@ function printStar($rate){
 					<?php
 				}
 				?>
-
-				<div class="col-md-12" style="margin-top:30px; margin-bottom: 20px">
-					
-					<button id="addCourseBtn" type="button" class="btn btn-primary">Thêm khóa học mới
-					</button>
-				
 				</div>
-
 				<!-- form add course  -->
-				<div id ="addCourseDiv" class="collapsed col-md-12" >
+				<div id ="addCourseDiv" class="collapsed col-md-12" style="margin-top: 20px;" >
 					<form id="addCourseForm">
 						<input style="width: 100%;" type="text"  name="course_name"placeholder="Ten"><br><br>
 						<textarea style="width: 100%;" type="text" name="course_desc"placeholder="gioi thieu"></textarea> <br><br>
@@ -177,6 +171,13 @@ function printStar($rate){
 						<button id="submitAddCourseBtn">Gửi yêu cầu</button>
 				</div>
 				<button id="loadingBar"class="btn btn-lg btn-warning collapsed"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button>
+
+				<div class="col-md-12" style="margin-top:30px; margin-bottom: 20px">
+					
+					<button id="addCourseBtn" type="button" class="btn btn-primary">Thêm khóa học mới
+					</button>
+				
+				</div>
 			</div>
 		</div>
 	</div>
@@ -240,11 +241,13 @@ function printStar($rate){
 		function toggleAddCourseBtnState(){
 			var $jAddCourseBtn = $('#addCourseBtn');
 			if($jAddCourseBtn.hasClass('btn-primary')){
+				$('#list-course').fadeOut('fast');
 				$jAddCourseBtn.html("Hủy bỏ khóa học");
 				$jAddCourseBtn.removeClass('btn-primary');
 				$jAddCourseBtn.addClass('btn-danger');
 			}
 			else if($jAddCourseBtn.hasClass('btn-danger')){
+				$('#list-course').fadeIn();
 				$jAddCourseBtn.html("Thêm khóa học mới");
 				$jAddCourseBtn.addClass('btn-primary');
 				$jAddCourseBtn.removeClass('btn-danger');
