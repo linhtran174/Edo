@@ -157,8 +157,95 @@ function printStar($rate){
 				</div>
 				<!-- form add course  -->
 				<div id ="addCourseDiv" class="collapsed col-md-12" style="margin-top: 20px;" >
-					<form id="addCourseForm">
-						<input style="width: 100%;" type="text"  name="course_name"placeholder="Ten"><br><br>
+					<form id="addCourseForm" class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="course_name">Tên khóa học: *</label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" id="course_name" name="course_name" placeholder="Tên khóa học">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="course_shortDesc">Giới thiệu ngắn:</label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" id="course_shortDesc" name="course_shortDesc" placeholder="Tóm tắt">
+							</div>
+						</div>
+
+						<div class="form-group">
+								<label class="control-label col-sm-2" for="course_desc">Mô tả chi tiết: *</label>
+								<div class="col-sm-10">
+									<textarea rows="10" class="form-control myck" name="course_desc" id="course_desc" placeholder="Mô tả"></textarea>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-sm-2" for="course_why">Lợi ích:</label>
+								<div class="col-sm-10">
+									<textarea rows="10" class="form-control myck" name="course_why" id="course_why" placeholder="Lợi ích"></textarea>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-sm-2" for="course_require">Yêu cầu:</label>
+								<div class="col-sm-10">
+									<textarea rows="10" class="form-control myck" name="course_require" id="course_require" placeholder="Yêu cầu"></textarea>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-sm-2" for="course_totalTime">Tổng thời gian(s): *</label>
+								<div class="col-sm-10">
+									<input class="form-control" type="number" name="course_totalTime" id="course_totalTime" placeholder="Tổng thời gian">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-sm-2" for="course_level">Độ khó:</label>
+								<div class="col-sm-10">
+									<label class="radio-inline"><input type="radio" name="course_level" value="1">Dễ</label>
+									<label class="radio-inline"><input type="radio" name="course_level" value="2">Cơ bản</label>
+									<label class="radio-inline"><input type="radio" name="course_level" value="3">Vừa</label>
+									<label class="radio-inline"><input type="radio" name="course_level" value="4">Nâng cao</label>
+									<label class="radio-inline"><input type="radio" name="course_level" value="5">Khó</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-2" for="course_video">Video giới thiệu:</label>
+								<div class="col-sm-10">
+									<input class="form-control" type="text" id="course_video" name="course_video">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-sm-2" for="course_fee">Giá:</label>
+								<div class="col-sm-10">
+									<input class="form-control" type="number" id="course_fee" name="course_fee" placeholder="Giá">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-sm-2" for="course_cate">Loại khóa học: *</label>
+								<div class="col-sm-10">
+									<select class="form-control" id="course_cate">
+										<?php
+										foreach ($categories as $c) {
+											if($course->course_cate == $c->cate_id){
+												echo "
+												<option selected value=\"$c->cate_id\">$c->cate_name</option>
+												";
+											} else {
+
+												echo "
+												<option value=\"$c->cate_id\">$c->cate_name</option>
+												";
+											}
+										}								
+										?>
+									</select>
+								</div>
+							</div>
+						<!-- <input style="width: 100%;" type="text"  name="course_name"placeholder="Ten"><br><br>
 						<textarea style="width: 100%;" type="text" name="course_desc"placeholder="gioi thieu"></textarea> <br><br>
 						<input style="width: 100%;" type="text" name="course_shortDesc"placeholder="gioi thieu ngan">   <br><br>
 						<input style="width: 100%;" type="text" name="course_video"placeholder="link video gioi thieu">  <br><br>
@@ -166,7 +253,8 @@ function printStar($rate){
 						<input style="width: 100%;" type="text" name="course_level"placeholder="do kho">  <br><br>
 						<input style="width: 100%;" type="text" name="course_fee"placeholder="gia khoa hoc">  <br><br>
 						<textarea style="width: 100%;" type="text" name="course_why"placeholder="loi ich khoa hoc"></textarea>  <br><br>
-						<textarea style="width: 100%;" type="text" name="course_require"placeholder="yeu cau khoa hoc"></textarea><br><br>				
+						<textarea style="width: 100%;" type="text" name="course_require"placeholder="yeu cau khoa hoc"></textarea><br><br>				 -->
+
 					</form>
 						<button id="submitAddCourseBtn">Gửi yêu cầu</button>
 				</div>
@@ -220,6 +308,7 @@ function printStar($rate){
 				success: (data, status, jqXHR )=>{
 					$('#loadingBar').toggleClass('collapsed');
 					alert("Tạo khóa học thành công");
+					location.reload();
 				},
 				error: (data, status, jqXHR )=>{
 					$('#loadingBar').toggleClass('collapsed');

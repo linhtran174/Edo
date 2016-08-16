@@ -13,6 +13,7 @@ class Course_Controller extends CI_Controller{
 		$this->load->model('review_model');
 		$this->load->model('teacher_model');
 		$this->load->library('ajax_pagination');
+		$this->load->model('category_model');
         $this->perPage = 5;
 	}
 
@@ -348,7 +349,7 @@ class Course_Controller extends CI_Controller{
     }
 
     public function teacher_edit_course($id){
-    	$this->load->model('category_model');
+    	//$this->load->model('category_model');
     	$this->check_teacher_log_in();
         if(!$id){
             show_error("Khóa học không hợp lệ!");
