@@ -2,8 +2,8 @@
 <head>
 <meta charset='utf-8' />
 <title>Đăng nhập</title>
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,500&subset=vietnamese" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,500&subset=vietnamese" rel="stylesheet">
 <link rel="stylesheet"
 	href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
 <link rel="stylesheet" href=<?php echo base_url("assets/css/template.css")?>
@@ -18,28 +18,28 @@
 			<img style="padding-left: 20px" src="<?php echo base_url("assets/images/logo.png") ?>">
 		</div>
 		<div class="logoItem">
-			<p class="w1"><a href="<?php echo site_url('my_classroom') ?>">
+			<a class="w1" style="text-decoration: none" href="<?php echo site_url('my_classroom') ?>">
 			<span class="glyphicon glyphicon-home"> </span>
 			Trang chủ
 			</a></p>
 		</div>
 		<div class="logoItem">
-			<p class="w1"><a href=<?php echo site_url("course_controller")?>>
+			<a class="w1" style="text-decoration: none" href=<?php echo site_url("course_controller")?>>
 			<span class="glyphicon glyphicon-th-list"> </span>
 			Chợ khóa học
 			</a></p>
 		</div>
 		<div class="logoItem">
-			<p class="w1"><a href=<?php echo site_url("my_classroom/setting")?>>
+			<a class="w1" style="text-decoration: none" href=<?php echo site_url("my_classroom/setting")?>>
 			<span class="glyphicon glyphicon-cog"></span>
 			Cài đặt
 			</a></p>
 		</div>
 		<div class="logoItem bottom">
-			<p class="w1"><a href=<?php echo site_url('logout');?>>
+			<a class="w1" style="text-decoration: none" href=<?php echo site_url('logout');?>>
 			<span class="glyphicon glyphicon-log-out"></span>
 			Đăng xuất
-			</a></p>
+			</a>
 		</div>
 	</div>
 
@@ -102,14 +102,7 @@
 			}
 			?>
 
-
-
-			
-
-
 		</div>
-		
-		
 	</div>
 
 </body>

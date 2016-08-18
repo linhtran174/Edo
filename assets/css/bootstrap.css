@@ -1077,6 +1077,7 @@ th {
           box-sizing: border-box;
 }
 html {
+  /* font-family: Open Serif; */
   font-family: Open Sans-serif;
   font-size: 10px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

@@ -35,8 +35,8 @@ function printStar($rate){
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/template.css")?>">
 	<link rel="stylesheet" href=<?php echo base_url("assets/css/teacher-courses.css")?>
 	type="text/css" />
-
 </head>
+
 <body>
 	<div class="wrapper">
 		<div class="sideBar-expand" id="left">
@@ -156,7 +156,7 @@ function printStar($rate){
 				?>
 				</div>
 				<!-- form add course  -->
-				<div id ="addCourseDiv" class="collapsed col-md-12" style="margin-top: 20px;" >
+				<div id ="addCourseDiv" class=" col-md-12" style=" display:none; margin-top: 20px;" >
 					<form id="addCourseForm" class="form-horizontal" role="form">
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="course_name">Tên khóa học: *</label>
@@ -258,7 +258,7 @@ function printStar($rate){
 					</form>
 						<button id="submitAddCourseBtn">Gửi yêu cầu</button>
 				</div>
-				<button id="loadingBar"class="btn btn-lg btn-warning collapsed"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button>
+				<button id="loadingBar" style ="display:none" class="btn btn-lg btn-warning "><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</button>
 
 				<div class="col-md-12" style="margin-top:30px; margin-bottom: 20px">
 					
@@ -266,10 +266,45 @@ function printStar($rate){
 					</button>
 				
 				</div>
+				<div class="col-md-12" style="border: 1px solid black; padding-bottom: 30px; margin-bottom: 30px;">
+				<h4> Dịch vụ upload video lên thẳng server của OWS. Nhanh khủng khiếp!!</h4>
+				<form id="uploadVideoForm" enctype="multipart/form-data">
+					<input type="file" name="fileToUpload" id="fileToUpload"></input>
+				</form>
+				    
+				<button style=" margin-bottom: 20px;"id="uploadVideoBtn" class="btn btn-primary">
+					Upload ngay!!
+				</button><br>
+				<button id="loadingBar2" style ="display:none" class="btn btn-lg btn-warning "><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Đang upload, chờ tí...</button>
+				</div>
+
+
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
+	$('#uploadVideoBtn').on('click', function(){
+		$('#loadingBar2').toggle();
+		var formData = new FormData();
+		formData.append("fileToUpload", $('#fileToUpload')[0].files[0]);
+
+		var request = new XMLHttpRequest();
+		var base_url = "<?php echo base_url()?>";
+		request.open("POST",base_url + "upload.php");
+		request.send(formData);
+
+		request.onload = function (){
+			if(request.status == 200){
+				var notification = '<div class="col-md-12"><p>Up xong rồi, link đây: </p><input style="width: 100%" type="text" value="'+request.responseText.replace("File uploaded at:","")+'"> </div>';
+				$('#uploadVideoBtn').after(notification);
+				$('#loadingBar2').toggle();
+			}
+			else{
+				console.log("upload is failed!!");	
+			}
+		}
+	});
+
 		$('#trig').on('click', function () {
 			$('#left').toggleClass("sideBar-expand sideBar-collapse");
 			$('#right').toggleClass("right-collapse right-expand");
@@ -292,30 +327,29 @@ function printStar($rate){
 			if($('#addCourseBtn').hasClass('btn-danger'));
 				$('#addCourseForm').find("input[type=text], textarea").val("");
 		
-
 			//toggle div:
-			$('#addCourseDiv').toggleClass('collapsed');
+			$('#addCourseDiv').toggle();
 		});
 
 
 		$('#submitAddCourseBtn').on('click',function(){
 			console.log($('#addCourseForm').serialize());
 
-			$('#addCourseDiv').toggleClass('collapsed');
+			$('#addCourseDiv').toggle();
 			$.post({
 				url: '<?php echo site_url('course_controller/teacher_add_course') ?>',
 				data: $('#addCourseForm').serialize(),
 				success: (data, status, jqXHR )=>{
-					$('#loadingBar').toggleClass('collapsed');
+					$('#loadingBar').toggle();
 					alert("Tạo khóa học thành công");
 					location.reload();
 				},
 				error: (data, status, jqXHR )=>{
-					$('#loadingBar').toggleClass('collapsed');
+					$('#loadingBar').toggle();
 					alert("Tạo khóa học thất bại, đã có lỗi xảy ra");
 				}
 			});
-			$('#loadingBar').toggleClass('collapsed');
+			$('#loadingBar').toggle();
 			toggleAddCourseBtnState();
 		});
 
@@ -324,9 +358,30 @@ function printStar($rate){
 		// }
 	</script>
 
-	<!-- Linh tre trau's library -->
-	<script type="text/javascript">
 
+	<style type="text/css">
+		.collapsed{
+			display: none;
+		}
+
+		.glyphicon-refresh-animate {
+		    -animation: spin .7s infinite linear;
+		    -webkit-animation: spin2 .7s infinite linear;
+		}
+
+		@-webkit-keyframes spin2 {
+		    from { -webkit-transform: rotate(0deg);}
+		    to { -webkit-transform: rotate(360deg);}
+		}
+
+		@keyframes spin {
+		    from { transform: scale(1) rotate(0deg);}
+		    to { transform: scale(1) rotate(360deg);}
+		}
+	</style>
+
+	<!-- helper -->
+	<script type="text/javascript">
 		function toggleAddCourseBtnState(){
 			var $jAddCourseBtn = $('#addCourseBtn');
 			if($jAddCourseBtn.hasClass('btn-primary')){
@@ -365,28 +420,7 @@ function printStar($rate){
 				}
 			});
 		}
-
 	</script>
 
-	<style type="text/css">
-		.collapsed{
-			display: none;
-		}
-
-		.glyphicon-refresh-animate {
-		    -animation: spin .7s infinite linear;
-		    -webkit-animation: spin2 .7s infinite linear;
-		}
-
-		@-webkit-keyframes spin2 {
-		    from { -webkit-transform: rotate(0deg);}
-		    to { -webkit-transform: rotate(360deg);}
-		}
-
-		@keyframes spin {
-		    from { transform: scale(1) rotate(0deg);}
-		    to { transform: scale(1) rotate(360deg);}
-		}
-	</style>
 </body>
 </html>
