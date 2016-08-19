@@ -13,7 +13,8 @@ class Course_Controller extends CI_Controller{
 		$this->load->model('review_model');
 		$this->load->model('teacher_model');
 		$this->load->library('ajax_pagination');
-        $this->perPage = 5;
+		$this->perPage = 5;
+		$this->load->model('category_model');		
 	}
 
 	public function index(){
@@ -35,20 +36,20 @@ class Course_Controller extends CI_Controller{
 	public function list_course(){
 
 		$page = $this->input->post('page');
-        
-        if(!$page){
-            $offset = 0;
-        }else{
-            $offset = $page;
-        }
+
+		if(!$page){
+			$offset = 0;
+		}else{
+			$offset = $page;
+		}
 
 		$title = "ALL";
 		
 		$courses = array();
 		$collect = array("category" => $this->category,
-						 "name" => $this->name,
-						 "level" => $this->level,
-						 "fee" => $this->fee);
+			"name" => $this->name,
+			"level" => $this->level,
+			"fee" => $this->fee);
 
 		if($this->category == '0' && $this->name == 'null' && $this->fee == '-1' && $this->level == null){
 			$input = array("select" => "*");
@@ -107,102 +108,102 @@ class Course_Controller extends CI_Controller{
 		$collect = json_encode($collect);
 
 		$data = array("courses" => $courses,
-			  		  "title" => $title,
-			  		  "collect" =>$collect);
+			"title" => $title,
+			"collect" =>$collect);
 
 
 		$this->load->view('course_list',$data);
 	}
-    
 
-    public function filter($collect){
-    	$input  = array();
-    	$input['where'] = array();
 
-    	if($collect['category'] != '0'){
-    		$input['where']['course_cate'] = $collect['category'];
-    	}
-    	if($collect['name'] != 'null'){
-    		$input['like']['course_name'] = $collect['name'];
-    	}
-    	if($collect['level'] != null){
-    		$index = 0; $where = '';
-    		if(count($collect['level']) == 1){
-    			$where = "course_level = '".$collect['level'][$index]."' ";
-    		}
-    		else{
-	    		for($index = 0; $index < count($collect['level']); $index++){
-	    			if($index == 0){
-	    				$where = "course_level = '".$collect['level'][$index]."' OR ";
-	    			}
-	    			else if($index == count($collect['level']) - 1){
-	    				$where = $where."course_level = '".$collect['level'][$index]."' ";
-	    			}
-	    			else{
-	    				$where = $where."course_level = '".$collect['level'][$index]."' OR ";
-	    			}
-	    		}
-    		}
-    		$input['where'] = $where;
-    	}
-    	if($collect['fee'] != null){
-    		$index = 0;
-    		if(count($collect['fee']) == 1){
-	    		if($collect['fee'][$index] == 0){
-	    		 $input['where']['course_fee'] = $collect['fee'][$index];
-	    		}
-	   
-	    		else{
-	    			$input['where']['course_fee >'] = $collect['fee'][0];
+	public function filter($collect){
+		$input  = array();
+		$input['where'] = array();
 
-	    		}
-	    	}
-	    	else{
-	    		$input['where'] = "course_fee = '0' OR course_fee > '0' ";
-	    	}
-    	}
+		if($collect['category'] != '0'){
+			$input['where']['course_cate'] = $collect['category'];
+		}
+		if($collect['name'] != 'null'){
+			$input['like']['course_name'] = $collect['name'];
+		}
+		if($collect['level'] != null){
+			$index = 0; $where = '';
+			if(count($collect['level']) == 1){
+				$where = "course_level = '".$collect['level'][$index]."' ";
+			}
+			else{
+				for($index = 0; $index < count($collect['level']); $index++){
+					if($index == 0){
+						$where = "course_level = '".$collect['level'][$index]."' OR ";
+					}
+					else if($index == count($collect['level']) - 1){
+						$where = $where."course_level = '".$collect['level'][$index]."' ";
+					}
+					else{
+						$where = $where."course_level = '".$collect['level'][$index]."' OR ";
+					}
+				}
+			}
+			$input['where'] = $where;
+		}
+		if($collect['fee'] != null){
+			$index = 0;
+			if(count($collect['fee']) == 1){
+				if($collect['fee'][$index] == 0){
+					$input['where']['course_fee'] = $collect['fee'][$index];
+				}
 
-    	return $input;
+				else{
+					$input['where']['course_fee >'] = $collect['fee'][0];
 
-    }
+				}
+			}
+			else{
+				$input['where'] = "course_fee = '0' OR course_fee > '0' ";
+			}
+		}
 
-    public function total_topic($course_id){
-    	$input = array();
-    	$input['where'] = array('topic_courseId' => $course_id);
-    	$total = $this->topic_model->get_total($input);
-    	return $total;
-    }
+		return $input;
 
-    public function course_teacher($teacher_id){
-    	$input = array();
-    	$total = $this->teacher_model->get_info($teacher_id);
-    	return $total;
-    }
+	}
+
+	public function total_topic($course_id){
+		$input = array();
+		$input['where'] = array('topic_courseId' => $course_id);
+		$total = $this->topic_model->get_total($input);
+		return $total;
+	}
+
+	public function course_teacher($teacher_id){
+		$input = array();
+		$total = $this->teacher_model->get_info($teacher_id);
+		return $total;
+	}
 
 	public function config_pagination(){
-			$config = array();
+		$config = array();
 
-			$config['per_page']  = 5;
-			$config['full_tag_open'] = '<ul class="pagination">';
-			$config['full_tag_close'] = '</ul>';
-			$config['first_link'] = false;
-			$config['last_link'] = false;
-			$config['first_tag_open'] = '<li>';
-			$config['first_tag_close'] = '</li>';
-			$config['prev_link'] = '&laquo';
-			$config['prev_tag_open'] = '<li class="prev">';
-			$config['prev_tag_close'] = '</li>';
-			$config['next_link'] = '&raquo';
-			$config['next_tag_open'] = '<li>';
-			$config['next_tag_close'] = '</li>';
-			$config['last_tag_open'] = '<li>';
-			$config['last_tag_close'] = '</li>';
-			$config['cur_tag_open'] = '<li class="active"><a>';
-			$config['cur_tag_close'] = '</a></li>';
-			$config['num_tag_open'] = '<li>';
-			$config['num_tag_close'] = '</li>';
+		$config['per_page']  = 5;
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_link'] = false;
+		$config['last_link'] = false;
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['prev_link'] = '&laquo';
+		$config['prev_tag_open'] = '<li class="prev">';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = '&raquo';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a>';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
 
-			return $config;
+		return $config;
 	}
 
 	public function get_course_detail($id = 0, $page = 0){
@@ -296,109 +297,214 @@ class Course_Controller extends CI_Controller{
 
 	public function teacher_add_course(){
         //check teacher login
-        if(!$this->session->userdata("login_teacher")){
-            $this->output->set_status_header(401);
-            return;
-        } 
+		if(!$this->session->userdata("login_teacher")){
+			$this->output->set_status_header(401);
+			return;
+		} 
 
-        if($this->input->post()){
+		if($this->input->post()){
             //create course
-            $course = $this->input->post();
-            $course["course_teacher"] = $this->session->userdata("login_teacher")->teacher_id;
-            
-            
-            if($this->course_model->create($course)){
-                $this->output->set_status_header(200);
-                echo "meo meo thành công rồi";    
-            }
-            else{
-                $this->output->set_status_header(400);
-                echo "meo meo thất bại rồi";
-            }
+			$course = $this->input->post();
+			$course["course_teacher"] = $this->session->userdata("login_teacher")->teacher_id;
 
 
-        }
-        else{
-            $this->output->set_status_header(400);
-            echo "meo meo thất bại rồi";
-        }
-       
-    }
+			if($this->course_model->create($course)){
+				$this->output->set_status_header(200);
+				echo "meo meo thành công rồi";    
+			}
+			else{
+				$this->output->set_status_header(400);
+				echo "meo meo thất bại rồi";
+			}
 
-    public function teacher_delete_course(){
-        $id = $this->input->post("id");
-        echo $id;
 
-        if(!$id){
-            echo "hello world";
+		}
+		else{
+			$this->output->set_status_header(400);
+			echo "meo meo thất bại rồi";
+		}
+
+	}
+
+	public function teacher_delete_course(){
+		$id = $this->input->post("id");
+		echo $id;
+
+		if(!$id){
+			echo "hello world";
             // $status ="Error ID";
             // echo json_encode($status);
-        }
+		}
 
-        else{
-            $input = array("course_id"=>$id);
-            if($this->course_model->check_exists($input) == FALSE){
-                 $status ="ID doesn't exists";
-                 echo json_encode($status);
-            }
-            else{
-                $this->course_model->del_rule($input);
-            }
-        }
-    }
+		else{
+			$input = array("course_id"=>$id);
+			if($this->course_model->check_exists($input) == FALSE){
+				$status ="ID doesn't exists";
+				echo json_encode($status);
+			}
+			else{
+				$this->course_model->del_rule($input);
+			}
+		}
+	}
 
-    public function teacher_edit_course($id){
-    	$this->load->model('category_model');
-    	$this->check_teacher_log_in();
-        if(!$id){
-            show_error("Khóa học không hợp lệ!");
-        }
+	public function teacher_edit_course($id){
+		$this->check_teacher_log_in();
+		if(!$id){
+			show_error("Khóa học không hợp lệ!");
+		}
 
-        $course = $this->course_model->get_info($id);
-        $topics = $this->teacher_load_topic($id);
-        $categories = $this->category_model->get_list();
+		$course = $this->course_model->get_info($id);
+		$topics = $this->teacher_load_topic($id);
+		$categories = $this->category_model->get_list();
 
-        // echo '<pre>';
-        // print_r($course);
-        // print_r($topics);
-        // print_r($categories);
-
-        $this->load->view("teacher-course-detail",array(
+		$this->load->view("teacher-course-detail",array(
 			"course" => $course,
 			"topics" => $topics,
 			"categories" => $categories
 			));
+	}
 
-    }
+	public function teacher_edit_course_run(){
+    	// check teacher login
+		$this->check_teacher_log_in();
+		$ok = true;
+		$errmess = "";
 
-    public function teacher_load_topic($course_id){
-    	$input['where'] = array('topic_courseId'=>$course_id);
-    	$topics = $this->topic_model->get_list($input);
-    	if(!$topics){
-			show_error("Đã có lỗi xảy ra! (get_list_topics_failed)");
+		if($this->input->post()){
+            // course part
+			$course = $this->input->post()['course'];
+			$course["course_teacher"] = $this->session->userdata("login_teacher")->teacher_id;
+			$datetime = new DateTime(gmdate("Y-m-d H:i:s"));
+			$datetime->add(new DateInterval('PT7H'));
+			$course["course_createAt"] = $datetime->format("Y-m-d H:i:s");
+			if(!$this->course_model->update($course["course_id"], $course)){
+				$ok = false;
+				$errmess += "Update course error! ";
+			}
+
+			// topics part
+			$topicsNew = array();
+			if(array_key_exists('topics',$this->input->post())){
+				$topics = $this->input->post()['topics'];
+				foreach ($topics as $t) {
+					$t['topic_courseId'] = $course["course_id"];
+					if(!array_key_exists('isDeleted',$t) ){
+					// update topic
+						if($t['topic_id'] >= 0){
+							if(!$this->topic_model->update($t["topic_id"],$t)){
+								$ok = false;
+								$errmess += "Update topic error! ";
+							}
+						} else {
+						// insert new topic return created topic id
+							$tmp = $t['topic_id'];
+							if(!$topicsNew[$tmp] = $this->topic_model->create($t)){
+								$ok = false;
+								$errmess += "Create topic error! ";
+							}
+						}
+					} else {
+						if(array_key_exists('topic_id',$t)){
+							if(!$this->topic_model->delete($t['topic_id'])){
+								$ok = false;
+								$errmess += "Delete topic error! ";
+							}
+						}
+					}
+				}
+			}
+
+			// lessons part
+			if(array_key_exists('lessons',$this->input->post())){
+				$lessons = $this->input->post()['lessons'];
+				foreach ($lessons as $l) {
+					if(!array_key_exists('isDeleted', $l)) {
+						// update lesson
+						if($l['lesson_id']){
+							if(!$this->lesson_model->update($l['lesson_id'],$l)){
+								$ok = false;
+								$errmess += "Update lesson error! ";
+							}
+						} else {
+							// insert new lesson, lesson_topicId in topicNew
+							$tmp2 = $l['lesson_topicId'];
+							if($tmp2<0){
+								$l['lesson_topicId'] = $topicsNew[$tmp2];
+								if(!$this->lesson_model->create($l)){
+									$ok = false;
+									$errmess += "Create lesson error! ";
+								}
+							} else {
+								if(!$this->lesson_model->create($l)){
+									$ok = false;
+									$errmess += "Create lesson error! ";
+								}
+							}
+						}
+					} else {
+						if(array_key_exists('lesson_id', $l)){
+							if(!$this->lesson_model->delete($l['lesson_id'])){
+								$ok = false;
+								$errmess += "Delete lesson error! ";
+							}
+						}
+					}
+				}
+			}
+
+			if($ok){
+				$this->output->set_status_header(200);
+
+				// load data from db send to ajax
+				$course_id = $course["course_id"];
+				$course = $this->course_model->get_info($course_id);
+				$topics = $this->teacher_load_topic($course_id);
+				$categories = $this->category_model->get_list();
+				$this->load->view("teacher-course-detail-fragment",array(
+					"course" => $course,
+					"topics" => $topics,
+					"categories" => $categories
+					));
+
+
+			} else {
+				$this->output->set_status_header(400);
+				echo $errmess;
+			}
+		}
+	}
+
+	public function teacher_load_topic($course_id){
+		$input['where'] = array('topic_courseId'=>$course_id);
+		$topics = $this->topic_model->get_list($input);
+		if(!$topics){
+			return null;
 		}
 
 		$i=0;
 		foreach($topics as $t){
-			$input['where'] = array('lesson_topicId' => $t->topic_id);
-			$lessons = $this->lesson_model->get_list($input);
-			if(!$lessons){
-				show_error("Đã có lỗi xảy ra! (get_list_lessons_failed)");
-			}
 			$result[$i] = new stdClass();
 			$result[$i]->topic_id = $t->topic_id;
 			$result[$i]->topic_name = $t->topic_name;
-			$result[$i]->lessons = $lessons;
+
+			$input['where'] = array('lesson_topicId' => $t->topic_id);
+			$lessons = $this->lesson_model->get_list($input);
+			if(!$lessons){
+				$result[$i]->lessons = null;
+			} else{
+				$result[$i]->lessons = $lessons;
+			}
 			$i++;
 		}
 		// var_dump($result);
 		return $result;
-    }
+	}
 
-    public function check_teacher_log_in(){
-    	if(!$this->session->userdata('login_teacher')){
-            redirect(site_url("teacher_controller/login"),'location');
-        }
-    }
+	public function check_teacher_log_in(){
+		if(!$this->session->userdata('login_teacher')){
+			redirect(site_url("teacher_controller/login"),'location');
+		}
+	}
 }
 ?>

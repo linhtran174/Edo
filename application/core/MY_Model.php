@@ -11,7 +11,7 @@ class MY_Model extends CI_Model {
     {
     	if($this->db->insert($this->table, $data))//thêm dữ liệu
     	{
-    		return TRUE;
+    		return $this->db->insert_id();
     	}else{
     		return FALSE;
     	}
@@ -27,7 +27,7 @@ class MY_Model extends CI_Model {
     		return FALSE;
     	}
     	$where = array();
-    	$where[$this->id_table] = $id;//điều kiện khóa chính bằng $id truyền vào
+    	$where[$this->table_id] = $id;//điều kiện khóa chính bằng $id truyền vào
     	return $this->update_rule($where, $data);
     }
     
@@ -61,11 +61,11 @@ class MY_Model extends CI_Model {
     	if(is_numeric($id))//nếu $id là số
     	{
 
-    		$where = array($this->id_table => $id);
+    		$where = array($this->table_id => $id);
     	}else
     	{
     		//id nằm trong chuoi các id truyền vào
-    		$where =  $this->id_table." IN (".$id.") ";
+    		$where =  $this->table_id." IN (".$id.") ";
     	}
     	return $this->del_rule($where);
     }
