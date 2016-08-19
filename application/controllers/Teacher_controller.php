@@ -7,6 +7,7 @@ class Teacher_controller extends CI_Controller{
         $this->load->model('course_model');
         $this->load->model('topic_model');
         $this->load->model('lesson_model');
+        $this->load->model('category_model');
     }
     public function index(){
         if($this->session->userdata('login_teacher')==NULL) {
@@ -159,7 +160,8 @@ class Teacher_controller extends CI_Controller{
         $teacher_id = $this->session->userdata('login_teacher')->teacher_id;
         $input['where'] = array('course_teacher'=>$teacher_id);
         $data['courses'] = $this->course_model->get_list($input);
-
+        $categories = $this->category_model->get_list();
+        $data['categories'] = $categories;
         $this->load->view("teacher-courses",$data);
     }
 

@@ -7,15 +7,14 @@
   font-size: 20px;
 }
 
-.w1{
+a.w1{
+  text-decoration: none;
+  display: block;
   font-weight: 500;
   color: white;
-  padding-top: 12px;
   padding-left: 30px;
-}
-.w1 a{
   text-decoration: none;
-  color: white;
+  line-height: 60px;
 }
 
 .marTop30{

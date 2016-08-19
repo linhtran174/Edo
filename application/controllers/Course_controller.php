@@ -14,7 +14,7 @@ class Course_Controller extends CI_Controller{
 		$this->load->model('teacher_model');
 		$this->load->library('ajax_pagination');
 		$this->perPage = 5;
-		$this->load->model('category_model');		
+		$this->load->model('category_model');
 	}
 
 	public function index(){
