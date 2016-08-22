@@ -72,7 +72,7 @@ class Course_Controller extends CI_Controller{
 				$title = "Data Science";
 			}
 		}
-
+		$input['where']['course_status'] = "public";
 		$total = $this->course_model->get_total($input);
 		// echo $total;
 		
@@ -505,6 +505,12 @@ class Course_Controller extends CI_Controller{
 		if(!$this->session->userdata('login_teacher')){
 			redirect(site_url("teacher_controller/login"),'location');
 		}
+	}
+
+	public function public_course(){
+		$id = $this->input->post('id');
+		$data = array("course_status" => "public");
+		$this->course_model->update($id, $data);
 	}
 }
 ?>

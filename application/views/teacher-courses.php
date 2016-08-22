@@ -147,6 +147,11 @@ function printStar($rate){
 										<span class="glyphicon glyphicon-trash"/>
 									</button>
 								</div>
+								<?php if($c->course_status == "unpublic"){?>
+								<div id="change-status">
+									<button style="margin-bottom: 1em;" class="btn btn-default" onclick="change(<?php echo $c->course_id?>);">PUBLIC</button>
+								</div>
+								<?php }?>
 							</div>
 							<div style="clear:both"></div>
 						</div>
@@ -245,16 +250,6 @@ function printStar($rate){
 									</select>
 								</div>
 							</div>
-						<!-- <input style="width: 100%;" type="text"  name="course_name"placeholder="Ten"><br><br>
-						<textarea style="width: 100%;" type="text" name="course_desc"placeholder="gioi thieu"></textarea> <br><br>
-						<input style="width: 100%;" type="text" name="course_shortDesc"placeholder="gioi thieu ngan">   <br><br>
-						<input style="width: 100%;" type="text" name="course_video"placeholder="link video gioi thieu">  <br><br>
-						<input style="width: 100%;" type="text" name="course_totalTime"placeholder="tong thoi gian (giay)">  <br><br>
-						<input style="width: 100%;" type="text" name="course_level"placeholder="do kho">  <br><br>
-						<input style="width: 100%;" type="text" name="course_fee"placeholder="gia khoa hoc">  <br><br>
-						<textarea style="width: 100%;" type="text" name="course_why"placeholder="loi ich khoa hoc"></textarea>  <br><br>
-						<textarea style="width: 100%;" type="text" name="course_require"placeholder="yeu cau khoa hoc"></textarea><br><br>				 -->
-
 					</form>
 						<button id="submitAddCourseBtn">Gửi yêu cầu</button>
 				</div>
@@ -414,6 +409,24 @@ function printStar($rate){
 				success: function(data, textStatus, jQxhr){
 					console.log("success");
 					$('#'+id).fadeOut();
+				},
+				error: function(jQxhr, textStatus, errorThrown){
+					console.log(errorThrown);
+				}
+			});
+		}
+
+		function change(id){
+			url = "<?php echo site_url('course_controller/public_course'); ?>";
+			data = {'id' : id};
+			//console.log(id);
+			$.ajax({
+				url: url,
+				type: "post",
+				data: data,
+				success: function(data, textStatus, jQxhr){
+					console.log("success");
+					location.reload();
 				},
 				error: function(jQxhr, textStatus, errorThrown){
 					console.log(errorThrown);
