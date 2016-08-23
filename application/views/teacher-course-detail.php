@@ -255,7 +255,7 @@
 											<div class="form-group">
 												<label class="control-label col-sm-2" for="lesson_type">Loại bài học:</label>
 												<div class="col-sm-10" >
-													<select class="form-control lesson_type" onchange="isVideoDisabled(<?php echo $currentTopic ,",", $currentLesson ?>)" id="<?php echo "lesson_type_", $currentTopic ,"_", $currentLesson ?>">
+													<select name="lessons[<?php echo $currentAbsoluteLesson?>][lesson_type]" class="form-control lesson_type" onchange="isVideoDisabled(<?php echo $currentTopic ,",", $currentLesson ?>)" id="<?php echo "lesson_type_", $currentTopic ,"_", $currentLesson ?>">
 														<option value="1">Video</option>
 														<option value="2">Text</option>
 
@@ -504,7 +504,7 @@
 					<div class="form-group">\
 						<label class="control-label col-sm-2" for="lesson_type">Loại bài học:</label>\
 						<div class="col-sm-10" >\
-							<select class="form-control lesson_type" onchange="isVideoDisabled('+currentTopic+','+currentLesson+')" id="lesson_type_'+currentTopic+'_'+currentLesson+'">\
+							<select name="lessons['+currentAbsoluteLesson+'][lesson_type]" class="form-control lesson_type" onchange="isVideoDisabled('+currentTopic+','+currentLesson+')" id="lesson_type_'+currentTopic+'_'+currentLesson+'">\
 								<option value="1">Video</option>\
 								<option value="2">Text</option>\
 								\
