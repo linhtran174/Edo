@@ -4,7 +4,7 @@
 	<title>Giáo viên</title>
 	<?php $this->load->view('header');?>
 	<link rel="stylesheet" href="<?php echo base_url("assets/font-awesome-4.6.3/css/font-awesome.min.css")?>">
-	<link rel="stylesheet" href=<?php echo base_url("assets/css/teacher-course-detail.css")?>/>
+	<link rel="stylesheet" href='<?php echo base_url("assets/css/teacher-course-detail.css")?>' />
 	<script src="<?php echo base_url("assets/ckeditor/ckeditor.js") ?>"></script>
 </head>
 <body>

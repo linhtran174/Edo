@@ -2,7 +2,7 @@
 <head>
 <title>Đăng nhập</title>
 	<?php $this->load->view('header'); ?>
-	href=<?php echo base_url("assets/css/Sign_in.css")?> type="text/css" />
+	<link rel="stylesheet" href=<?php echo base_url("assets/css/Sign_in.css")?> type="text/css" />
 
 </head>
 <body>
