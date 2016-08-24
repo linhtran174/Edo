@@ -1,10 +1,8 @@
 <html>
 <head>
-<meta charset='utf-8' />
 <title>Trang chủ</title>
 	<?php $this->load->view('header'); ?>
-	<link rel="stylesheet"
-	href=<?php echo base_url("assets/css/Homepage.css")?>/>
+	<link rel="stylesheet" href=<?php echo base_url("assets/css/Homepage.css");?> />
 </head>
 <body>
 	<?php $this->load->view('Navbar');?>
