@@ -1,15 +1,9 @@
 <html>
 <head>
-	<meta charset='utf-8' />
 	<title>Giáo viên</title>
-	<link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css")?>">
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,500&subset=vietnamese" rel="stylesheet">
+	<?php $this->load->view('header');?>
 	<link rel="stylesheet" href="<?php echo base_url("assets/font-awesome-4.6.3/css/font-awesome.min.css")?>">
-	<script src="<?php echo base_url("assets/js/jquery-2.2.4.min.js")?>"></script>
-	<script src="<?php echo base_url("assets/js/bootstrap.min.js")?>"></script>
-	<link rel="stylesheet" href="<?php echo base_url("assets/css/template.css")?>">
-	<link rel="stylesheet" href=<?php echo base_url("assets/css/teacher-course-detail.css")?>
-	type="text/css" />
+	<link rel="stylesheet" href=<?php echo base_url("assets/css/teacher-course-detail.css")?>/>
 	<script src="<?php echo base_url("assets/ckeditor/ckeditor.js") ?>"></script>
 </head>
 <body>

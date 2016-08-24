@@ -1,15 +1,10 @@
 <html>
 <head>
-<meta charset='utf-8' />
 <title>Yêu cầu lấy lại mật khẩu</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,500&subset=vietnamese" rel="stylesheet">
-<link rel="stylesheet"
-	href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
+<?php $this->load->view('header');?>
 <link rel="stylesheet" href=<?php echo base_url("assets/css/Sign_in.css")?>
 	type="text/css" />
-<link rel="stylesheet" href=<?php echo base_url("assets/css/template.css")?>
-	type="text/css" />
+
 </head>
 <body>
 	<?php $this->load->view('Navbar');?>

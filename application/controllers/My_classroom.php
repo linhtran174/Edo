@@ -17,8 +17,6 @@ class My_classroom extends CI_Controller{
 			redirect(site_url('login_controller'),'refresh');
 		}
 		else {
-
-
 			$student = $this->session->userdata('login')->stud_id;
 			$studentClassrooms = $this->classroom_model->get_student_classrooms($student);
 			//print_r($student);

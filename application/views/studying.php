@@ -1,17 +1,11 @@
 <html>
 <head>
-	<meta charset='utf-8' />
-	<title>Đăng nhập</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,500&subset=vietnamese" rel="stylesheet">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<link rel="stylesheet"
-	href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
-	<link rel="stylesheet" href=<?php echo base_url("assets/css/template.css")?>
-	type="text/css" />
+	<title>Đang học khóa: </title>
+	<?php $this->load->view('header');?>
+
 	<link rel="stylesheet" href=<?php echo base_url("assets/css/studying.css")?>
 	type="text/css" />
-	<script src="<?php echo base_url("assets/js/jquery-2.2.4.min.js")?>"></script>
+
 
 </head>
 <body>

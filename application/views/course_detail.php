@@ -21,25 +21,16 @@ function printStar($rate){
 		}
 	}
 }
-// echo '<pre>';
-// print_r($course);
-// print_r($topics);
-// print_r($reviews);
-// echo '</pre>';
 ?>
 <html>
 <head>
-	<meta charset="UTF-8">
 	<title><?php echo $course[0]->course_name?></title>
-	<link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css")?>">
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,500&subset=vietnamese" rel="stylesheet">
+	<?php $this->load->view('header'); ?>
 	<link rel="stylesheet" href="<?php echo base_url("assets/customscrollbar/jquery.mCustomScrollbar.css")?>" />
-	<link rel="stylesheet" href="<?php echo base_url("assets/font-awesome-4.6.3/css/font-awesome.min.css")?>">
-	<script src="<?php echo base_url("assets/js/jquery-2.2.4.min.js")?>"></script>
-	<script src="<?php echo base_url("assets/js/bootstrap.min.js")?>"></script>
 	<script src="<?php echo base_url("assets/customscrollbar/jquery.mCustomScrollbar.concat.min.js")?>"></script>
-	<link rel="stylesheet" href="<?php echo base_url("assets/css/template.css")?>">
+	<link rel="stylesheet" href="<?php echo base_url("assets/font-awesome-4.6.3/css/font-awesome.min.css")?>">
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/course-detail.css")?>">
+
 </head>
 <body>
 	<?php $this->load->view('Navbar');?>
