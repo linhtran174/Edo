@@ -236,8 +236,7 @@ body {
 	margin: 10px 20px;
 }
 
-#right .course-area h3:hover,
-#right .topic-area h3:hover {
+#right .course-area h3:hover{
 	cursor: pointer;
 	background: #f3f7fd;
 }
@@ -246,15 +245,45 @@ body {
 	cursor: pointer;
 }
 
-.course-area .toggle-list,
-.topic-area .toggle-list {
+.course-area .toggle-list {
 	margin: 0;
 	line-height: 70px;
 }
 
+.topic-area .toggle-list {
+	margin: 0;
+	height: 70px;
+}
+.topic-area .toggle-list:hover {
+	cursor: pointer;
+	background: #f3f7fd;
+}
+
+.topic-area .toggle-list h3 {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.topic-area .toggle-list .icon-glyph {
+	font-size: 20px;
+	/*color: #B8B8B8;*/
+}
+
 .lesson-area .toggle-lesson-list {
 	margin: 0;
-	line-height: 60px;
+	height: 50px;
+}
+
+.lesson-area .toggle-lesson-list h4 {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-top: 17px;
+}
+
+.lesson-area .toggle-lesson-list .icon-glyph {
+	font-size: 17px;
 }
 
 .submit-btn {
@@ -265,4 +294,23 @@ body {
 
 .icontoggle {
 	top: 20px;
+}
+
+.icondelete {
+	top: 20px;
+	right: 10px;
+}
+
+.add-topic {
+	color: #23527c;
+}
+
+.add-lesson {
+	color: #23527c;
+	margin-left: 20px;
+}
+
+.add-topic:hover, .add-lesson:hover {
+	color: #23527c;
+	cursor: pointer;
 }
