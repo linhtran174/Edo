@@ -143,9 +143,15 @@ function printStar($rate){
 								</div>
 								<?php if($c->course_status == "unpublic"){?>
 								<div id="change-status">
-									<button style="margin-bottom: 1em;" class="btn btn-default" onclick="change(<?php echo $c->course_id?>);">PUBLIC</button>
+									<button style="margin-bottom: 1em;" class="btn btn-default" onclick="change(<?php echo $c->course_id?>, 1);">PUBLIC</button>
 								</div>
-								<?php }?>
+								<?php }
+									if($c->course_status == "public"){
+								?>
+									<div id="change-status">
+									<button style="margin-bottom: 1em;" class="btn btn-default" onclick="change(<?php echo $c->course_id?>, 0);">UNPUBLIC</button>
+									</div>
+								<?php } ?>
 							</div>
 							<div style="clear:both"></div>
 						</div>
@@ -410,9 +416,10 @@ function printStar($rate){
 			});
 		}
 
-		function change(id){
+		function change(id, status){
 			url = "<?php echo site_url('course_controller/public_course'); ?>";
-			data = {'id' : id};
+			data = {'id' : id,
+					'status' : status};
 			//console.log(id);
 			$.ajax({
 				url: url,

@@ -509,7 +509,13 @@ class Course_Controller extends CI_Controller{
 
 	public function public_course(){
 		$id = $this->input->post('id');
-		$data = array("course_status" => "public");
+		$status = $this->input->post('status');
+		if($status == 1){
+			$data = array("course_status" => "public");
+		}
+		if ($status == 0){
+			$data = array("course_status" => 'unpublic');
+		}
 		$this->course_model->update($id, $data);
 	}
 }
