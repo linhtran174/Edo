@@ -1,10 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Course_Controller extends CI_Controller{
-	var $category = 0;
-	var $name = 'null';
-	var $level = null;
-	var $fee = null;
+
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('course_model');
@@ -21,19 +18,62 @@ class Course_Controller extends CI_Controller{
 		$this->load->view('course_catalog');
 	}
 
-	public function get_from_view(){
-		// print_r($this->input->post());
+	public function get_from_view($category = 0, $name = 'null',  $level = null, $fee = null){
+		// print_r($this->input->post())
 
-		$this->category = $this->input->post('category');
-		$this->name = $this->input->post('name');
-		$this->fee = $this->input->post('fee');
-		$this->level = $this->input->post('level');
+		$category = $this->input->post('category');
+		$name = $this->input->post('name');
+		$fee = $this->input->post('fee');
+		$level = $this->input->post('level');
 
+        $collect = array("category" => $category,
+            "name" => $name,
+            "level" => $level,
+            "fee" => $fee);
 		// print_r( $this->level);
-		$this->list_course();
+		$this->list_course($collect);
 	}
 
-	public function list_course(){
+	public function set_title($category){
+        if($category == 1){
+            $title = "Android";
+        }
+        else if($category == 2){
+            $title = "Non-tech";
+        }
+        else if($category == 3){
+            $title = "Web";
+        }
+        else if($category == 4){
+            $title = "Database";
+        }
+        else if($category == 5){
+            $title = "Data Science";
+        }
+        else $title = "ALL";
+        return $title;
+    }
+
+    /**
+     * @param $level
+     * @return string
+     */
+    public function set_level($level){
+        if($level == 1){
+            return "Mới bắt đầu";
+        }
+        else if($level == 2){
+            return "Thành thạo";
+        }
+        else if($level == 3){
+            return "Chuyên nghiệp";
+        }
+    }
+
+    /**
+     * @param array $collect
+     */
+    private function list_course($collect = array()){
 
 		$page = $this->input->post('page');
 
@@ -46,31 +86,14 @@ class Course_Controller extends CI_Controller{
 		$title = "ALL";
 		
 		$courses = array();
-		$collect = array("category" => $this->category,
-			"name" => $this->name,
-			"level" => $this->level,
-			"fee" => $this->fee);
 
-		if($this->category == '0' && $this->name == 'null' && $this->fee == '-1' && $this->level == null){
+
+		if($collect['category'] == '0' && $collect['name'] == 'null' && $collect['fee'] == null && $collect['level'] == null){
 			$input = array("select" => "*");
 		}
 		else{
 			$input = $this->filter($collect);
-			if($this->category == 1){ 
-				$title = "Android";
-			}
-			else if($this->category == 2){ 
-				$title = "Non-tech";
-			}
-			else if($this->category == 3){ 
-				$title = "Web";
-			}
-			else if($this->category == 4){ 
-				$title = "Database";
-			}
-			else if($this->category == 5){ 
-				$title = "Data Science";
-			}
+			$title = $this->set_title($collect['category']);
 		}
 		$input['where']['course_status'] = "public";
 		$total = $this->course_model->get_total($input);
@@ -91,15 +114,7 @@ class Course_Controller extends CI_Controller{
 			$teacher = $this->course_teacher($course->course_teacher);
 			$course->teacher_name = $teacher->teacher_fname;
 
-			if($course->course_level == 1){
-				$course->course_level = "Mới bắt đầu";
-			}
-			else if($course->course_level == 2){
-				$course->course_level = "Thành thạo";
-			}
-			else if($course->course_level == 3){
-				$course->course_level = "Chuyên nghiệp";
-			}
+            $course->course_level = $this->set_level($course->course_level);
 		}
 
 
@@ -116,7 +131,7 @@ class Course_Controller extends CI_Controller{
 	}
 
 
-	public function filter($collect){
+	private function filter($collect){
 		$input  = array();
 		$input['where'] = array();
 
