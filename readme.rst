@@ -7,9 +7,11 @@ http://edo.dev.ows.vn
 
 Test account:
 
-Username: admin 
+Username: admin
 
 Password: 1qaz2wsx
+
+The whole system is built with PHP/CodeIgniter
 
 ###################
 About CodeIgniter
