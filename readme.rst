@@ -6,7 +6,9 @@ Release 1.0 here:
 http://edo.dev.ows.vn
 
 Test account:
+
 Username: admin 
+
 Password: 1qaz2wsx
 
 ###################
