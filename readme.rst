@@ -3,6 +3,9 @@ Edo - A customized clone of Udacity e-learning system
 ###################
 
 Release 1.0 here:
+http://training.dev.ows.vn
+
+or
 http://edo.dev.ows.vn
 
 Test account:
