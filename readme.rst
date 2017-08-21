@@ -10,9 +10,9 @@ http://edo.dev.ows.vn
 
 Test account:
 
-Username: admin
+Username: linhtran17495@gmail.com
 
-Password: 1qaz2wsx
+Password: 123456
 
 The whole system is built with PHP/CodeIgniter
 
